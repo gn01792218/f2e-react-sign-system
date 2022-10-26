@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import TheSignStepGroup from '../components/TheSignStepGroup'
 
-function Home() {
+function SignPage() {
     const [count, setCount] = useState(0)
     return (
         <div className='text-white'>
@@ -9,4 +9,4 @@ function Home() {
         </div>
     )
 }
-export default Home
+export default SignPage
