@@ -4,13 +4,13 @@ import Home from '../views/Home'
 
 function Routers() {
     //路遊懶加載
-    const About = lazy(()=>import('../views/About'))
+    const CreateSign = lazy(()=>import('../views/CreateSign'))
     return (
       <div className="App bg-black">
         <Suspense fallback={<div>Loading</div>}>
             <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="/About" element={<About/>}/>
+                <Route path="/createSign" element={<CreateSign/>}/>
             </Routes>
         </Suspense>
       </div>
