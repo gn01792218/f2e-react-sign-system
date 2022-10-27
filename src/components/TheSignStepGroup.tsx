@@ -27,6 +27,11 @@ function TheSignStepGroup() {
             done:false
         }
     ])
+    useMemo(()=>{
+        stepIndecatorDataArray.forEach((step,index)=>{
+            step.active = (currentStep === index+1)
+        })
+    },[currentStep])
     //methods
     function addStep() {
         dispatch(increment())

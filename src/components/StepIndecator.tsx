@@ -1,3 +1,5 @@
+import { useEffect } from "react"
+
 interface Indecator{
     step:number,
     title:string,
@@ -11,10 +13,10 @@ function StepIndecator(props:Props) {
     let { step, title, active, done } = props.indecatorData
     return (
         <div className="flex flex-col items-center">  
-            <div className={[active? 'bg-blue-500': 'bg-green-300',"w-[100px] h-[100px]  rounded-full flex justify-center items-center"].join(' ')}>
-                <p className="text-[50px]">{step}</p>
+            <div className={[active? 'bg-blue-500 animate-bounce': 'bg-green-300',"w-[100px] h-[100px]  rounded-full flex justify-center items-center"].join(' ')}>
+                <p className={[active? 'text-yellow-300': 'text-white','text-[50px]'].join(' ')}>{step}</p>
             </div>
-            <p className="">{title}</p>
+            <p className={[active? 'text-yellow-300': 'text-white'].join(' ')}>{title}</p>
         </div>
     )
 }
