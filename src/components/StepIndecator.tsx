@@ -1,11 +1,4 @@
-import { useEffect } from "react"
-
-interface Indecator{
-    step:number,
-    title:string,
-    active:boolean,
-    done:boolean
-}
+import { Indecator } from '../types/gloable'
 interface Props {
     indecatorData:Indecator
 }

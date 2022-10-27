@@ -1,13 +1,15 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import StepIndecator from '../components/StepIndecator'
 import { useAppSelector, useAppDispatch } from '../store/hooks'
 import { increment, incrementByAmount } from '../store/signSlice'
+import { Indecator } from '../types/gloable'
+
 function TheSignStepGroup() {
     //Redux
     const dispatch = useAppDispatch()
     const currentStep = useAppSelector((state)=>state.sign.currentStep)
     //導覽物件的陣列
-    const [stepIndecatorDataArray,setStepIndecatorDataArray] = useState([
+    const [stepIndecatorDataArray,setStepIndecatorDataArray] = useState<Indecator[]>([
         {
             step:1,
             title:'上傳簽署檔案',
