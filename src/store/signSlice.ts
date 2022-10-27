@@ -4,10 +4,12 @@ import type { RootState } from './index'
 
 //1.定義state
 interface SignState { // 定義 a type for the slice state
-    currentStep: number
+    currentStep: number,
+    maxStep: number,
   }
   const initialState: SignState = { // 定義 the initial state using that type
-    currentStep: 0,
+    currentStep: 1,
+    maxStep:3
   }
 
   //2.撰寫reducer函式
@@ -17,13 +19,16 @@ export const signSlice = createSlice({
     initialState,
     reducers: {
       increment: (state) => {
+        if(state.currentStep > state.maxStep) return
         state.currentStep += 1
       },
       decrement: (state) => {
+        if(state.currentStep < 0) return
         state.currentStep -= 1
       },
       // Use the PayloadAction type to declare the contents of `action.payload`
       incrementByAmount: (state, action: PayloadAction<number>) => {
+        if(state.currentStep > state.maxStep) return
         state.currentStep += action.payload
       },
     },
