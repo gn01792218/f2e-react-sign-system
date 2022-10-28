@@ -3,4 +3,9 @@
 @tailwind utilities;
 
 /* components */
-
+.brimary-btn {
+    @apply w-[100px] h-[50px] border-2 bg-blue-600 rounded-sm
+}
+.upload-btn {
+    @apply p-2 border-2 rounded-sm cursor-pointer
+}
