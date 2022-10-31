@@ -1,6 +1,9 @@
 import { useAppDispatch } from '../store/hooks'
 import { increment } from '../store/signSlice'
 import { useNavigate } from 'react-router-dom';
+// interface Props {
+//     navigate:NavigateFunction
+// }
 function SignPageStep1() {
     //router
     const navigate = useNavigate()

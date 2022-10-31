@@ -1,11 +1,14 @@
 import TheSignStepGroup from '../components/TheSignStepGroup'
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { increment } from '../store/signSlice'
+import { useNavigate } from 'react-router-dom';
 function SignPage() {
+    //router
+    const navigate = useNavigate()
     //Redux
     const dispatch = useAppDispatch()
-    const currentStep = useAppSelector((state)=>state.sign.currentStep)
+    const currentSignStep = useAppSelector((state) => state.sign.currentStep)
     //methods
     function addStep() {
         dispatch(increment())
