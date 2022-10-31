@@ -1,5 +1,5 @@
 import TheSignStepGroup from '../components/TheSignStepGroup'
-import SignPageStep1 from './SignPageStep1'
+import { Outlet, Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { increment } from '../store/signSlice'
 function SignPage() {
@@ -13,7 +13,9 @@ function SignPage() {
     return (
         <div className='text-white'>
             <TheSignStepGroup />
-            {currentStep === 1 ? <SignPageStep1 /> : null}
+
+            {/* 子路由渲染 */}
+            <Outlet />
         </div>
     )
 }
