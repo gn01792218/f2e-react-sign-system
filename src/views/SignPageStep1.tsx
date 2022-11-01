@@ -1,9 +1,8 @@
 import { useAppDispatch } from '../store/hooks'
 import { increment } from '../store/signSlice'
 import { useNavigate } from 'react-router-dom';
-// interface Props {
-//     navigate:NavigateFunction
-// }
+import FileUpload from '../components/FileUpload';
+import { InputType } from '../types/gloable'
 function SignPageStep1() {
     //router
     const navigate = useNavigate()
@@ -16,10 +15,7 @@ function SignPageStep1() {
     }
     return (
         <div className='flex flex-col items-center'>
-            <label className='upload-btn'>
-                <input className='hidden' type="file" />
-                選擇檔案
-            </label>
+            <FileUpload fileUploadObj={{type:InputType.FILE}}/>
             <button className='brimary-btn mt-5' onClick={addStep}>下一步</button>
         </div>
     )
