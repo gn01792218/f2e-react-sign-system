@@ -1,3 +1,7 @@
+# React 線上簽核系統
+## 專案說明
+### 開發環境 : React(18)+Typscript+Vite
+### UI框架 : TailwindCss
 ## 元件架構說明
 ### Btn
 由Btn元件統一管理btn各類元件<br>
