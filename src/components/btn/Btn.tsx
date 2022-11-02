@@ -5,7 +5,7 @@ interface Props {
     btnObj:Button
 }
 function Btn(props:Props) {
-    const { type, title, clickHandler } = props.btnObj
+    const { type = BtnType.PRIMARY, title, clickHandler } = props.btnObj
     return (
         <div className='mt-5'>
             {(()=>{
