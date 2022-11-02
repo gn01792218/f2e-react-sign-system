@@ -1,5 +1,7 @@
 
-import { InputType } from '../types/gloable'
+import { InputType } from '../../types/gloable'
+import UploadFile from './UploadFile'
+import UploadImage from './UploadImage'
 interface FileUpload {
     type:InputType
 }
@@ -13,12 +15,9 @@ function FileUpload(props:Props) {
             {(()=>{
                 switch (type) {
                     case InputType.FILE:
-                        return (<label className='upload-btn'>
-                                    <input className='hidden' type="file" />
-                                    選擇檔案
-                                </label>)
+                        return <UploadFile/>
                     case InputType.IMAGE:
-                        return
+                        return <UploadImage/>
                 }
             })()}
         </div>

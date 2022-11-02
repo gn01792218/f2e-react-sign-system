@@ -1,7 +1,7 @@
 import { useAppDispatch } from '../store/hooks'
 import { increment } from '../store/signSlice'
 import { useNavigate } from 'react-router-dom';
-import FileUpload from '../components/FileUpload';
+import FileUpload from '../components/inputComponents/FileUpload';
 import { InputType } from '../types/gloable'
 function SignPageStep1() {
     //router
