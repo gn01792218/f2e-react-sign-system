@@ -1,6 +1,8 @@
+import { BtnType } from '../types/gloable'
 import { useAppDispatch } from '../store/hooks'
 import { increment, decrement } from '../store/signSlice'
 import { useNavigate } from 'react-router-dom';
+import Btn from '../components/btn/Btn'
 function SignPageStep2() {
     //router
     const navigate = useNavigate()
@@ -19,8 +21,8 @@ function SignPageStep2() {
         <div className='flex flex-col items-center'>
             第二步
             <div className='flex'>
-            <button className='brimary-btn mt-5' onClick={backStep}>上一步</button>
-            <button className='brimary-btn mt-5' onClick={addStep}>下一步</button>
+                <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:backStep}}/>
+                <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:addStep}}/>
             </div>
         </div>
     )
