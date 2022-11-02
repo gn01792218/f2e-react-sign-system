@@ -12,3 +12,8 @@
 .upload-btn {
     @apply p-2 border-2 rounded-sm cursor-pointer
 }
+
+/* canvas */
+.signCanvas{
+    @apply min-w-[300px] max-w-[500px] h-[200px] border-2 border-blue-600
+}
