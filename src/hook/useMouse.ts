@@ -5,10 +5,11 @@ export default function useMouse(){
         return [event.clientX,event.clientY]
     }
     function getCanvasMousePos(canvas:HTMLCanvasElement,event:MouseEvent) {
-        let [x,y] = [event.clientX,event.clientY]
-        const rect = canvas.getBoundingClientRect()
+        let [x,y] = getMousePos(event)
+        let rect = canvas.getBoundingClientRect()
         x -= rect.left
         y -= rect.top
+        console.log(canvas.offsetLeft,canvas.offsetTop,event.offsetX,event.offsetY)
         return [x,y]
     }
     return {
