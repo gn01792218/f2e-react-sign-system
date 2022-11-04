@@ -1,7 +1,7 @@
 import { useRef, useState } from "react"
 import useMouse from './useMouse'
 export default function useCanvas() {
-    const { getCanvasMousePos } = useMouse()
+    const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
 
     const signCanvas = useRef<HTMLCanvasElement>(null)
     const ctx = signCanvas.current?.getContext("2d")!
@@ -34,11 +34,24 @@ export default function useCanvas() {
         ctx.stroke()  //將兩點連成線的方法
     }
     // 手機寫字
-    function handleTouchStart(event: MouseEvent) {
+    function handleTouchStart(event: TouchEvent) {
+        setDrawing(true)
+        let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
+        ctx.beginPath()
+        ctx.moveTo(x, y)
+        event.preventDefault()
 
     }
-    function handleTouchMove(event: MouseEvent){
-
+    function handleTouchMove(event: TouchEvent){
+        if (!drawing) return
+        let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
+        ctx.lineWidth = 2;
+        ctx.lineCap = "round"; // 繪制圓形的結束線帽
+        ctx.lineJoin = "round"; // 兩條線條交匯時，建立圓形邊角
+        ctx.shadowBlur = 1; // 邊緣模糊，防止直線邊緣出現鋸齒
+        ctx.shadowColor = "black"; // 邊緣顏色
+        ctx.lineTo(x, y);
+        ctx.stroke();
     }
     //canvas轉圖片
     function converCanvasToImage(canvas:HTMLCanvasElement) {
