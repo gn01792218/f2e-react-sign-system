@@ -4,7 +4,7 @@ export default function useCanvas() {
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
 
     const signCanvas = useRef<HTMLCanvasElement>(null)
-    const ctx = signCanvas.current?.getContext("2d")!
+    const ctx = signCanvas.current?.getContext("2d")
 
     const [drawing, setDrawing] = useState(true)
 
@@ -17,6 +17,7 @@ export default function useCanvas() {
     function handleMouseDown(event: React.MouseEvent<HTMLCanvasElement>) {
         setDrawing(true)
         let [x, y] = getCanvasMousePos(signCanvas.current!, event)
+        if(!ctx) return
         ctx.beginPath()
         ctx.moveTo(x, y)
         event.preventDefault()
@@ -24,6 +25,7 @@ export default function useCanvas() {
     function handleMouseMove(event: React.MouseEvent<HTMLCanvasElement>) {
         if (!drawing) return
         let [x, y] = getCanvasMousePos(signCanvas.current!, event)
+        if(!ctx) return
         ctx.lineWidth = 2
         ctx.lineCap = 'round'
         ctx.lineJoin = 'round'
@@ -37,6 +39,7 @@ export default function useCanvas() {
     function handleTouchStart(event: React.TouchEvent<HTMLCanvasElement>) {
         setDrawing(true)
         let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
+        if(!ctx) return
         ctx.beginPath()
         ctx.moveTo(x, y)
         event.preventDefault()
@@ -45,6 +48,7 @@ export default function useCanvas() {
     function handleTouchMove(event: React.TouchEvent<HTMLCanvasElement>){
         if (!drawing) return
         let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
+        if(!ctx) return
         ctx.lineWidth = 2;
         ctx.lineCap = "round"; // 繪制圓形的結束線帽
         ctx.lineJoin = "round"; // 兩條線條交匯時，建立圓形邊角
