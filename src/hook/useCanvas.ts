@@ -4,7 +4,7 @@ export default function useCanvas() {
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
 
     const signCanvas = useRef<HTMLCanvasElement>(null)
-    const ctx = signCanvas.current?.getContext("2d")
+    const ctx = signCanvas.current?.getContext("2d")!
 
     const [drawing, setDrawing] = useState(true)
 

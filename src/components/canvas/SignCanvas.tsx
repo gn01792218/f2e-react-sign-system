@@ -4,15 +4,15 @@ interface Props {
     signCanvasObj:SignCanvasObj
 }
 function SignCanvas(props:Props) {
-   const { signCanvas, ctx, handleMouseDown, handleMouseMove, handleTouchStart, handleTouchMove,  setDrawing } = props.signCanvasObj
+   const { width, height, signCanvas, ctx, handleMouseDown, handleMouseMove, handleTouchStart, handleTouchMove,  setDrawing } = props.signCanvasObj
 
     return (
         <div>
             <canvas 
                 ref={signCanvas} 
                 className="signCanvas"
-                width={500}
-                height={200}
+                width={width}
+                height={height}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onTouchStart={handleTouchStart}

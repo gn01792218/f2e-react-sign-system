@@ -1,5 +1,7 @@
 import { MouseEventHandler, TouchEventHandler } from "react"
 export interface SignCanvasObj {
+    width:number,
+    height:number,
     signCanvas:React.LegacyRef<HTMLCanvasElement>,
     ctx:CanvasRenderingContext2D,
     handleMouseDown:MouseEventHandler<HTMLCanvasElement>,
