@@ -4,7 +4,7 @@ import FileUpload from '../components/inputComponents/FileUpload'
 import SignCanvas from '../components/canvas/SignCanvas'
 import useCanvas from '../hook/useCanvas'
 function CreateSign() {
-    const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove } = useCanvas()
+    const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart } = useCanvas()
     function createHandmadeSign() {
         
     }
@@ -19,6 +19,8 @@ function CreateSign() {
                     setDrawing,
                     handleMouseDown,
                     handleMouseMove,
+                    handleTouchMove,
+                    handleTouchStart
                 }}/>
                 <div className='flex'>
                     <Btn btnObj={{type:BtnType.SECONDARY,title:'清除簽名',clickHandler:()=>clearCanvas(signCanvas.current!)}}/>

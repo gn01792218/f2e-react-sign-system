@@ -1,4 +1,5 @@
 import { SignCanvasObj } from '../../types/signCanvas'
+
 interface Props {
     signCanvasObj:SignCanvasObj
 }

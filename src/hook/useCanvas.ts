@@ -14,14 +14,14 @@ export default function useCanvas() {
         ctx?.clearRect(0, 0, canvas.width, canvas.height)
     }
     //用滑鼠寫字
-    function handleMouseDown(event: MouseEvent) {
+    function handleMouseDown(event: React.MouseEvent<HTMLCanvasElement>) {
         setDrawing(true)
         let [x, y] = getCanvasMousePos(signCanvas.current!, event)
         ctx.beginPath()
         ctx.moveTo(x, y)
         event.preventDefault()
     }
-    function handleMouseMove(event: MouseEvent) {
+    function handleMouseMove(event: React.MouseEvent<HTMLCanvasElement>) {
         if (!drawing) return
         let [x, y] = getCanvasMousePos(signCanvas.current!, event)
         ctx.lineWidth = 2
@@ -34,7 +34,7 @@ export default function useCanvas() {
         ctx.stroke()  //將兩點連成線的方法
     }
     // 手機寫字
-    function handleTouchStart(event: TouchEvent) {
+    function handleTouchStart(event: React.TouchEvent<HTMLCanvasElement>) {
         setDrawing(true)
         let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
         ctx.beginPath()
@@ -42,7 +42,7 @@ export default function useCanvas() {
         event.preventDefault()
 
     }
-    function handleTouchMove(event: TouchEvent){
+    function handleTouchMove(event: React.TouchEvent<HTMLCanvasElement>){
         if (!drawing) return
         let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
         ctx.lineWidth = 2;

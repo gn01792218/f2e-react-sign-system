@@ -1,9 +1,10 @@
+import { MouseEventHandler, TouchEventHandler } from "react"
 export interface SignCanvasObj {
     signCanvas:React.LegacyRef<HTMLCanvasElement>,
     ctx:CanvasRenderingContext2D,
-    handleMouseDown:(event: MouseEvent)=>void
-    handleMouseMove:(event: MouseEvent)=>void
-    handleTouchStart:(event: TouchEvent)=>void
-    handleTouchMove:(event: TouchEvent)=>void
+    handleMouseDown:MouseEventHandler<HTMLCanvasElement>,
+    handleMouseMove:MouseEventHandler<HTMLCanvasElement>,
+    handleTouchStart:TouchEventHandler<HTMLCanvasElement>,
+    handleTouchMove:TouchEventHandler<HTMLCanvasElement>,
     setDrawing:(set:boolean)=>void
 }
