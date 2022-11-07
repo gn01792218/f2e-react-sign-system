@@ -11,6 +11,8 @@ function SignCanvas(props:Props) {
             <canvas 
                 ref={signCanvas} 
                 className="signCanvas"
+                width={500}
+                height={200}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onTouchStart={handleTouchStart}
