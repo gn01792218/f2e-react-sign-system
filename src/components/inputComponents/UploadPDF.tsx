@@ -33,11 +33,9 @@ function UploadPDF() {
             res.promise.then(
                 //成功
                 function success(pdf){
-                    console.log('取得文件')
                     //串接第一頁pdf檔案頁面
                     const pageNum = 1
                     pdf.getPage(pageNum).then(page=>{
-                        console.log('頁面載入')
                         const scale = 1.5
                         const viewport = page.getViewport({scale})
                         //準備canvas
@@ -45,13 +43,12 @@ function UploadPDF() {
                         pdfCanvas.current.height = viewport.height
                         pdfCanvas.current.width = viewport.width
                         //把PDF渲染到canvas上
-                        const renderTask = page.render({
+                        page.render({
                             canvasContext:ctx,
                             viewport:viewport
                         })
-                        renderTask.promise.then(()=>{
-                            console.log("PDF渲染!")
-                        })
+                        .promise
+                        .catch(e=>console.log(e))
                     })
                 },
                 //失敗

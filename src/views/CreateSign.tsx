@@ -5,6 +5,7 @@ import SignCanvas from '../components/canvas/SignCanvas'
 import useCanvas from '../hook/useCanvas'
 import useUtil from '../hook/useUtil'
 import { useState } from 'react'
+import { fabric } from 'fabric'
 function CreateSign() {
     const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart } = useCanvas()
     const { downloadImg, converCanvasToImage } = useUtil()

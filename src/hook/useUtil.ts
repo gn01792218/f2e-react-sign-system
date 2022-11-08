@@ -3,13 +3,13 @@ export default function useUtil(){
 
     //下載圖片
     function downloadImg(url:string,fileName?:string) {
+        console.log(url)
         let a = document.createElement('a')
-        a.href = url
+        let blob = new Blob([url], {type: "text/plain;charset=utf-8"})
         if(fileName) a.download = fileName
-        let blob = new Blob([url])
         a.href = URL.createObjectURL(blob)
         document.body.appendChild(a)
-        a.dispatchEvent(new MouseEvent('click'))
+        a.click()
         document.body.removeChild(a)
     }
 
