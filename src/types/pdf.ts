@@ -1,5 +1,6 @@
 // 暫時未用到
 export interface PDFObj {
-    pageNum:number,
-    url:string
+    pdfCanvas:React.LegacyRef<HTMLCanvasElement>,
+    width:number,
+    height:number
 }
