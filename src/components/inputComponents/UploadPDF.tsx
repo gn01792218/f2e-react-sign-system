@@ -21,16 +21,19 @@ function UploadPDF() {
 
     }
     const handleUploadPDF:ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent<HTMLInputElement>)=>{
+        //獲取input檔案
         const file = event.target.files? event.target.files[0] : null
         if(file?.type !== 'application/pdf') return
-
+        //開始檔案讀取
         let fileReader = new FileReader()
-        fileReader.onload = ()=>{
-            const pdfData = new Uint8Array(this.result)
+        
+        fileReader.onload = function () {
+            const pdfData = new Uint8Array(this.result as ArrayBufferLike)
             const res = pdfjs.getDocument({data:pdfData})
             res.promise.then(
                 //成功
                 function success(pdf){
+                    console.log('取得文件')
                     //串接第一頁pdf檔案頁面
                     const pageNum = 1
                     pdf.getPage(pageNum).then(page=>{
@@ -38,8 +41,9 @@ function UploadPDF() {
                         const scale = 1.5
                         const viewport = page.getViewport({scale})
                         //準備canvas
-                        pdfCanvas.current?.height = viewport.height
-                        pdfCanvas.current?.width = viewport.width
+                        if(!pdfCanvas.current) return
+                        pdfCanvas.current.height = viewport.height
+                        pdfCanvas.current.width = viewport.width
                         //把PDF渲染到canvas上
                         const renderTask = page.render({
                             canvasContext:ctx,
@@ -55,10 +59,8 @@ function UploadPDF() {
                     console.log(err)
                 }
             )
-
-            fileReader.readAsArrayBuffer(file)
         }
-        
+        fileReader.readAsArrayBuffer(file)
     }
 
     return (
