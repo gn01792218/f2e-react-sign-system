@@ -1,5 +1,7 @@
 export default function useUtil(){
     //methods
+
+    //下載圖片
     function downloadImg(url:string,fileName?:string) {
         let a = document.createElement('a')
         a.href = url
@@ -10,8 +12,14 @@ export default function useUtil(){
         a.dispatchEvent(new MouseEvent('click'))
         document.body.removeChild(a)
     }
+
+    //canvas轉圖片
+     function converCanvasToImage(canvas:HTMLCanvasElement) {
+        return canvas.toDataURL()
+    }
     return {
         //methods
         downloadImg,
+        converCanvasToImage,
     }
 }

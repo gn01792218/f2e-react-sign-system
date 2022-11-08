@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import signReducer from './signSlice'  //引入reducer
+//引入reducer
+import sign from './signSlice'  
+import createSign from './createSignSlice'
 
 const store = configureStore({
   reducer: {
-    sign: signReducer,
+    sign,
+    createSign
   },
 })
 

@@ -2,7 +2,6 @@ import { useRef, useState } from "react"
 import useMouse from './useMouse'
 export default function useCanvas() {
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
-
     const signCanvas = useRef<HTMLCanvasElement>(null)
     const ctx = signCanvas.current?.getContext("2d")!
 
@@ -57,10 +56,7 @@ export default function useCanvas() {
         ctx.lineTo(x, y);
         ctx.stroke();
     }
-    //canvas轉圖片
-    function converCanvasToImage(canvas:HTMLCanvasElement) {
-        return canvas.toDataURL()
-    }
+   
     return {
         //data
         signCanvas,
@@ -72,6 +68,5 @@ export default function useCanvas() {
         handleMouseDown,
         handleTouchStart,
         handleTouchMove,
-        converCanvasToImage,
     }
 }

@@ -6,8 +6,8 @@ import useCanvas from '../hook/useCanvas'
 import useUtil from '../hook/useUtil'
 import { useState } from 'react'
 function CreateSign() {
-    const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, converCanvasToImage } = useCanvas()
-    const { downloadImg } = useUtil()
+    const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart } = useCanvas()
+    const { downloadImg, converCanvasToImage } = useUtil()
     const [handSignImg,setHandSignImg ] = useState<string>('')  //手寫轉的圖片
     const canvasSize = {
         width:500,
@@ -45,7 +45,7 @@ function CreateSign() {
             </section>
             <section>
                 <h2>上傳圖片</h2>
-                <FileUpload fileUploadObj={{type:InputType.IMAGE}}/>
+                <FileUpload fileUploadObj={{type:InputType.PDF}}/>
             </section>
         </div>
     )

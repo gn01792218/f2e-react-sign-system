@@ -8,6 +8,7 @@ export enum InputType {
     TEXT,
     IMAGE,
     FILE,
+    PDF,
 }
 export interface Indecator {
     step:number,

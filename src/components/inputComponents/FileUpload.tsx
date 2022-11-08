@@ -2,6 +2,7 @@
 import { InputType } from '../../types/gloable'
 import UploadFile from './UploadFile'
 import UploadImage from './UploadImage'
+import UploadPDF from './UploadPDF'
 interface FileUpload {
     type:InputType
 }
@@ -18,6 +19,8 @@ function FileUpload(props:Props) {
                         return <UploadFile/>
                     case InputType.IMAGE:
                         return <UploadImage/>
+                    case InputType.PDF:
+                        return <UploadPDF/>
                 }
             })()}
         </div>

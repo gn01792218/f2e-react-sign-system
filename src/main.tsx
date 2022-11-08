@@ -5,6 +5,10 @@ import store from './store/index'
 import './index.css'
 import App from './App'
 
+//統一載入型態
+import * as pdf from './types/pdf'
+import * as gloableType from './types/gloable'
+import * as signCanvas from './types/signCanvas'
 
 //react 18 用法
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
