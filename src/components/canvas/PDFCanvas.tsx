@@ -1,5 +1,4 @@
 import { PDFObj } from '../../types/pdf'
-
 interface Props {
     pdfObj: PDFObj
 }

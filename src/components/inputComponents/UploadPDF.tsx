@@ -5,17 +5,22 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import PDFCanvas from '../canvas/PDFCanvas'
+import useUtil from '../../hook/useUtil'
+import { loadPdfImg } from '../../store/createSignSlice'
+import Btn from '../btn/Btn'
+import { BtnType } from '../../types/gloable'
 function UploadPDF() {
+    //hook
+    const { converCanvasToImage } = useUtil()
     //準備canvas相關
     const pdfCanvas = useRef<HTMLCanvasElement>(null)
     const ctx = pdfCanvas.current?.getContext("2d")! 
     
     //基本資料
-    const [src, setSrc] = useState<string>('')
-    const { width, height } = {width:100,height:100}
+    const { width, height } = {width:500,height:500}
     //Redux
     const dispatch = useAppDispatch()
-
+    const imgSrc = useAppSelector(state => state.createSign.pdfImg)
     //methods
     const handleUploadImg:ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent<HTMLInputElement>)=>{
 
@@ -48,6 +53,10 @@ function UploadPDF() {
                             viewport:viewport
                         })
                         .promise
+                        .then(()=>{
+                            let img = converCanvasToImage(pdfCanvas.current!)
+                            dispatch(loadPdfImg(img))
+                        })
                         .catch(e=>console.log(e))
                     })
                 },
@@ -68,6 +77,10 @@ function UploadPDF() {
             </label>
             <div className='mt-5'>
                 <PDFCanvas pdfObj={{pdfCanvas,width,height}}/>
+                {
+                    imgSrc? <img src={imgSrc} alt="pdf產生的圖檔" width='500' height='500'/> : null
+                }
+                
             </div>
         </div>
     )
