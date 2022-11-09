@@ -66,7 +66,9 @@ function UploadPDF() {
                 <input className='hidden' type="file" onChange={handleUploadPDF}/>
                     選擇檔案
             </label>
-            <PDFCanvas pdfObj={{pdfCanvas,width,height}}/>
+            <div className='mt-5'>
+                <PDFCanvas pdfObj={{pdfCanvas,width,height}}/>
+            </div>
         </div>
     )
 }

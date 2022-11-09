@@ -15,7 +15,7 @@ function CreateSign() {
         height:200,
     }
     return (
-        <div className='text-white bg-black'>
+        <main className='text-white bg-black flex'>
             <h1 className="text-lg">建立簽名</h1>
             <section>
                 <h2>手寫</h2>
@@ -40,7 +40,6 @@ function CreateSign() {
                         <img  src={ handSignImg } alt="手繪簽名" width={canvasSize.width} height={canvasSize.height}/> 
                         <Btn btnObj={{type:BtnType.PRIMARY,title:'下載圖片',clickHandler:()=>downloadImg(handSignImg)}}/>
                     </div>
-                    
                     : null
                 }
             </section>
@@ -48,7 +47,7 @@ function CreateSign() {
                 <h2>上傳圖片</h2>
                 <FileUpload fileUploadObj={{type:InputType.PDF}}/>
             </section>
-        </div>
+        </main>
     )
 }
 export default CreateSign

@@ -14,12 +14,12 @@ function SignPage() {
         dispatch(increment())
     }
     return (
-        <div className='text-white'>
+        <main className='text-white'>
             <TheSignStepGroup />
 
             {/* 子路由渲染 */}
             <Outlet />
-        </div>
+        </main>
     )
 }
 export default SignPage
