@@ -2,12 +2,12 @@ import { InputType, BtnType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
 import FileUpload from '../components/inputComponents/FileUpload'
 import SignCanvas from '../components/canvas/SignCanvas'
-import useCanvas from '../hook/useCanvas'
+import useSignCanvas from '../hook/useSignCanvas'
 import useUtil from '../hook/useUtil'
 import { useState } from 'react'
 import { fabric } from 'fabric'
 function CreateSign() {
-    const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart } = useCanvas()
+    const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart } = useSignCanvas()
     const { handleDownloadImg, converCanvasToImage } = useUtil()
     const [handSignImg,setHandSignImg ] = useState<string>('')  //手寫轉的圖片
     const canvasSize = {
