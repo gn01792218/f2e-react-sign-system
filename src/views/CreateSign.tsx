@@ -8,7 +8,7 @@ import { useState } from 'react'
 import { fabric } from 'fabric'
 function CreateSign() {
     const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart } = useCanvas()
-    const { downloadImg, converCanvasToImage } = useUtil()
+    const { handleDownloadImg, converCanvasToImage } = useUtil()
     const [handSignImg,setHandSignImg ] = useState<string>('')  //手寫轉的圖片
     const canvasSize = {
         width:500,
@@ -38,7 +38,7 @@ function CreateSign() {
                     handSignImg? 
                     <div>
                         <img  src={ handSignImg } alt="手繪簽名" width={canvasSize.width} height={canvasSize.height}/> 
-                        <Btn btnObj={{type:BtnType.PRIMARY,title:'下載圖片',clickHandler:()=>downloadImg(handSignImg)}}/>
+                        <Btn btnObj={{type:BtnType.PRIMARY,title:'下載圖片',clickHandler:()=>handleDownloadImg(handSignImg)}}/>
                     </div>
                     : null
                 }
