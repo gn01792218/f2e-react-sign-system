@@ -1,11 +1,51 @@
 # React 線上簽核系統
-## <span style="font-weight:bolder">專案說明</span>
-### 開發環境 : <span style="color: aquamarine ; font-weight:bold"> React(18)+Typscript+Vite </span>
-### UI框架 : <span style="color: aqua ; font-weight:bold"> TailwindCss </span>
-### 狀態管理 :  <span style="color: aquamarine ; font-weight:bold"> Redux + Redux toolkit </span>
-### 路由管理 :  <span style="color: aqua ; font-weight:bold"> react-router-dom (v6) </span>
-### 圖片合併及拖拉縮放功能 :  <span style="color: aquamarine ; font-weight:bold"> fabricjs </span>
-### PDF檔案管理插件 :  <span style="color: aqua ; font-weight:bold"> react-pdf </span>
+<div style="display:flex">
+    <section style="display:flex;flex-direction: column;margin-right:50px">
+        <h2 style="font-weight:bolder">專案說明</h2>
+        <p style="font-weight:bold"> 開發環境 : <span style="color: aquamarine ; font-weight:bold"> React(18)+Typscript+Vite </span></p>
+        <p style="font-weight:bold"> UI框架 : <span style="color: aqua ; font-weight:bold"> TailwindCss </span></p>
+        <p style="font-weight:bold"> 狀態管理 :  <span style="color: aquamarine ; font-weight:bold"> Redux + Redux toolkit </span></p>
+        <p style="font-weight:bold"> 路由管理 :  <span style="color: aqua ; font-weight:bold"> react-router-dom (v6) </span></p>
+        <p style="font-weight:bold"> 圖片合併及拖拉縮放功能 :  <span style="color: aquamarine ; font-weight:bold"> fabricjs </span></p>
+        <p style="font-weight:bold"> PDF檔案管理插件 :  <span style="color: aqua ; font-weight:bold"> react-pdf </span></p>
+    </section>
+    <section style="display:flex;flex-direction: column">
+        <h2 style="font-weight:bolder">專案結構說明</h2>
+        <ul>
+            <li>dist - 打包資料夾</li>
+            <li>src - 源碼根目錄</li>
+            <ul>
+                <li>assets     - 靜態資源 (如圖檔)</li>
+                <li>components -  元件</li>
+                <li>hook       -  客製化鉤子函數</li>
+                <li>router     -  路由管理</li>
+                <li>store      -  狀態管理(Redux)</li>
+                <li>types      -  專案型別宣告及管理</li>
+                <li>views      -  容器元件 (如Home)</li>
+            </ul>
+        </ul>
+    </section>
+</div>
+
+## <span style="font-weight:bolder">專案啟動與打包、部署</span>
+### 啟動專案
+```
+npm i //初次clone專案時，先安裝依賴
+npm run dev
+```
+### 打包
+```
+npm run build
+```
+### 部署gh-page
+<span style="color: yellow"> 部署請先執行打包動作 </span>
+
+```
+git add dist -f
+git commit -m '部署'
+git subtree push --prefix dist origin gh-pages
+
+```
 ## <span style="font-weight:bolder">元件架構說明</span>
 ### <span style="font-weight:bold">Btn元件</span>
 由Btn.tsx元件統一管理btn各類元件<br>

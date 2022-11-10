@@ -9,7 +9,7 @@ export default function useCanvas() {
     const signCanvas = useRef<HTMLCanvasElement>(null)
     const ctx = signCanvas.current?.getContext("2d")!
 
-    const [drawing, setDrawing] = useState(true)
+    const [drawing, setDrawing] = useState(false)
     const [handSignImg, setHandSignImg ] = useState<string>('')  //手寫轉的圖片
     // hook
     const { converCanvasToImage } = useUtil()
