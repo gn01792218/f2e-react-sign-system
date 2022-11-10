@@ -1,4 +1,4 @@
-import { SignCanvasObj } from '../../types/signCanvas'
+import { SignCanvasObj } from '../../types/canvas'
 
 interface Props {
     signCanvasObj:SignCanvasObj

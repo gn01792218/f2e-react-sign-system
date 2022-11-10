@@ -1,6 +1,6 @@
-import { PDFObj } from '../../types/pdf'
+import { PDFCanvasObj } from '../../types/canvas'
 interface Props {
-    pdfObj: PDFObj
+    pdfObj: PDFCanvasObj
 }
 function PDFCanvas(prop:Props) {
     const { pdfCanvas, width, height } = prop.pdfObj  //外面可決定要顯示幾頁PDF

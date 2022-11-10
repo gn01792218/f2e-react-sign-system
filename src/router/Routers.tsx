@@ -10,7 +10,7 @@ function Routers() {
     const SignPageStep2 = lazy(()=>import('../views/SignPageStep2'))
     const SignPageStep3 = lazy(()=>import('../views/SignPageStep3'))
     return (
-      <div className="App bg-black">
+      <div>
         <Suspense fallback={<div>Loading</div>}>
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>

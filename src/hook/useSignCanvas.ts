@@ -1,12 +1,20 @@
 import { useRef, useState } from "react"
+import { useAppDispatch } from '../store/hooks'
 import useMouse from './useMouse'
+import useUtil from '../hook/useUtil'
+import { loadHandMadeSignImg } from '../store/createSignSlice'
 export default function useCanvas() {
+    // 基本資料
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
     const signCanvas = useRef<HTMLCanvasElement>(null)
     const ctx = signCanvas.current?.getContext("2d")!
 
     const [drawing, setDrawing] = useState(true)
-
+    const [handSignImg, setHandSignImg ] = useState<string>('')  //手寫轉的圖片
+    // hook
+    const { converCanvasToImage } = useUtil()
+    // Redux
+    const dispatch = useAppDispatch()
     //methods
     function clearCanvas(canvas: HTMLCanvasElement) {
         const ctx = canvas.getContext('2d')
@@ -56,11 +64,18 @@ export default function useCanvas() {
         ctx.lineTo(x, y);
         ctx.stroke();
     }
+
+    //轉化成圖
+    function toImage() {
+        setHandSignImg(converCanvasToImage(signCanvas.current!))
+        dispatch(loadHandMadeSignImg(handSignImg))
+    }
    
     return {
         //data
         signCanvas,
         ctx,
+        handSignImg,
         //methods
         setDrawing,
         clearCanvas,
@@ -68,5 +83,6 @@ export default function useCanvas() {
         handleMouseDown,
         handleTouchStart,
         handleTouchMove,
+        toImage,
     }
 }

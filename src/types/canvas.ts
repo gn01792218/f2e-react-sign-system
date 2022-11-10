@@ -1,4 +1,16 @@
 import { MouseEventHandler, TouchEventHandler } from "react"
+export interface MergeImageCanvasObj {
+    mergeImageCanvasRef:React.LegacyRef<HTMLCanvasElement>,
+    width?:number,
+    height?:number
+}
+
+export interface PDFCanvasObj {
+    pdfCanvas:React.LegacyRef<HTMLCanvasElement>,
+    width:number,
+    height:number
+}
+
 export interface SignCanvasObj {
     width:number,
     height:number,
