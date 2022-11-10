@@ -17,3 +17,6 @@
 .signCanvas{
     @apply min-w-[300px] max-w-[500px] h-[200px] border-2 border-blue-600
 }
+.a{
+    color:aquamarine
+}

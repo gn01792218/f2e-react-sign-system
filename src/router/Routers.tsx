@@ -10,7 +10,6 @@ function Routers() {
     const SignPageStep2 = lazy(()=>import('../views/SignPageStep2'))
     const SignPageStep3 = lazy(()=>import('../views/SignPageStep3'))
     return (
-      <div>
         <Suspense fallback={<div>Loading</div>}>
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
@@ -23,7 +22,6 @@ function Routers() {
                 <Route path="CreateSign" element={<CreateSign/>}/>
             </Routes>
         </Suspense>
-      </div>
     )
   }
   
