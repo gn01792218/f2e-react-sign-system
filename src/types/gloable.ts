@@ -21,3 +21,8 @@ export interface Button {
     title:string,
     clickHandler:MouseEventHandler<HTMLButtonElement>
 }
+export interface LoadingData {
+    width:number,
+    height:number,
+    loading:boolean
+}
