@@ -47,6 +47,22 @@ git subtree push --prefix dist origin gh-pages
 
 ```
 ## <span style="font-weight:bolder">元件架構說明</span>
+### <span style="font-weight:bold">Loading元件</span>
+Loading元件可客製化樣式，需傳入TailwindCss class字串<br>
+props參數:<br>
+<span style="font-weight:bold">loading (必填) :</span> 控制loading出現與否<br>
+<span style="font-weight:bold">width、height (選填) :</span> 控制大小<br>
+<span style="font-weight:bold">strokColor (選填) :</span> 使用" text-顏色 " 控制Loading框框底色<br>
+<span style="font-weight:bold">strokfillerColor (選填) :</span> 使用" fill-顏色 " 控制Loading旋轉的顏色
+```javascript
+
+//基本使用，傳入loading控制loading出現與否
+<Loading loadingObj={{ loading }}/>
+
+//客製化，可更改寬高、loading底色、fill顏色
+<Loading loadingObj={{ loading, width:'w-20', height:'h-20', strokColor:'text-yellow-200', strokfillerColor:'fill-red-600' }}/>
+
+```
 ### <span style="font-weight:bold">Btn元件</span>
 由Btn.tsx元件統一管理btn各類元件<br>
 btn元件主要以樣式作為分類，如PrimaryBtn、SecondaryBtn...等<br>

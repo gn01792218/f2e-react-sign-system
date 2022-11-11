@@ -1,4 +1,4 @@
-import { InputType, BtnType } from '../types/gloable'
+import { InputType, BtnType, LoadingData } from '../types/gloable'
 import Btn from '../components/btn/Btn'
 import FileUpload from '../components/inputComponents/FileUpload'
 import SignCanvas from '../components/canvas/SignCanvas'
@@ -6,18 +6,20 @@ import MergeImageCanvas from '../components/canvas/MergeImageCanvas'
 import useImageMergeCanvas from '../hook/useImageMergeCanvas'
 import useSignCanvas from '../hook/useSignCanvas'
 import useUtil from '../hook/useUtil'
-
+import Loading from '../components/Loading'
+import { useState } from 'react'
 function CreateSign() {
     const { mergeImageCanvasRef } = useImageMergeCanvas()
     const { signCanvas, ctx, setDrawing, handSignImg, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, toImage } = useSignCanvas()
     const { handleDownloadImg } = useUtil()
-    
+    const [ loading, setLoading ] = useState<boolean>(true)
     const canvasSize = {
         width:500,
         height:200,
     }
     return (
         <main className='text-white bg-black'>
+            <Loading loadingObj={{loading,width:'w-20',height:'h-20',strokColor:'text-yellow-200', strokfillerColor:'fill-red-600'}}/>
             <h1 className="text-lg">建立簽名</h1>
             <section className='flex'>
                 <section>

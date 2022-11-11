@@ -12,6 +12,9 @@
 .upload-btn {
     @apply p-2 border-2 rounded-sm cursor-pointer
 }
+.loading {
+    @apply dark:text-gray-600 inline mr-2 animate-spin
+}
 
 /* canvas */
 .signCanvas{

@@ -22,7 +22,9 @@ export interface Button {
     clickHandler:MouseEventHandler<HTMLButtonElement>
 }
 export interface LoadingData {
-    width:number,
-    height:number,
-    loading:boolean
+    width?:string,
+    height?:string,
+    loading:boolean,
+    strokfillerColor?:string, //loading旋轉的顏色
+    strokColor?:string //loading框框底色
 }
