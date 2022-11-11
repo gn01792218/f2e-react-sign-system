@@ -1,8 +1,8 @@
 function LandingPage() {
     return (
-        <div className='text-white'>
+        <main className='text-white'>
             這是降落葉面
-        </div>
+        </main>
     )
 }
 export default LandingPage

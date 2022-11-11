@@ -4,13 +4,13 @@ import useSign from '../hook/useSign'
 function SignPageStep2() {
     const { addStep, backStep } = useSign()
     return (
-        <div className='flex flex-col items-center'>
+        <section className='flex flex-col items-center'>
             第二步
             <div className='flex'>
                 <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:()=>backStep('/SignPage/Step1')}}/>
                 <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step3')}}/>
             </div>
-        </div>
+        </section>
     )
 }
 export default SignPageStep2

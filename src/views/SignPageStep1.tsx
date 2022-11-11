@@ -5,10 +5,10 @@ import useSign from '../hook/useSign'
 function SignPageStep1() {
     const { addStep } = useSign()
     return (
-        <div className='flex flex-col items-center'>
+        <section className='flex flex-col items-center'>
             <FileUpload fileUploadObj={{type:InputType.FILE}}/>
             <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step2')}}/>
-        </div>
+        </section>
     )
 }
 export default SignPageStep1

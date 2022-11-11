@@ -1,21 +1,22 @@
 import { ChangeEvent, ChangeEventHandler } from 'react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { pdfjs } from 'react-pdf'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import PDFCanvas from '../canvas/PDFCanvas'
+import useUtil from '../../hook/useUtil'
+import { loadPdfImg } from '../../store/createSignSlice'
 function UploadPDF() {
+    //hook
+    const { converCanvasToImage } = useUtil()
     //準備canvas相關
     const pdfCanvas = useRef<HTMLCanvasElement>(null)
     const ctx = pdfCanvas.current?.getContext("2d")! 
     
-    //基本資料
-    const [src, setSrc] = useState<string>('')
-    const { width, height } = {width:100,height:100}
     //Redux
     const dispatch = useAppDispatch()
-
+    const imgSrc = useAppSelector(state => state.createSign.pdfImg)
     //methods
     const handleUploadImg:ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent<HTMLInputElement>)=>{
 
@@ -33,11 +34,9 @@ function UploadPDF() {
             res.promise.then(
                 //成功
                 function success(pdf){
-                    console.log('取得文件')
                     //串接第一頁pdf檔案頁面
                     const pageNum = 1
                     pdf.getPage(pageNum).then(page=>{
-                        console.log('頁面載入')
                         const scale = 1.5
                         const viewport = page.getViewport({scale})
                         //準備canvas
@@ -45,13 +44,16 @@ function UploadPDF() {
                         pdfCanvas.current.height = viewport.height
                         pdfCanvas.current.width = viewport.width
                         //把PDF渲染到canvas上
-                        const renderTask = page.render({
+                        page.render({
                             canvasContext:ctx,
                             viewport:viewport
                         })
-                        renderTask.promise.then(()=>{
-                            console.log("PDF渲染!")
+                        .promise
+                        .then(()=>{
+                            let img = converCanvasToImage(pdfCanvas.current!)
+                            dispatch(loadPdfImg(img))
                         })
+                        .catch(e=>console.log(e))
                     })
                 },
                 //失敗
@@ -69,7 +71,13 @@ function UploadPDF() {
                 <input className='hidden' type="file" onChange={handleUploadPDF}/>
                     選擇檔案
             </label>
-            <PDFCanvas pdfObj={{pdfCanvas,width,height}}/>
+            <div className='mt-5'>
+                <PDFCanvas pdfObj={{pdfCanvas}}/>
+                {
+                    imgSrc? <img src={imgSrc} alt="pdf產生的圖檔"/> : null
+                }
+                
+            </div>
         </div>
     )
 }
