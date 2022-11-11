@@ -20,8 +20,7 @@ export default function useImageMergeCanvas(){
     useEffect(()=>{
         if(!mergeCanvas || !signImg) return
         fabric.Image.fromURL(signImg, img=>{
-            img.scaleToWidth(100)
-            img.scaleToHeight(100)
+            //使用add方法會把圖檔變成可以縮放的狀態
             mergeCanvas.add(img).renderAll()
         })
     },[mergeCanvas, signImg])
@@ -30,10 +29,11 @@ export default function useImageMergeCanvas(){
     useEffect(()=>{
         if(!mergeCanvas || !bgImg) return
         fabric.Image.fromURL(bgImg, img=>{
-            mergeCanvas.setBackgroundImage(bgImg,()=>{}).renderAll()
-            img.scaleToWidth(img.height!)
-            img.scaleToHeight(img.width!)
-            mergeCanvas.add(img).renderAll()
+            mergeCanvas.setBackgroundImage(bgImg,()=>{
+                mergeCanvas.renderAll()
+                mergeCanvas.setHeight(img.height!);
+                mergeCanvas.setWidth(img.width!);
+            })
         })
     },[mergeCanvas, bgImg])
 
@@ -42,7 +42,7 @@ export default function useImageMergeCanvas(){
     
 
     return {
-        //methods
+        //data
         mergeImageCanvasRef,
     }
 }

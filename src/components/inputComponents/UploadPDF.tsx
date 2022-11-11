@@ -1,5 +1,5 @@
 import { ChangeEvent, ChangeEventHandler } from 'react'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { pdfjs } from 'react-pdf'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -7,8 +7,6 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import PDFCanvas from '../canvas/PDFCanvas'
 import useUtil from '../../hook/useUtil'
 import { loadPdfImg } from '../../store/createSignSlice'
-import Btn from '../btn/Btn'
-import { BtnType } from '../../types/gloable'
 function UploadPDF() {
     //hook
     const { converCanvasToImage } = useUtil()
@@ -16,8 +14,6 @@ function UploadPDF() {
     const pdfCanvas = useRef<HTMLCanvasElement>(null)
     const ctx = pdfCanvas.current?.getContext("2d")! 
     
-    //基本資料
-    const { width, height } = {width:500,height:500}
     //Redux
     const dispatch = useAppDispatch()
     const imgSrc = useAppSelector(state => state.createSign.pdfImg)
@@ -76,9 +72,9 @@ function UploadPDF() {
                     選擇檔案
             </label>
             <div className='mt-5'>
-                <PDFCanvas pdfObj={{pdfCanvas,width,height}}/>
+                <PDFCanvas pdfObj={{pdfCanvas}}/>
                 {
-                    imgSrc? <img src={imgSrc} alt="pdf產生的圖檔" width='500' height='500'/> : null
+                    imgSrc? <img src={imgSrc} alt="pdf產生的圖檔"/> : null
                 }
                 
             </div>

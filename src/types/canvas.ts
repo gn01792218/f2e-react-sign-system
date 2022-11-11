@@ -7,8 +7,8 @@ export interface MergeImageCanvasObj {
 
 export interface PDFCanvasObj {
     pdfCanvas:React.LegacyRef<HTMLCanvasElement>,
-    width:number,
-    height:number
+    width?:number,
+    height?:number
 }
 
 export interface SignCanvasObj {

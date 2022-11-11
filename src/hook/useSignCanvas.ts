@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useAppDispatch } from '../store/hooks'
 import useMouse from './useMouse'
 import useUtil from '../hook/useUtil'
@@ -15,6 +15,11 @@ export default function useCanvas() {
     const { converCanvasToImage } = useUtil()
     // Redux
     const dispatch = useAppDispatch()
+
+    //effect
+    useEffect(()=>{
+        dispatch(loadHandMadeSignImg(handSignImg))
+    },[handSignImg])
     //methods
     function clearCanvas(canvas: HTMLCanvasElement) {
         const ctx = canvas.getContext('2d')
@@ -68,7 +73,6 @@ export default function useCanvas() {
     //轉化成圖
     function toImage() {
         setHandSignImg(converCanvasToImage(signCanvas.current!))
-        dispatch(loadHandMadeSignImg(handSignImg))
     }
    
     return {
