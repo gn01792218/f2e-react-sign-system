@@ -13,7 +13,7 @@
         <h2 style="font-weight:bolder">專案結構說明</h2>
         <ul>
             <li>dist - 打包資料夾</li>
-            <li>src - 源碼根目錄</li>
+            <li>src  - 源碼根目錄</li>
             <ul>
                 <li>assets     - 靜態資源 (如圖檔)</li>
                 <li>components -  元件</li>
@@ -23,6 +23,7 @@
                 <li>types      -  專案型別宣告及管理</li>
                 <li>views      -  容器元件 (如Home)</li>
             </ul>
+            <li>tailwind.config.js - 定義專案CSS設計系統的文件</li>
         </ul>
     </section>
 </div>
@@ -79,3 +80,6 @@ btn元件主要以樣式作為分類，如PrimaryBtn、SecondaryBtn...等<br>
 <FileUpload fileUploadObj={{type:InputType.FILE}}/>
 <FileUpload fileUploadObj={{type:InputType.IMAGE}}/>
 ```
+## <span style="font-weight:bolder">Design System</span>
+使用extend的方式，在原有tailwindCss上導入設計系統。如色碼表、字階等等。
+詳見專案根目錄下的 <span style="font-weight:bold">[ tailwind.config.js ] <span/>檔案。

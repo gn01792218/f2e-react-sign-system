@@ -1,13 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* layout */
+.App {
+    @apply bg-primary-dark
+}
 
 /* components */
 .brimary-btn {
-    @apply w-[100px] h-[50px] border-2 bg-blue-600 rounded-sm
+    @apply w-[100px] h-[50px] border-2 bg-primary-600 rounded-sm
 }
 .secndary-btn {
-    @apply w-[100px] h-[50px] border-2 border-blue-600
+    @apply w-[100px] h-[50px] border-2 border-primary-600
 }
 .upload-btn {
     @apply p-2 border-2 rounded-sm cursor-pointer
@@ -18,7 +22,7 @@
 
 /* canvas */
 .signCanvas{
-    @apply min-w-[300px] max-w-[500px] h-[200px] border-2 border-blue-600
+    @apply min-w-[300px] max-w-[500px] h-[200px] border-2 bg-primary-600
 }
 .a{
     color:aquamarine

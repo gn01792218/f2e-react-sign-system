@@ -18,7 +18,7 @@ function CreateSign() {
         height:200,
     }
     return (
-        <main className='text-white bg-black'>
+        <main className='text-white'>
             <Loading loadingObj={{loading,width:'w-20',height:'h-20',strokColor:'text-yellow-200', strokfillerColor:'fill-red-600'}}/>
             <h1 className="text-lg">建立簽名</h1>
             <section className='flex'>

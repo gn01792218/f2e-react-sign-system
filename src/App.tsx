@@ -3,7 +3,7 @@ import TheHeader from './components/TheHeader'
 
 function App() {
   return (
-    <div className="App bg-black">
+    <div className="App">
       <TheHeader/>
       <Routers />
     </div>
