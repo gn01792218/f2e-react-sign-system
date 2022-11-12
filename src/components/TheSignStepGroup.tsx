@@ -28,8 +28,14 @@ function TheSignStepGroup() {
         }
     ])
     useMemo(()=>{
-        stepIndecatorDataArray.forEach((step,index)=>{
-            step.active = (currentStep === index+1)
+        stepIndecatorDataArray.forEach((step)=>{
+            step.active = (currentStep === step.step)
+            if(!step.active) {
+                step.done = false
+            }
+            if(step.step < currentStep && step.step) {  //把上一個設成完成
+                stepIndecatorDataArray[step.step-1].done = true
+            }
         })
     },[currentStep])
 

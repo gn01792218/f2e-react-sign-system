@@ -19,7 +19,10 @@ module.exports = {
           800:'#003283',
           900:'#00173E',
           'dark':'#000D21',
-        }
+        },
+        'success':'#27CAC4',
+        'alert':'#F9056B',
+        'acent':'#F3AB1E'
       },
     },
   },

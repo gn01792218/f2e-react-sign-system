@@ -9,7 +9,7 @@ interface SignState { // 定義 a type for the slice state
 }
 const initialState: SignState = { // 定義 the initial state using that type
   currentStep: 1,
-  maxStep: 3
+  maxStep: 3,
 }
 
 //2.撰寫reducer函式

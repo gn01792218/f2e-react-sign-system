@@ -1,8 +1,11 @@
 import { BtnType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
 import useSign from '../hook/useSign'
+import useRefreshRedirect from '../hook/useRefreshRedirect'
 function SignPageStep2() {
     const { addStep, backStep } = useSign()
+    //重刷自動導向到Step1
+    useRefreshRedirect('/SignPage/Step1')
     return (
         <section className='flex flex-col items-center'>
             第二步
