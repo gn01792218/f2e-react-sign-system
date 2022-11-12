@@ -44,7 +44,7 @@ npm run build
 ```
 git add dist -f
 git commit -m '部署'
-git subtree push --prefix dist origin gh-pages
+npm run deploy
 
 ```
 ## <span style="font-weight:bolder">元件架構說明</span>
