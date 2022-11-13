@@ -1,1 +1,0 @@
-import{d as r,f as a,r as s}from"./index.f536c156.js";function c(t,o={}){const u=r(),e=a();return window.onbeforeunload=()=>(localStorage.setItem("routeKey",e.key),"\u8CC7\u6599\u5C07\u4E0D\u6703\u70BA\u60A8\u4FDD\u7559"),s.exports.useEffect(()=>{localStorage.getItem("routeKey")===e.key&&u(t,o)},[e]),{}}export{c as u};
