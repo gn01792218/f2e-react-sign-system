@@ -5,8 +5,8 @@ export interface MergeImageCanvasObj {
     height?:number
 }
 
-export interface PDFCanvasObj {
-    pdfCanvas:React.LegacyRef<HTMLCanvasElement>,
+export interface BGCanvasObj {
+    BGCanvas:React.LegacyRef<HTMLCanvasElement>,
     width?:number,
     height?:number
 }

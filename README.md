@@ -83,3 +83,23 @@ btn元件主要以樣式作為分類，如PrimaryBtn、SecondaryBtn...等<br>
 ## <span style="font-weight:bolder">Design System</span>
 使用extend的方式，在原有tailwindCss上導入設計系統。如色碼表、字階等等。
 詳見專案根目錄下的 <span style="font-weight:bold">[ tailwind.config.js ] <span/>檔案。
+## <span style="font-weight:bolder">其他</span>
+### 添加函式註解
+使用 vs code 內建功能，可以自動對以 function 宣告的函式，自動產生註解格式 <br>
+//在想要添加註解的函式上，輸入<span style="font-weight:bold;color: yellow" > /** </span>
+```javascript
+
+/**
+ * 
+ * @param canvas 
+ * @param event 
+ * @returns 
+ */
+function getCanvasMousePos(canvas:HTMLCanvasElement,event:React.MouseEvent<HTMLCanvasElement>) {
+        let [x,y] = getMousePos(event)
+        let rect = canvas.getBoundingClientRect()
+        x -= rect.left
+        y -= rect.top
+        return [x,y]
+    }
+``` 

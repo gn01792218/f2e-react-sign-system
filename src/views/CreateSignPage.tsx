@@ -1,6 +1,5 @@
-import { InputType, BtnType, LoadingData } from '../types/gloable'
+import { BtnType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
-import FileUpload from '../components/inputComponents/FileUpload'
 import SignCanvas from '../components/canvas/SignCanvas'
 import MergeImageCanvas from '../components/canvas/MergeImageCanvas'
 import useImageMergeCanvas from '../hook/useImageMergeCanvas'
@@ -50,7 +49,7 @@ function CreateSign() {
                 </section>
                 <section>
                     <h2>上傳圖片</h2>
-                    <FileUpload fileUploadObj={{type:InputType.PDF}}/>
+                    
                 </section>
             </section>
             <section>

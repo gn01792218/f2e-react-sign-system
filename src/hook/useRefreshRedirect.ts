@@ -8,7 +8,6 @@ import { useEffect } from 'react'
 export default function useRefreshRedirect(url:string,option:NavigateOptions = {}){ 
     const navigate = useNavigate()
     const location = useLocation()
-    console.log(option)
     //在window頁面關閉前紀錄location的key值
     window.onbeforeunload = ()=>{
         localStorage.setItem('routeKey',location.key)

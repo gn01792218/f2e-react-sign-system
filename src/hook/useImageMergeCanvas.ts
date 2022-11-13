@@ -9,7 +9,7 @@ export default function useImageMergeCanvas(){
 
     // 簽名檔和背景圖
     const signImg = useAppSelector(state=>state.createSign.handMadeSignImg)
-    const bgImg = useAppSelector(state=>state.createSign.pdfImg)
+    const bgImg = useAppSelector(state=>state.createSign.BGImg)
 
     // 建立主要canvas
     useEffect(()=>{

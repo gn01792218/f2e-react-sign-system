@@ -2,25 +2,23 @@
 import { InputType } from '../../types/gloable'
 import UploadFile from './UploadFile'
 import UploadImage from './UploadImage'
-import UploadPDF from './UploadPDF'
 interface FileUpload {
-    type:InputType
+    type:InputType,
+    handleOnchange:React.ChangeEventHandler<HTMLInputElement>
 }
 interface Props {
     fileUploadObj:FileUpload
 }
 function FileUpload(props:Props) {
-    const { type } = props.fileUploadObj
+    const { type, handleOnchange } = props.fileUploadObj
     return (
         <div className='mt-5'>
             {(()=>{
                 switch (type) {
                     case InputType.FILE:
-                        return <UploadFile/>
+                        return <UploadFile handleOnchange={ handleOnchange }/>
                     case InputType.IMAGE:
                         return <UploadImage/>
-                    case InputType.PDF:
-                        return <UploadPDF/>
                 }
             })()}
         </div>
