@@ -3,7 +3,7 @@
 @tailwind utilities;
 /* layout */
 .App {
-    @apply bg-primary-dark min-h-screen
+    @apply bg-primary-dark min-h-screen touch-none
 }
 
 /* components */
