@@ -1,14 +1,13 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../views/LandingPage"
-
 function Routers() {
     //路遊懶加載
     const CreateSignPage = lazy(()=>import('../views/CreateSignPage'))
     const SignPage = lazy(()=>import('../views/SignPage'))
-    const SignPageStep1 = lazy(()=>import('../views/SignPageStep1'))
-    const SignPageStep2 = lazy(()=>import('../views/SignPageStep2'))
-    const SignPageStep3 = lazy(()=>import('../views/SignPageStep3'))
+    const SignPageStep1 = lazy(()=>import(/* @vite-ignore */'../views/SignPageStep1'))
+    const SignPageStep2 = lazy(()=>import(/* @vite-ignore */'../views/SignPageStep2'))
+    const SignPageStep3 = lazy(()=>import(/* @vite-ignore */'../views/SignPageStep3'))
     return (
         <Suspense fallback={<div>Loading</div>}>
             <Routes>
