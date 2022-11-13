@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import StepIndecator from '../components/StepIndecator'
 import { useAppSelector } from '../store/hooks'
 import { Indecator } from '../types/gloable'
@@ -36,11 +36,11 @@ function TheSignStepGroup() {
         })
     },[currentStep])
 
-    useEffect(()=>{
+    useMemo(()=>{
         if(BgSrc) stepIndecatorDataArray[0].done = true
     },[BgSrc])
-    
-    useEffect(()=>{
+
+    useMemo(()=>{
         if(handSignImg) stepIndecatorDataArray[1].done = true
     },[handSignImg])
 

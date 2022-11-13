@@ -9,7 +9,7 @@ function StepIndecator(props:Props) {
             <div className={[active? 'bg-primary-500 animate-bounce': 'bg-primary-100',done && !active? 'bg-success':'',"w-[100px] h-[100px]  rounded-full flex justify-center items-center"].join(' ')}>
                 <p className={[active? 'text-acent': 'text-primary-900','text-[50px]'].join(' ')}>{step}</p>
             </div>
-            <p className={[active? 'text-acent': 'text-white'].join(' ')}>{title}</p>
+            <p className={[active? 'text-acent': 'text-white',done && !active? 'text-success':''].join(' ')}>{title}</p>
         </div>
     )
 }
