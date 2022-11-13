@@ -14,7 +14,7 @@ function Routers() {
             <Routes>
                 <Route path="/" element={<LandingPage/>}/>
                 {/* 巢嵌式子路由 */}
-                <Route path="/SignPage" element={<SignPage/>}>
+                <Route path="SignPage" element={<SignPage/>}>
                   <Route path="Step1" element={<SignPageStep1/>}/>
                   <Route path="Step2" element={<SignPageStep2/>}/>
                   <Route path="Step3" element={<SignPageStep3/>}/>
