@@ -27,9 +27,7 @@ function SignPageStep3() {
                 <div>
                     <p>您尚未上傳文件及簽名檔</p>
                 </div>
-                
             }
-            
         </section>
     )
 }
