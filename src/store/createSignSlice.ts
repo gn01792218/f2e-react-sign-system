@@ -1,6 +1,5 @@
 //先引入相關依賴
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { RootState } from './index'
 
 //1.定義state
 interface State { // 定義 a type for the slice state
@@ -18,7 +17,7 @@ export const createSignSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    loadPdfImg: (state, action:PayloadAction<string>) => {
+    loadBGImg: (state, action:PayloadAction<string>) => {
       state.BGImg = action.payload
     },
     loadHandMadeSignImg: (state, action:PayloadAction<string>) => {
@@ -29,7 +28,7 @@ export const createSignSlice = createSlice({
 
 //3.導出reducer
 export const { 
-  loadPdfImg, 
+  loadBGImg, 
   loadHandMadeSignImg 
 } = createSignSlice.actions
 

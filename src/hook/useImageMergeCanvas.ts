@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from "react"
 import { fabric } from 'fabric'
 import { Canvas } from "fabric/fabric-impl"
 import { useAppSelector } from '../store/hooks'
+import useUtil from "./useUtil"
 export default function useImageMergeCanvas(){
+    //hook
+    const {downloadImg } = useUtil()
     //合併的canvas
     const mergeImageCanvasRef = useRef<HTMLCanvasElement>(null)
     const [ mergeCanvas, setMergeCanvas ] = useState<Canvas | null>(null)
@@ -39,10 +42,18 @@ export default function useImageMergeCanvas(){
 
     //methods
     // 縮放
-    
 
+    //下載圖片
+    function downloadMergeImage () {
+        const dataURL = mergeCanvas?.toDataURL({format:"png"})
+        downloadImg(dataURL!)
+    }
+    
     return {
         //data
         mergeImageCanvasRef,
+
+        //methods
+        downloadMergeImage,
     }
 }

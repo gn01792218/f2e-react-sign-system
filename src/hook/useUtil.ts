@@ -2,14 +2,14 @@ export default function useUtil(){
     //methods
 
     //下載圖片，需要傳入Blob物件唷!
-    function downloadImg(blob:Blob,fileName?:string) {
-        console.log(blob)
-        let a = document.createElement('a')
-        if(fileName) a.download = fileName
-        a.href = URL.createObjectURL(blob)
-        document.body.appendChild(a)
-        a.click()
-        document.body.removeChild(a)
+    function downloadImg(url:string,fileName?:string) {
+        const link = document.createElement("a");
+        link.download = fileName? fileName : 'my-sign'
+        link.href = url!;
+        link.target = "_blank";
+        document.body.appendChild(link);
+        link.click();
+        link.parentNode?.removeChild(link);
     }
 
     //canvas轉圖片
@@ -32,13 +32,11 @@ export default function useUtil(){
         }
         return new Blob([u8Arr],{type:fileType})
     }
-    function handleDownloadImg (dataUrl:string,fileName?:string) {
-        let bolb = converBase64ToBlob(dataUrl)
-        if(bolb)downloadImg(bolb,fileName)
-    }
+
     return {
         //methods
         converCanvasToImage,
-        handleDownloadImg
+        downloadImg,
+        converBase64ToBlob,
     }
 }

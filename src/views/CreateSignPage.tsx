@@ -1,14 +1,11 @@
 import { BtnType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
 import SignCanvas from '../components/canvas/SignCanvas'
-import MergeImageCanvas from '../components/canvas/MergeImageCanvas'
-import useImageMergeCanvas from '../hook/useImageMergeCanvas'
 import useSignCanvas from '../hook/useSignCanvas'
 import useUtil from '../hook/useUtil'
 import Loading from '../components/Loading'
 import { useState } from 'react'
 function CreateSign() {
-    const { mergeImageCanvasRef } = useImageMergeCanvas()
     const { signCanvas, ctx, setDrawing, handSignImg, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, toImage } = useSignCanvas()
     const { handleDownloadImg } = useUtil()
     const [ loading, setLoading ] = useState<boolean>(true)
@@ -18,7 +15,6 @@ function CreateSign() {
     }
     return (
         <main className='text-white'>
-            <Loading loadingObj={{loading,width:'w-20',height:'h-20',strokColor:'text-yellow-200', strokfillerColor:'fill-red-600'}}/>
             <h1 className="text-lg">建立簽名</h1>
             <section className='flex'>
                 <section>
@@ -48,13 +44,9 @@ function CreateSign() {
                     }
                 </section>
                 <section>
-                    <h2>上傳圖片</h2>
+                    <h2>上傳簽名圖片檔</h2>
                     
                 </section>
-            </section>
-            <section>
-                最終合併輸出
-                <MergeImageCanvas mergeImageCanvasObj={{mergeImageCanvasRef}}/>
             </section>
         </main>
     )

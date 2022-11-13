@@ -29,7 +29,7 @@ function SignPageStep1() {
                     <BGCanvas BGCanvasObj={{BGCanvas:canvasRef}}/>
                 </div>
                 {
-                    BgSrc? <img className='mx-auto' src={BgSrc} alt="文件圖檔" width='80%'/> : null
+                    BgSrc? <img className='mx-auto' src={BgSrc} alt="文件圖檔"/> : null
                 }
             </section>
         </main>

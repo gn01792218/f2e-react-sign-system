@@ -3,7 +3,7 @@ import { useRef } from 'react'
 import { ChangeEvent, ChangeEventHandler } from 'react'
 import { useAppDispatch } from '../store/hooks'
 import useUtil from './useUtil'
-import { loadPdfImg } from '../store/createSignSlice'
+import { loadBGImg } from '../store/createSignSlice'
 import { pdfjs } from 'react-pdf'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
@@ -41,7 +41,7 @@ export default function useBgCanvas(bgCanvas:HTMLCanvasElement){
             ctx.drawImage(img,0,0)
         }
         img.src = URL.createObjectURL(file)
-        dispatch(loadPdfImg(img.src))
+        dispatch(loadBGImg(img.src))
     }
     const storePDFImage = (file:File)=>{
         //開始檔案讀取
@@ -70,7 +70,7 @@ export default function useBgCanvas(bgCanvas:HTMLCanvasElement){
                         .then(()=>{
                             //3.再把canvas轉成圖片
                             let img = converCanvasToImage(bgCanvas!)
-                            dispatch(loadPdfImg(img))
+                            dispatch(loadBGImg(img))
                         })
                         .catch(e=>console.log(e))
                     })
