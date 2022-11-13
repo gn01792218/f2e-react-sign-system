@@ -3,12 +3,9 @@ import Btn from '../components/btn/Btn'
 import SignCanvas from '../components/canvas/SignCanvas'
 import useSignCanvas from '../hook/useSignCanvas'
 import useUtil from '../hook/useUtil'
-import Loading from '../components/Loading'
-import { useState } from 'react'
 function CreateSign() {
     const { signCanvas, ctx, setDrawing, handSignImg, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, toImage } = useSignCanvas()
-    const { handleDownloadImg } = useUtil()
-    const [ loading, setLoading ] = useState<boolean>(true)
+    const { downloadImg } = useUtil()
     const canvasSize = {
         width:500,
         height:200,
@@ -38,7 +35,7 @@ function CreateSign() {
                         handSignImg? 
                         <div>
                             <img  src={ handSignImg } alt="手繪簽名" width={canvasSize.width} height={canvasSize.height}/> 
-                            <Btn btnObj={{type:BtnType.PRIMARY,title:'下載圖片',clickHandler:()=>handleDownloadImg(handSignImg)}}/>
+                            <Btn btnObj={{type:BtnType.PRIMARY,title:'下載圖片',clickHandler:()=>downloadImg(handSignImg)}}/>
                         </div>
                         : null
                     }
