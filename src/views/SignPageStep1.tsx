@@ -6,8 +6,8 @@ function SignPageStep1() {
     const { addStep } = useSign()
     return (
         <section className='flex flex-col items-center'>
-            <FileUpload fileUploadObj={{type:InputType.FILE}}/>
             <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step2')}}/>
+            <FileUpload fileUploadObj={{type:InputType.PDF}}/>
         </section>
     )
 }

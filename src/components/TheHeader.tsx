@@ -4,12 +4,10 @@ function TheHeader() {
     //Redux
     const currentSignStep = useAppSelector((state) => state.sign.currentStep)
     return (
-        <div className='text-white'>
-           <nav className="flex justify-center">
+           <nav className="flex justify-center text-white p-5">
             <Link className="mr-5" to={`/SignPage/Step${currentSignStep}`}>開始簽名</Link>
             <Link to="/CreateSign">建立簽名檔</Link>
            </nav>
-        </div>
     )
 }
 export default TheHeader

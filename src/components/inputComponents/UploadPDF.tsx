@@ -18,13 +18,26 @@ function UploadPDF() {
     const dispatch = useAppDispatch()
     const imgSrc = useAppSelector(state => state.createSign.pdfImg)
     //methods
-    const handleUploadImg:ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent<HTMLInputElement>)=>{
-
-    }
-    const handleUploadPDF:ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent<HTMLInputElement>)=>{
+    const handleUploadFile:ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent<HTMLInputElement>) =>{
         //獲取input檔案
         const file = event.target.files? event.target.files[0] : null
-        if(file?.type !== 'application/pdf') return
+        if(file?.type.includes('image')) return handleUploadImg(file)
+        if(file?.type.includes('pdf')) return handleUploadPDF(file)
+    }
+    const handleUploadImg = (file:File)=>{
+        const img = new Image()
+        img.onload = () => {
+            if(!pdfCanvas.current) return
+            //將canvas的大小設置成圖片大小
+            pdfCanvas.current.height = img.height
+            pdfCanvas.current.width = img.width
+            //把圖片畫上canvas
+            ctx.drawImage(img,0,0)
+        }
+        img.src = URL.createObjectURL(file)
+        dispatch(loadPdfImg(img.src))
+    }
+    const handleUploadPDF = (file:File)=>{
         //開始檔案讀取
         let fileReader = new FileReader()
         
@@ -66,19 +79,20 @@ function UploadPDF() {
     }
 
     return (
-        <div>
+        <section className='flex flex-col items-center'>
             <label className='upload-btn'>
-                <input className='hidden' type="file" onChange={handleUploadPDF}/>
+                <input className='hidden' type="file" onChange={handleUploadFile}/>
                     選擇檔案
             </label>
             <div className='mt-5'>
-                <PDFCanvas pdfObj={{pdfCanvas}}/>
+                <div className='hidden'>
+                    <PDFCanvas pdfObj={{pdfCanvas}}/>
+                </div>
                 {
-                    imgSrc? <img src={imgSrc} alt="pdf產生的圖檔"/> : null
+                    imgSrc? <img className='mx-auto' src={imgSrc} alt="文件圖檔" width='80%'/> : null
                 }
-                
             </div>
-        </div>
+        </section>
     )
 }
 export default UploadPDF
