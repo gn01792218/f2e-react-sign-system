@@ -3,14 +3,15 @@ import { useAppDispatch } from '../store/hooks'
 import useMouse from './useMouse'
 import useUtil from '../hook/useUtil'
 import { loadHandMadeSignImg } from '../store/createSignSlice'
-export default function useCanvas() {
+export default function useHandSignCanvas() {
     // 基本資料
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
     const signCanvas = useRef<HTMLCanvasElement>(null)
     const ctx = signCanvas.current?.getContext("2d")!
 
     const [drawing, setDrawing] = useState(false)
-    const [handSignImg, setHandSignImg ] = useState<string>('')  //手寫轉的圖片
+    const [handSignImg, setHandSignImg ] = useState('')  //手寫轉的圖片
+    const [strokeColor, setStrokeColor ] = useState('black')
     // hook
     const { converCanvasToImage } = useUtil()
     // Redux
@@ -42,9 +43,9 @@ export default function useCanvas() {
         ctx.lineWidth = 2
         ctx.lineCap = 'round'
         ctx.lineJoin = 'round'
-        ctx.strokeStyle = 'yellow'
+        ctx.strokeStyle = strokeColor
         ctx.shadowBlur = 1
-        ctx.shadowColor = 'white'
+        // ctx.shadowColor = 'white'
         ctx.lineTo(x, y)  //紀錄滑鼠移動到的x,y
         ctx.stroke()  //將兩點連成線的方法
     }
@@ -65,6 +66,7 @@ export default function useCanvas() {
         ctx.lineWidth = 2;
         ctx.lineCap = "round"; // 繪制圓形的結束線帽
         ctx.lineJoin = "round"; // 兩條線條交匯時，建立圓形邊角
+        ctx.strokeStyle = strokeColor
         ctx.shadowBlur = 1; // 邊緣模糊，防止直線邊緣出現鋸齒
         ctx.shadowColor = "black"; // 邊緣顏色
         ctx.lineTo(x, y);
@@ -82,6 +84,7 @@ export default function useCanvas() {
         ctx,
         handSignImg,
         //methods
+        setStrokeColor,
         setDrawing,
         clearCanvas,
         handleMouseMove,

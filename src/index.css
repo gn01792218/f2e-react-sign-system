@@ -16,6 +16,9 @@
 .upload-btn {
     @apply p-2 border-2 rounded-sm cursor-pointer
 }
+.circle-btn {
+    @apply w-[50px] h-[50px] rounded-full
+}
 .loading {
     @apply dark:text-gray-600 inline mr-2 animate-spin
 }

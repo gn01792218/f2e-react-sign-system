@@ -1,11 +1,12 @@
-import { BtnType } from '../../types/gloable'
-import Btn from '../btn/Btn'
-import SignCanvas from '../canvas/SignCanvas'
-import useSignCanvas from '../../hook/useSignCanvas'
-import { useAppSelector } from '../../store/hooks'
+import { BtnType } from '../types/gloable'
+import Btn from './btn/Btn'
+import SignCanvas from './canvas/SignCanvas'
+import useSignCanvas from '../hook/useSignCanvas'
+import TheColorPalette from './TheColorPalette'
+import { useAppSelector } from '../store/hooks'
 
 function CreateHandSign() {
-    const { signCanvas, ctx, setDrawing, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, toImage } = useSignCanvas()
+    const { signCanvas, ctx, setDrawing, setStrokeColor, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, toImage } = useSignCanvas()
     const signImg = useAppSelector(state => state.createSign.handMadeSignImg)
     const canvasSize = {
         width: 500,
@@ -17,6 +18,7 @@ function CreateHandSign() {
                 <h1 className="text-lg">建立簽名</h1>
                 <section className='w-full flex flex-col'>
                     <h2>手寫板</h2>
+                    <TheColorPalette setColor={setStrokeColor}/>
                     <SignCanvas signCanvasObj={{
                         width: canvasSize.width,
                         height: canvasSize.height,

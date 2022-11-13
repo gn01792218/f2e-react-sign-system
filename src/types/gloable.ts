@@ -1,12 +1,13 @@
 import { MouseEventHandler } from "react"
 export enum BtnType {
     PRIMARY,
-    SECONDARY
+    SECONDARY,
+    CIRCLE
 }
 export enum InputType {
     NUMBER,
     TEXT,
-    IMAGE,
+    COLOR,
     FILE,
 }
 export interface Indecator {
@@ -17,8 +18,10 @@ export interface Indecator {
 }
 export interface Button {
     type?:BtnType,
-    title:string,
-    clickHandler:MouseEventHandler<HTMLButtonElement>
+    title?:string,
+    color?:string,
+    active?:boolean,
+    clickHandler:MouseEventHandler<HTMLButtonElement>,
 }
 export interface LoadingData {
     width?:string,

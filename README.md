@@ -77,8 +77,8 @@ btn元件主要以樣式作為分類，如PrimaryBtn、SecondaryBtn...等<br>
 使用時只需要傳入input type<br>
 使用範例 : 
 ```javascript
-<FileUpload fileUploadObj={{type:InputType.FILE}}/>
-<FileUpload fileUploadObj={{type:InputType.IMAGE}}/>
+<Input inputObj={{type:InputType.FILE}}/>
+<Input inputObj={{type:InputType.IMAGE}}/>
 ```
 ## <span style="font-weight:bolder">Design System</span>
 使用extend的方式，在原有tailwindCss上導入設計系統。如色碼表、字階等等。

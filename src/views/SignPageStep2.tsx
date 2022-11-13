@@ -2,7 +2,7 @@ import { BtnType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
 import useSign from '../hook/useSign'
 import useRefreshRedirect from '../hook/useRefreshRedirect'
-import CreateHandSign from '../components/popup/CreateHandSign'
+import CreateHandSign from '../components/CreateHandSign'
 
 function SignPageStep2() {
     const { addStep, backStep } = useSign()

@@ -1,6 +1,8 @@
 export default function useUtil(){
     //methods
-
+    function getAssetsFileURL(url:string){
+        return new URL(`../../assets/${url}`,import.meta.url).href
+    }
     //下載圖片，需要傳入Blob物件唷!
     function downloadImg(url:string,fileName?:string) {
         const link = document.createElement("a");
@@ -35,6 +37,7 @@ export default function useUtil(){
 
     return {
         //methods
+        getAssetsFileURL,
         converCanvasToImage,
         downloadImg,
         converBase64ToBlob,
