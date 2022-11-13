@@ -22,7 +22,9 @@ function SignPageStep1() {
         <main>
             <section className='flex flex-col items-center'>
                 <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step2')}}/>
-                <Input inputObj={{type:InputType.FILE, handleOnchange}}/>
+                <div className='mt-5'>
+                    <Input inputObj={{type:InputType.FILE, handleOnchange}}/>
+                </div>
             </section>
             <section className='mt-5'>
                 <div className='hidden'>

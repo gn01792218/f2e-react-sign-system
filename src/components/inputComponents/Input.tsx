@@ -6,7 +6,7 @@ interface Input {
     type:InputType,
     active?:boolean,
     handleOnchange:React.ChangeEventHandler<HTMLInputElement>
-    handleClick:React.MouseEventHandler<HTMLInputElement>
+    handleClick?:React.MouseEventHandler<HTMLInputElement>
 }
 interface Props {
     inputObj:Input
@@ -20,7 +20,7 @@ function Input(props:Props) {
                     case InputType.FILE:
                         return <UploadFile handleOnchange={ handleOnchange }/>
                     case InputType.COLOR:
-                        return <ColorPicker  handleOnchange={ handleOnchange } handleClick={handleClick} active={active!}/>
+                        return <ColorPicker  handleOnchange={ handleOnchange } handleClick={handleClick!} active={active!}/>
                 }
             })()}
         </div>
