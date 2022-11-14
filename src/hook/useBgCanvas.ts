@@ -2,7 +2,7 @@
 import { useRef } from 'react'
 import { ChangeEvent, ChangeEventHandler } from 'react'
 import { useAppDispatch } from '../store/hooks'
-import useUtil from './useUtil'
+import useImageUtil from './useImageUtil'
 import { loadBGImg } from '../store/createSignSlice'
 import { pdfjs } from 'react-pdf'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
@@ -14,7 +14,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
  */
 export default function useBgCanvas(bgCanvas:HTMLCanvasElement){
     //hook
-    const { converCanvasToImage } = useUtil()
+    const { converCanvasToImage, checkImageSize } = useImageUtil()
 
     //canvas
     //準備canvas相關
@@ -31,6 +31,7 @@ export default function useBgCanvas(bgCanvas:HTMLCanvasElement){
         if(file?.type.includes('pdf')) return storePDFImage(file)
     }
     const storeImage = (file:File)=>{
+        if(!checkImageSize(file.size)) return
         const img = new Image()
         img.onload = () => {
             if(!bgCanvas) return

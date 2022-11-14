@@ -1,5 +1,19 @@
-export default function useUtil(){
+export default function useImageUtil(){
     //methods
+    /**
+     * 驗證圖片大小
+     * @Auth Jacky Houng
+     * @param size 傳入file.size 
+     * @returns 返回是否通過大小驗證的boolean
+     */
+    function checkImageSize(size:number){
+        let unit = 1024
+        let maxSize = 10
+        let sizeOK = size/unit < maxSize*unit
+        if (!sizeOK) alert(`請勿上傳超過${maxSize}MB的圖檔`)
+        return sizeOK
+    }
+    //動態獲取靜態圖檔
     function getAssetsFileURL(url:string){
         return new URL(`../../assets/${url}`,import.meta.url).href
     }
@@ -37,6 +51,7 @@ export default function useUtil(){
 
     return {
         //methods
+        checkImageSize,
         getAssetsFileURL,
         converCanvasToImage,
         downloadImg,

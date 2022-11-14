@@ -2,10 +2,10 @@ import { useEffect, useRef, useState } from "react"
 import { fabric } from 'fabric'
 import { Canvas } from "fabric/fabric-impl"
 import { useAppSelector } from '../store/hooks'
-import useUtil from "./useUtil"
+import useImageUtil from "./useImageUtil"
 export default function useImageMergeCanvas(){
     //hook
-    const {downloadImg } = useUtil()
+    const {downloadImg } = useImageUtil()
     //合併的canvas
     const mergeImageCanvasRef = useRef<HTMLCanvasElement>(null)
     const [ mergeCanvas, setMergeCanvas ] = useState<Canvas | null>(null)

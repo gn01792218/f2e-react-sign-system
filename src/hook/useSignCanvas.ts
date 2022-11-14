@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { useAppDispatch } from '../store/hooks'
 import useMouse from './useMouse'
-import useUtil from '../hook/useUtil'
+import useImageUtil from './useImageUtil'
 import { loadHandMadeSignImg } from '../store/createSignSlice'
 export default function useHandSignCanvas() {
     // 基本資料
@@ -13,7 +13,7 @@ export default function useHandSignCanvas() {
     const [handSignImg, setHandSignImg ] = useState('')  //手寫轉的圖片
     const [strokeColor, setStrokeColor ] = useState('black')
     // hook
-    const { converCanvasToImage } = useUtil()
+    const { converCanvasToImage } = useImageUtil()
     // Redux
     const dispatch = useAppDispatch()
 

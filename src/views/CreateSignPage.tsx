@@ -2,10 +2,10 @@ import { BtnType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
 import SignCanvas from '../components/canvas/SignCanvas'
 import useSignCanvas from '../hook/useSignCanvas'
-import useUtil from '../hook/useUtil'
+import useImageUtil from '../hook/useImageUtil'
 function CreateSign() {
     const { signCanvas, ctx, setDrawing, handSignImg, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, toImage } = useSignCanvas()
-    const { downloadImg } = useUtil()
+    const { downloadImg } = useImageUtil()
     const canvasSize = {
         width:500,
         height:200,
