@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react"
 import { fabric } from 'fabric'
 import { Canvas } from "fabric/fabric-impl"
-import { useAppSelector } from '../store/hooks'
+import { useAppSelector, useAppDispatch } from '../store/hooks'
+import { setStepIndecatorDon } from '../store/signSlice'
 import useImageUtil from "./useImageUtil"
 export default function useImageMergeCanvas(){
+    //Redux
+    const dispatch = useAppDispatch()
+    const stepIndecatorDataArray = useAppSelector(state => state.sign.stepIndecatorDataArray)
     //hook
     const {downloadImg } = useImageUtil()
     //合併的canvas
@@ -47,6 +51,7 @@ export default function useImageMergeCanvas(){
     function downloadMergeImage () {
         const dataURL = mergeCanvas?.toDataURL({format:"png"})
         downloadImg(dataURL!)
+        if(!stepIndecatorDataArray[2].done)dispatch(setStepIndecatorDon(2))
     }
     
     return {

@@ -1,47 +1,26 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useEffect } from 'react'
 import StepIndecator from '../components/StepIndecator'
-import { useAppSelector } from '../store/hooks'
-import { Indecator } from '../types/gloable'
-
+import { useAppSelector, useAppDispatch } from '../store/hooks'
+import { setStepIndecatorDon, updateStepIndecatorActive } from '../store/signSlice'
 function TheSignStepGroup() {
     //Redux
+    const dispatch = useAppDispatch()
     const currentStep = useAppSelector((state)=>state.sign.currentStep)
+    const stepIndecatorDataArray = useAppSelector(state => state.sign.stepIndecatorDataArray)
 
     const handSignImg = useAppSelector(state => state.createSign.handMadeSignImg)
     const BgSrc = useAppSelector(state => state.createSign.BGImg)
-    //導覽物件的陣列
-    const [stepIndecatorDataArray,setStepIndecatorDataArray] = useState<Indecator[]>([
-        {
-            step:1,
-            title:'上傳簽署檔案',
-            active:false,
-            done:false
-        },
-        {
-            step:2,
-            title:'進行簽署',
-            active:false,
-            done:false
-        },
-        {
-            step:3,
-            title:'完成簽署',
-            active:false,
-            done:false
-        }
-    ])
-    useMemo(()=>{
-        stepIndecatorDataArray.forEach((step)=>{
-            step.active = (currentStep === step.step)
-        })
+
+    useEffect(()=>{
+        dispatch(updateStepIndecatorActive())
     },[currentStep])
 
     useMemo(()=>{
-        if(BgSrc) stepIndecatorDataArray[0].done = true
+        if(BgSrc) dispatch(setStepIndecatorDon(0))
     },[BgSrc])
 
     useMemo(()=>{
-        if(handSignImg) stepIndecatorDataArray[1].done = true
+        if(handSignImg) dispatch(setStepIndecatorDon(1))
     },[handSignImg])
 
     return (
