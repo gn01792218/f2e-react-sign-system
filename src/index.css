@@ -5,7 +5,15 @@
 .App {
     @apply bg-primary-dark min-h-screen touch-manipulation
 }
-
+/* tailwind沒有的 */
+.perspective-1500 {
+    perspective: 1500px;
+}
+.backface-hidden{
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
 /* components */
 .brimary-btn {
     @apply w-[100px] h-[50px] border-2 bg-primary-600 rounded-sm
@@ -29,4 +37,49 @@
 }
 .a{
     color:aquamarine
+}
+/* 特效 */
+.flipCard {
+    @apply w-full h-full absolute backface-hidden transition-all duration-1000 ease-in-out
+}
+.indecatorStep {
+    transform: rotateY(0deg);
+}
+.indecatorStep.done {
+    transform: rotateY(180deg);
+}
+.indecatorTick {
+    transform: rotateY(-180deg);
+}
+.indecatorTick.done {
+    transform: rotateY(0deg);
+}
+.circle {
+    stroke-dasharray: 290;
+    stroke-dashoffset: 290;
+}
+.indecatorTick.done .circle  {
+    animation: circle 1s ease-in-out forwards;
+}
+.indecatorTick.done .tick  {
+    animation: tick 1s ease-in-out forwards;
+}
+.tick {
+    stroke-dasharray: 90;
+    stroke-dashoffset: 90;
+    animation: tick 2s 1s ease-in-out forwards;
+}
+@keyframes circle {
+    from {
+        stroke-dashoffset: 290;
+    } to {
+        stroke-dashoffset: 580;
+    }
+}
+@keyframes tick {
+    from {
+        stroke-dashoffset: 350;
+    } to {
+        stroke-dashoffset: 0;
+    }
 }

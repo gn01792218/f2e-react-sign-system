@@ -15,7 +15,7 @@ export default function useImageUtil(){
     }
     //動態獲取靜態圖檔
     function getAssetsFileURL(url:string){
-        return new URL(`../../assets/${url}`,import.meta.url).href
+        return new URL(`../assets/${url}`,import.meta.url).href
     }
     //下載圖片，需要傳入Blob物件唷!
     function downloadImg(url:string,fileName?:string) {
