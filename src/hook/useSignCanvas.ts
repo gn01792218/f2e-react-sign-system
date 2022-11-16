@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import useMouse from './useMouse'
 import useImageUtil from './useImageUtil'
+import useSignStep from '../hook/useSignStep'
 import { loadHandMadeSignImg, pushHandsignImg } from '../store/createSignSlice'
 export default function useHandSignCanvas() {
     // 基本資料
@@ -12,8 +13,10 @@ export default function useHandSignCanvas() {
     const [drawing, setDrawing] = useState(false)
     const [handSignImg, setHandSignImg ] = useState('')  //手寫轉的圖片
     const [strokeColor, setStrokeColor ] = useState('black')
+    const [isSaveImg, setIsSaveImg] = useState(false)
     // hook
     const { converCanvasToImage } = useImageUtil()
+    const { addStep } = useSignStep()
     // Redux
     const dispatch = useAppDispatch()
     const userOwnSignImg = useAppSelector(state => state.createSign.userOwnSignImg) //使用者從簽名檔中選取的簽名檔
@@ -22,6 +25,7 @@ export default function useHandSignCanvas() {
     useEffect(()=>{
         if(!handSignImg) return
         dispatch(loadHandMadeSignImg(handSignImg))
+        addStep('/SignPage/Step3')
     },[handSignImg])
     
     //methods
@@ -76,13 +80,16 @@ export default function useHandSignCanvas() {
 
     //轉化成圖
     function toImage() {
-        setHandSignImg(converCanvasToImage(signCanvas.current!))
+        return converCanvasToImage(signCanvas.current!)
     }
     function keepInHandSignArray() {
-        if(!handSignImg) return alert('找不到簽名圖檔，可能是您尚未簽名')
-        dispatch(pushHandsignImg(handSignImg))
+        dispatch(pushHandsignImg(toImage()))
     }
-   
+    //使用簽名
+    function useSign(){
+        //1.
+        setHandSignImg(toImage())
+    }
     return {
         //data
         signCanvas,
@@ -96,7 +103,7 @@ export default function useHandSignCanvas() {
         handleMouseDown,
         handleTouchStart,
         handleTouchMove,
-        toImage,
+        useSign,
         keepInHandSignArray,
     }
 }

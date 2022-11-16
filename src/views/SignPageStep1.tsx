@@ -1,7 +1,7 @@
 import Input from '../components/inputComponents/Input'
 import Btn from '../components/btn/Btn'
 import { InputType, BtnType } from '../types/gloable'
-import useSign from '../hook/useSign'
+import useSignStep from '../hook/useSignStep'
 import useBgCanvas from '../hook/useBgCanvas'
 import { useAppSelector } from '../store/hooks'
 import BGCanvas from '../components/canvas/BGCanvas'
@@ -14,18 +14,12 @@ function SignPageStep1() {
         setCanvas(canvasRef.current!)
     },[canvasRef])
     //hook
-    const { addStep } = useSign()
+    const { addStep } = useSignStep()
     const { handleOnchange } = useBgCanvas(canvas!)
     //Redux
     const BgSrc = useAppSelector(state => state.createSign.BGImg)
     return (
         <main>
-            <section className='flex flex-col items-center'>
-                <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step2')}}/>
-                <div className='mt-5'>
-                    <Input inputObj={{type:InputType.FILE, handleOnchange}}/>
-                </div>
-            </section>
             <section className='mt-5'>
                 <div className='hidden'>
                     <BGCanvas BGCanvasObj={{BGCanvas:canvasRef}}/>
@@ -33,6 +27,12 @@ function SignPageStep1() {
                 {
                     BgSrc? <img className='mx-auto' src={BgSrc} alt="文件圖檔"/> : null
                 }
+            </section>
+            <section className='flex flex-col items-center'>
+                <div className='mt-5'>
+                    <Input inputObj={{type:InputType.FILE, handleOnchange}}/>
+                </div>
+                <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step2')}}/>
             </section>
         </main>
     )
