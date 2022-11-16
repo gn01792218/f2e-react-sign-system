@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { useAppDispatch } from '../store/hooks'
 import useMouse from './useMouse'
 import useImageUtil from './useImageUtil'
-import { loadHandMadeSignImg } from '../store/createSignSlice'
+import { loadHandMadeSignImg, pushHandsignImg } from '../store/createSignSlice'
 export default function useHandSignCanvas() {
     // 基本資料
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
@@ -76,6 +76,10 @@ export default function useHandSignCanvas() {
     function toImage() {
         setHandSignImg(converCanvasToImage(signCanvas.current!))
     }
+    function keepInHandSignArray() {
+        if(!handSignImg) return alert('找不到簽名圖檔，可能是您尚未簽名')
+        dispatch(pushHandsignImg(handSignImg))
+    }
    
     return {
         //data
@@ -91,5 +95,6 @@ export default function useHandSignCanvas() {
         handleTouchStart,
         handleTouchMove,
         toImage,
+        keepInHandSignArray,
     }
 }

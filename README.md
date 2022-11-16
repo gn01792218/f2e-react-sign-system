@@ -3,7 +3,7 @@
     <section style="display:flex;flex-direction: column;margin-right:50px">
         <h2 style="font-weight:bolder">專案說明</h2>
         <p style="font-weight:bold"> 開發環境 : <span style="color: aquamarine ; font-weight:bold"> React(18)+Typscript+Vite </span></p>
-        <p style="font-weight:bold"> UI框架 : <span style="color: aqua ; font-weight:bold"> TailwindCss </span></p>
+        <p style="font-weight:bold"> UI框架 : <span style="color: aqua ; font-weight:bold"> TailwindCss + Flowbite</span></p>
         <p style="font-weight:bold"> 狀態管理 :  <span style="color: aquamarine ; font-weight:bold"> Redux + Redux toolkit </span></p>
         <p style="font-weight:bold"> 路由管理 :  <span style="color: aqua ; font-weight:bold"> react-router-dom (v6) </span></p>
         <p style="font-weight:bold"> 圖片合併及拖拉縮放功能 :  <span style="color: aquamarine ; font-weight:bold"> fabricjs </span></p>

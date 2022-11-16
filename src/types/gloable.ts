@@ -2,7 +2,8 @@ import { MouseEventHandler } from "react"
 export enum BtnType {
     PRIMARY,
     SECONDARY,
-    CIRCLE
+    CIRCLE,
+    CLOSE
 }
 export enum InputType {
     NUMBER,

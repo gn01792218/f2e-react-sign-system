@@ -21,6 +21,9 @@
 .secndary-btn {
     @apply w-[100px] h-[50px] border-2 border-primary-600
 }
+.close-btn {
+    @apply w-[64px] h-[64px] rounded-full text-lg font-bold
+}
 .upload-btn {
     @apply p-2 border-2 rounded-sm cursor-pointer
 }

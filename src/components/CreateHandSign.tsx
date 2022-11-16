@@ -6,7 +6,18 @@ import TheColorPalette from './TheColorPalette'
 import { useAppSelector } from '../store/hooks'
 
 function CreateHandSign() {
-    const { signCanvas, ctx, setDrawing, setStrokeColor, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, toImage } = useSignCanvas()
+    const { signCanvas, 
+            ctx, 
+            setDrawing, 
+            setStrokeColor, 
+            clearCanvas, 
+            handleMouseDown, 
+            handleMouseMove, 
+            handleTouchMove, 
+            handleTouchStart, 
+            toImage,
+            keepInHandSignArray,
+         } = useSignCanvas()
     const signImg = useAppSelector(state => state.createSign.handMadeSignImg)
     const canvasSize = {
         width: 500,
@@ -16,6 +27,7 @@ function CreateHandSign() {
         <main className='text-white'>
             <section>
                 <h1 className="text-lg">建立簽名</h1>
+                <Btn btnObj={{ type: BtnType.PRIMARY, title: '查看簽名檔', clickHandler: keepInHandSignArray }} />
                 <section className='w-full flex flex-col'>
                     <h2>手寫板</h2>
                     <TheColorPalette setColor={setStrokeColor}/>
@@ -38,7 +50,8 @@ function CreateHandSign() {
                     </div>
                     <div className='flex justify-around'>
                         <Btn btnObj={{ type: BtnType.SECONDARY, title: '清除簽名', clickHandler: () => clearCanvas(signCanvas.current!) }} />
-                        <Btn btnObj={{ type: BtnType.PRIMARY, title: '保存', clickHandler: toImage }} />
+                        <Btn btnObj={{ type: BtnType.PRIMARY, title: '轉換圖片', clickHandler: toImage }} />
+                        <Btn btnObj={{ type: BtnType.PRIMARY, title: '儲存簽名', clickHandler: keepInHandSignArray }} />
                     </div>
                 </section>
             </section>

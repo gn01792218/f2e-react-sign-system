@@ -21,9 +21,9 @@ function StepIndecator(props:Props) {
                 {/* 背面 : 打勾勾 */}
                 <div className={['flipCard indecatorTick', done && !active ? 'done opacity-50':'', active && done ? 'done opacity-100':''].join(" ")}>
                     <svg width={indecateSize} height={indecateSize}>
-                        <circle className='circle' fill="none" stroke="#F3AB1E" stroke-width="8" cx="50" cy="50" r="45"/>
-                        <polyline className='tick' fill="none" stroke="#27CAC4" stroke-width="10" points="24.4,47.68 39.715,70.165 75.82,30.6" 
-                        stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle className='circle' fill="none" stroke="#F3AB1E" strokeWidth="8" cx="50" cy="50" r="45"/>
+                        <polyline className='tick' fill="none" stroke="#27CAC4" strokeWidth="10" points="24.4,47.68 39.715,70.165 75.82,30.6" 
+                        strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </div>
             </div>

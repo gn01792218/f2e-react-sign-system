@@ -3,12 +3,18 @@ import Btn from '../components/btn/Btn'
 import useSign from '../hook/useSign'
 import useRefreshRedirect from '../hook/useRefreshRedirect'
 import CreateHandSign from '../components/CreateHandSign'
+import TheMyHandSignListModal from '../components/modal/TheMyHandSignListModal'
+import { useAppDispatch } from '../store/hooks'
+import { setShowHandSignModal } from '../store/createSignSlice'
 
 function SignPageStep2() {
     const { addStep, backStep } = useSign()
     
     //重刷自動導向到Step1
     useRefreshRedirect('/SignPage/Step1')
+
+    //Redux
+    const dispatch = useAppDispatch()
     return (
         <section className='flex flex-col items-center'>
             第二步
@@ -17,6 +23,8 @@ function SignPageStep2() {
                 <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step3')}}/>
             </div>
            <CreateHandSign />
+           <Btn btnObj={{type:BtnType.PRIMARY,title:"查看簽名檔",clickHandler:()=>dispatch(setShowHandSignModal(true))}}/>
+           <TheMyHandSignListModal />
         </section>
     )
 }
