@@ -4,7 +4,7 @@ import SignCanvas from '../components/canvas/SignCanvas'
 import useSignCanvas from '../hook/useSignCanvas'
 import useImageUtil from '../hook/useImageUtil'
 function CreateSign() {
-    const { signCanvas, ctx, setDrawing, handSignImg, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, toImage } = useSignCanvas()
+    const { signCanvas, ctx, setDrawing, handSignImg, clearCanvas, handleMouseDown, handleMouseMove, handleTouchMove, handleTouchStart, useSign } = useSignCanvas()
     const { downloadImg } = useImageUtil()
     const canvasSize = {
         width:500,
@@ -29,16 +29,8 @@ function CreateSign() {
                     }}/>
                     <div className='flex'>
                         <Btn btnObj={{type:BtnType.SECONDARY,title:'清除簽名',clickHandler:()=>clearCanvas(signCanvas.current!)}}/>
-                        <Btn btnObj={{type:BtnType.PRIMARY,title:'轉化成圖',clickHandler:toImage}}/>
+                        <Btn btnObj={{type:BtnType.PRIMARY,title:'使用簽名',clickHandler:useSign}}/>
                     </div>
-                    {
-                        handSignImg? 
-                        <div>
-                            <img  src={ handSignImg } alt="手繪簽名" width={canvasSize.width} height={canvasSize.height}/> 
-                            <Btn btnObj={{type:BtnType.PRIMARY,title:'下載圖片',clickHandler:()=>downloadImg(handSignImg)}}/>
-                        </div>
-                        : null
-                    }
                 </section>
                 <section>
                     <h2>上傳簽名圖片檔</h2>

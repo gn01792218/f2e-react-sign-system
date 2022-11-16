@@ -87,7 +87,6 @@ export default function useHandSignCanvas() {
     }
     //使用簽名
     function useSign(){
-        //1.
         setHandSignImg(toImage())
     }
     return {
