@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { useAppDispatch } from '../store/hooks'
+import { useAppDispatch, useAppSelector } from '../store/hooks'
 import useMouse from './useMouse'
 import useImageUtil from './useImageUtil'
 import { loadHandMadeSignImg, pushHandsignImg } from '../store/createSignSlice'
@@ -16,12 +16,14 @@ export default function useHandSignCanvas() {
     const { converCanvasToImage } = useImageUtil()
     // Redux
     const dispatch = useAppDispatch()
+    const userOwnSignImg = useAppSelector(state => state.createSign.userOwnSignImg) //使用者從簽名檔中選取的簽名檔
 
     //effect
     useEffect(()=>{
         if(!handSignImg) return
         dispatch(loadHandMadeSignImg(handSignImg))
     },[handSignImg])
+    
     //methods
     function clearCanvas(canvas: HTMLCanvasElement) {
         const ctx = canvas.getContext('2d')

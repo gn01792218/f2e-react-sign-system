@@ -7,12 +7,14 @@ interface State { // 定義 a type for the slice state
   handMadeSignImg:string,
   handSignArray:string[],
   showHandSignModal:boolean,
+  userOwnSignImg:string,
 }
 const initialState: State = { // 定義 the initial state using that type
   BGImg:'',
   handMadeSignImg:'',
   handSignArray:[],
-  showHandSignModal:false
+  showHandSignModal:false,
+  userOwnSignImg:'',
 }
 
 //2.撰寫reducer函式
@@ -28,12 +30,18 @@ export const createSignSlice = createSlice({
       state.handMadeSignImg = action.payload
     },
     pushHandsignImg:(state,action:PayloadAction<string>) => {
-      if(state.handSignArray.length > 5) return alert('最多只能儲存3張簽名唷')
+      if(state.handSignArray.length > 5) return alert('最多只能儲存5張簽名唷')
       state.handSignArray.push(action.payload)
     },
     setShowHandSignModal:(state, action:PayloadAction<boolean>) => {
       state.showHandSignModal = action.payload
-    }
+    },
+    setUserSelectSigImg: (state, action:PayloadAction<number>) => {
+      state.userOwnSignImg = state.handSignArray[action.payload]
+    },
+    deleteHandSign: (state, action:PayloadAction<number>) => {
+      state.handSignArray.splice(action.payload,1)
+    },
   },
 })
 
@@ -43,6 +51,8 @@ export const {
   loadHandMadeSignImg,
   pushHandsignImg, 
   setShowHandSignModal,
+  setUserSelectSigImg,
+  deleteHandSign,
 } = createSignSlice.actions
 
 export default createSignSlice.reducer

@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react"
 export enum BtnType {
     PRIMARY,
     SECONDARY,
-    CIRCLE,
+    COLOR,
     CLOSE
 }
 export enum InputType {

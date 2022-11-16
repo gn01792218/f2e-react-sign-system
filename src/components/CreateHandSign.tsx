@@ -19,6 +19,7 @@ function CreateHandSign() {
             keepInHandSignArray,
          } = useSignCanvas()
     const signImg = useAppSelector(state => state.createSign.handMadeSignImg)
+    
     const canvasSize = {
         width: 500,
         height: 200,
@@ -27,7 +28,6 @@ function CreateHandSign() {
         <main className='text-white'>
             <section>
                 <h1 className="text-lg">建立簽名</h1>
-                <Btn btnObj={{ type: BtnType.PRIMARY, title: '查看簽名檔', clickHandler: keepInHandSignArray }} />
                 <section className='w-full flex flex-col'>
                     <h2>手寫板</h2>
                     <TheColorPalette setColor={setStrokeColor}/>
