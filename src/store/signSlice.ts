@@ -40,7 +40,9 @@ export const signSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
-      if (state.currentStep > state.maxStep) return
+      if (state.currentStep >= state.maxStep) {
+        return
+      } 
       state.currentStep += 1
     },
     decrement: (state) => {
