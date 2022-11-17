@@ -32,7 +32,10 @@ function SignPageStep1() {
                 <div className='mt-5'>
                     <Input inputObj={{type:InputType.FILE, handleOnchange}}/>
                 </div>
-                <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step2')}}/>
+                {
+                    BgSrc ? <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step2')}}/> : null
+                }
+                
             </section>
         </main>
     )
