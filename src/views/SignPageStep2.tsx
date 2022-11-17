@@ -19,6 +19,7 @@ function SignPageStep2() {
             第二步
             <div className='flex'>
                 <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:()=>backStep('/SignPage/Step1')}}/>
+                <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>backStep('/SignPage/Step3')}}/>
             </div>
            <CreateHandSign />
            <Btn btnObj={{type:BtnType.PRIMARY,title:"查看簽名檔",clickHandler:()=>dispatch(setShowHandSignModal(true))}}/>
