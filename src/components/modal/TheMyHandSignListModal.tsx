@@ -1,9 +1,11 @@
 import { Fragment, useMemo } from 'react'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import { setShowHandSignModal, deleteHandSign, loadHandMadeSignImg } from '../../store/createSignSlice'
+import { setShowHandSignModal } from '../../store/createSignSlice'
 import { BtnType } from '../../types/gloable'
 import Btn from '../btn/Btn'
+import MyHandSignList from '../MyHandSignList'
 import useSignStep from '../../hook/useSignStep'
+
 function TheMyHandSignList() {
     //hook
     const { addStep } = useSignStep()
@@ -13,16 +15,13 @@ function TheMyHandSignList() {
     const show = useAppSelector(state => state.createSign.showHandSignModal)
     const handSignImg = useAppSelector(state => state.createSign.handMadeSignImg)
     useMemo(()=>{
-        close()
+        addStep('/SignPage/Step3')
     },[handSignImg])
     //基本
     function close(){
         dispatch(setShowHandSignModal(false))
-        addStep('/SignPage/Step3')
     }
-    function deletedSign(num:number){
-        dispatch(deleteHandSign(num))
-    }
+    
     return (
         <Fragment>
             {
@@ -36,7 +35,8 @@ function TheMyHandSignList() {
                                 </div>
                             </header>
                             <article className=''>
-                                <ul>
+                                <MyHandSignList handSignArray={handSignArray} showUseBottom={true}/>
+                                {/* <ul>
                                     {
                                         handSignArray.map((sign, index) => {
                                             return (
@@ -54,7 +54,7 @@ function TheMyHandSignList() {
                                             )
                                         })
                                     }
-                                </ul>
+                                </ul> */}
                             </article>
                             <footer className=''>
 

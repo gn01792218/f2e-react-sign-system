@@ -20,7 +20,6 @@ const initialState: State = { // 定義 the initial state using that type
 //2.撰寫reducer函式
 export const createSignSlice = createSlice({
   name: 'createSign',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     loadBGImg: (state, action:PayloadAction<string>) => {
@@ -30,7 +29,7 @@ export const createSignSlice = createSlice({
       state.handMadeSignImg = action.payload
     },
     pushHandsignImg:(state,action:PayloadAction<string>) => {
-      if(state.handSignArray.length > 5) return alert('最多只能儲存5張簽名唷')
+      if(state.handSignArray.length > 4) return alert('最多只能儲存5張簽名唷')
       state.handSignArray.push(action.payload)
     },
     setShowHandSignModal:(state, action:PayloadAction<boolean>) => {
