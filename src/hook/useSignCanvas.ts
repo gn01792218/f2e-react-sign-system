@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from "react"
-import { useAppDispatch, useAppSelector } from '../store/hooks'
+import { useRef, useState } from "react"
+import { useAppDispatch } from '../store/hooks'
 import useMouse from './useMouse'
 import useImageUtil from './useImageUtil'
-import useSignStep from '../hook/useSignStep'
-import { loadHandMadeSignImg, pushHandsignImg } from '../store/createSignSlice'
+import useSignSteps from '../hook/useSignStep'
+import { pushHandsignImg, loadHandMadeSignImg } from '../store/createSignSlice'
+import { setStepIndecatorDon } from '../store/signSlice'
 export default function useHandSignCanvas() {
     // 基本資料
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
@@ -11,22 +12,13 @@ export default function useHandSignCanvas() {
     const ctx = signCanvas.current?.getContext("2d")!
 
     const [drawing, setDrawing] = useState(false)
-    const [handSignImg, setHandSignImg ] = useState('')  //手寫轉的圖片
     const [strokeColor, setStrokeColor ] = useState('black')
-    const [isSaveImg, setIsSaveImg] = useState(false)
+
     // hook
     const { converCanvasToImage } = useImageUtil()
-    const { addStep } = useSignStep()
+    const { toStep } = useSignSteps()
     // Redux
     const dispatch = useAppDispatch()
-    const userOwnSignImg = useAppSelector(state => state.createSign.userOwnSignImg) //使用者從簽名檔中選取的簽名檔
-
-    //effect
-    useEffect(()=>{
-        if(!handSignImg) return
-        dispatch(loadHandMadeSignImg(handSignImg))
-        addStep('/SignPage/Step3')
-    },[handSignImg])
     
     //methods
     function clearCanvas(canvas: HTMLCanvasElement) {
@@ -87,13 +79,14 @@ export default function useHandSignCanvas() {
     }
     //使用簽名
     function useSign(){
-        setHandSignImg(toImage())
+        dispatch(setStepIndecatorDon(1))
+        dispatch(loadHandMadeSignImg(toImage()))
+        toStep('/SignPage/Step3',3)
     }
     return {
         //data
         signCanvas,
         ctx,
-        handSignImg,
         //methods
         setStrokeColor,
         setDrawing,
@@ -102,7 +95,8 @@ export default function useHandSignCanvas() {
         handleMouseDown,
         handleTouchStart,
         handleTouchMove,
-        useSign,
+        useSign, //導出給MyHandSignModal使用
         keepInHandSignArray,
+        toImage,  //導出給CreateSignPage使用
     }
 }

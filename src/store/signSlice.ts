@@ -36,24 +36,14 @@ const initialState: SignState = { // 定義 the initial state using that type
 //2.撰寫reducer函式
 export const signSlice = createSlice({
   name: 'sign',
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    increment: (state) => {
-      if (state.currentStep > state.maxStep) return
-      state.currentStep += 1
+    setCurrentStepIndecator: (state, action: PayloadAction<number>) => {
+      state.currentStep = action.payload
     },
-    decrement: (state) => {
-      if (state.currentStep < 0) return
-      state.currentStep -= 1
-    },
-    // Use the PayloadAction type to declare the contents of `action.payload`
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      if (state.currentStep > state.maxStep) return
-      state.currentStep += action.payload
-    },
-    setStepIndecatorDon:(state, action:PayloadAction<number>)=>{
+    setStepIndecatorDon:(state, action:PayloadAction<number>)=>{ //設置第幾個stepIndecator 為完成
       state.stepIndecatorDataArray[action.payload].done = true
+      console.log('設置',action.payload,'為',state.stepIndecatorDataArray[action.payload].done )
     },
     updateStepIndecatorActive:(state)=>{
       state.stepIndecatorDataArray.forEach((item)=>{
@@ -64,10 +54,10 @@ export const signSlice = createSlice({
 })
 
 //3.導出reducer
-export const { increment, 
-  decrement, 
-  incrementByAmount, 
+export const { 
+  setCurrentStepIndecator, 
   setStepIndecatorDon, 
-  updateStepIndecatorActive } = signSlice.actions
+  updateStepIndecatorActive 
+} = signSlice.actions
 
 export default signSlice.reducer

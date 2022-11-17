@@ -4,7 +4,6 @@ import SignCanvas from './canvas/SignCanvas'
 import useSignCanvas from '../hook/useSignCanvas'
 import TheColorPalette from './TheColorPalette'
 
-
 function CreateHandSign() {
     const { signCanvas, 
             ctx, 

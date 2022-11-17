@@ -1,24 +1,19 @@
 import { useAppDispatch } from '../store/hooks'
 import { useNavigate } from 'react-router-dom';
-import { increment, decrement } from '../store/signSlice'
-export default function useSign(){
+import { setCurrentStepIndecator } from '../store/signSlice'
+export default function useSignStep(){
     //router
     const navigate = useNavigate()
     //Redux
     const dispatch = useAppDispatch()
 
     //methods
-    function addStep(navUrl:string) {
-        dispatch(increment())
-        navigate(navUrl)
-    }
-    function backStep(navUrl:string){
-        dispatch(decrement())
+    function toStep(navUrl:string,step:number) {
+        dispatch(setCurrentStepIndecator(step))
         navigate(navUrl)
     }
     return {
         //methods
-        addStep,
-        backStep,
+        toStep,
     }
 }

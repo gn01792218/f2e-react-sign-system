@@ -7,7 +7,7 @@ import useImageMergeCanvas from '../hook/useImageMergeCanvas'
 import { useAppSelector } from '../store/hooks'
 
 function SignPageStep3() {
-    const { backStep } = useSignStep()
+    const { toStep } = useSignStep()
     const { mergeImageCanvasRef, downloadMergeImage } = useImageMergeCanvas()
 
     //Redux
@@ -17,9 +17,8 @@ function SignPageStep3() {
     useRefreshRedirect('/SignPage/Step1')
     return (
         <section className='flex flex-col items-center'>
-            第三步
             <div className='flex'>
-                <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:()=>backStep('/SignPage/Step2')}}/>
+                <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
             </div>
             <MergeImageCanvas mergeImageCanvasObj={{mergeImageCanvasRef}}/>
             {

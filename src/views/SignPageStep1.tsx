@@ -14,7 +14,7 @@ function SignPageStep1() {
         setCanvas(canvasRef.current!)
     },[canvasRef])
     //hook
-    const { addStep } = useSignStep()
+    const { toStep } = useSignStep()
     const { handleOnchange } = useBgCanvas(canvas!)
     //Redux
     const BgSrc = useAppSelector(state => state.createSign.BGImg)
@@ -32,7 +32,10 @@ function SignPageStep1() {
                 <div className='mt-5'>
                     <Input inputObj={{type:InputType.FILE, handleOnchange}}/>
                 </div>
-                <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>addStep('/SignPage/Step2')}}/>
+                {
+                    BgSrc ? <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/> : null
+                }
+                
             </section>
         </main>
     )
