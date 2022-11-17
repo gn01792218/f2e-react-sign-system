@@ -1,9 +1,12 @@
-import { ChangeEventHandler, ChangeEvent, Fragment, useMemo } from 'react'
+import { Fragment, useMemo } from 'react'
 import { useAppSelector, useAppDispatch } from '../../store/hooks'
-import { setShowHandSignModal, setUserSelectSigImg, deleteHandSign, loadHandMadeSignImg } from '../../store/createSignSlice'
-import Btn from '../btn/Btn'
+import { setShowHandSignModal, deleteHandSign, loadHandMadeSignImg } from '../../store/createSignSlice'
 import { BtnType } from '../../types/gloable'
+import Btn from '../btn/Btn'
+import useSignStep from '../../hook/useSignStep'
 function TheMyHandSignList() {
+    //hook
+    const { addStep } = useSignStep()
     //Redux
     const dispatch = useAppDispatch()
     const handSignArray = useAppSelector(state => state.createSign.handSignArray)
@@ -15,6 +18,7 @@ function TheMyHandSignList() {
     //基本
     function close(){
         dispatch(setShowHandSignModal(false))
+        addStep('/SignPage/Step3')
     }
     function deletedSign(num:number){
         dispatch(deleteHandSign(num))
