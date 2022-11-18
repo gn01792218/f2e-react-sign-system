@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit'
 //引入reducer
 import sign from './signSlice'  
 import createSign from './createSignSlice'
+import msgBox from './msgBoxSlice'
 
 const store = configureStore({
   reducer: {
     sign,
-    createSign
+    createSign,
+    msgBox
   },
 })
 

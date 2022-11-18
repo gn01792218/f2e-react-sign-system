@@ -1,11 +1,13 @@
-import { BtnType } from '../types/gloable'
+import { useMemo } from 'react'
+import { BtnType, Status } from '../types/gloable'
 import Btn from '../components/btn/Btn'
 import useSignSteps from '../hook/useSignStep'
 import useRefreshRedirect from '../hook/useRefreshRedirect'
 import CreateHandSign from '../components/CreateHandSign'
 import TheMyHandSignListModal from '../components/modal/TheMyHandSignListModal'
-import { useAppDispatch } from '../store/hooks'
+import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { setShowHandSignModal } from '../store/createSignSlice'
+
 
 function SignPageStep2() {
       //hook
@@ -15,6 +17,7 @@ function SignPageStep2() {
     
     //Redux
     const dispatch = useAppDispatch()
+    
     return (
         <section className='flex flex-col items-center'>
             <div className='flex'>

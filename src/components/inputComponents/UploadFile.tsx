@@ -1,4 +1,3 @@
-
 interface Props {
     handleOnchange:React.ChangeEventHandler<HTMLInputElement>
 }

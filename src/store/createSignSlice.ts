@@ -29,7 +29,6 @@ export const createSignSlice = createSlice({
       state.handMadeSignImg = action.payload
     },
     pushHandsignImg:(state,action:PayloadAction<string>) => {
-      if(state.handSignArray.length > 4) return alert('最多只能儲存5張簽名唷')
       state.handSignArray.push(action.payload)
     },
     setShowHandSignModal:(state, action:PayloadAction<boolean>) => {
