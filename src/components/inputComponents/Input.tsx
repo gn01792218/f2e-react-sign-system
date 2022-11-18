@@ -1,4 +1,5 @@
 
+import { Fragment } from 'react'
 import { InputType } from '../../types/gloable'
 import UploadFile from './UploadFile'
 import ColorPicker from './ColorPicker'
@@ -14,7 +15,7 @@ interface Props {
 function Input(props:Props) {
     const { type, handleOnchange, handleClick, active } = props.inputObj
     return (
-        <div className=''>
+        <Fragment>
             {(()=>{
                 switch (type) {
                     case InputType.FILE:
@@ -23,7 +24,7 @@ function Input(props:Props) {
                         return <ColorPicker  handleOnchange={ handleOnchange } handleClick={handleClick!} active={active!}/>
                 }
             })()}
-        </div>
+        </Fragment>
     )
 }
 export default Input
