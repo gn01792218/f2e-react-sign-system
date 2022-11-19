@@ -7,8 +7,9 @@ function MergeImageCanvas(prop:Props) {
 
     return (
             <canvas 
-            ref={mergeImageCanvasRef} 
-        >Your browser does not support th canvas element</canvas>
+                className='mergeCanvas'
+                ref={mergeImageCanvasRef} 
+            >Your browser does not support th canvas element</canvas>
     )
 }
 export default MergeImageCanvas

@@ -43,9 +43,6 @@
 .signCanvas{
     @apply min-w-[300px] max-w-[500px] h-[200px] border-2 bg-primary-600
 }
-.a{
-    color:aquamarine
-}
 /* 特效 */
 .flipCard {
     @apply w-full h-full absolute backface-hidden transition-all duration-1000 ease-in-out

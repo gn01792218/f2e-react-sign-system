@@ -26,10 +26,10 @@ const initialState: SignState = { // 定義 the initial state using that type
     },
     {
         step:3,
-        title:'完成簽署',
+        title:'合併輸出',
         active:false,
         done:false
-    }
+    },
 ]
 }
 

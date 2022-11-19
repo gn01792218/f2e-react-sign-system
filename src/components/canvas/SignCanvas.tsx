@@ -4,7 +4,7 @@ interface Props {
     signCanvasObj:SignCanvasObj
 }
 function SignCanvas(props:Props) {
-   const { width, height, signCanvas, ctx, handleMouseDown, handleMouseMove, handleTouchStart, handleTouchMove,  setDrawing } = props.signCanvasObj
+   const { width, height, signCanvas, handleMouseDown, handleMouseMove, handleTouchStart, handleTouchMove, setDrawing } = props.signCanvasObj
 
     return (
             <canvas 

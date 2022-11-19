@@ -9,7 +9,7 @@ export default function useImageMergeCanvas(){
     const dispatch = useAppDispatch()
     const stepIndecatorDataArray = useAppSelector(state => state.sign.stepIndecatorDataArray)
     //hook
-    const {downloadImg } = useImageUtil()
+    const { downloadImg } = useImageUtil()
     //合併的canvas
     const mergeImageCanvasRef = useRef<HTMLCanvasElement>(null)
     const [ mergeCanvas, setMergeCanvas ] = useState<Canvas | null>(null)
@@ -45,8 +45,6 @@ export default function useImageMergeCanvas(){
     },[mergeCanvas, bgImg])
 
     //methods
-    // 縮放
-
     //下載圖片
     function downloadMergeImage () {
         const dataURL = mergeCanvas?.toDataURL({format:"png"})
