@@ -3,6 +3,7 @@ import { Fragment } from 'react'
 import { InputType } from '../../types/gloable'
 import UploadFile from './UploadFile'
 import ColorPicker from './ColorPicker'
+import TextInput from './TextInput'
 interface Input {
     type:InputType,
     title?:string
@@ -19,10 +20,12 @@ function Input(props:Props) {
         <Fragment>
             {(()=>{
                 switch (type) {
-                    case InputType.FILE:
+                    case InputType.FILE :
                         return <UploadFile title={ title! } handleOnchange={ handleOnchange }/>
-                    case InputType.COLOR:
+                    case InputType.COLOR :
                         return <ColorPicker  handleOnchange={ handleOnchange } handleClick={handleClick!} active={active!}/>
+                    case InputType.TEXT :
+                        return <TextInput handleOnchange={ handleOnchange }/>
                 }
             })()}
         </Fragment>

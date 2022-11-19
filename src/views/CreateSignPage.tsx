@@ -51,7 +51,7 @@ function CreateSign() {
                         handleTouchStart
                     }}/>
                     <div className='flex justify-around'>
-                        <Btn btnObj={{type:BtnType.SECONDARY,title:'清除簽名',clickHandler:()=>clearCanvas(signCanvas.current!)}}/>
+                        <Btn btnObj={{type:BtnType.SECONDARY,title:'清除簽名',clickHandler:()=>clearCanvas(canvas!)}}/>
                         <Input inputObj={{type:InputType.FILE, title:'上傳簽名圖檔', handleOnchange:handleUploadImage}}/>
                         <Btn btnObj={{type:BtnType.PRIMARY,title:'儲存簽名',clickHandler:()=>dispatch(pushHandsignImg(toImage()))}}/>
                     </div>

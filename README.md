@@ -50,7 +50,6 @@ npm run deploy
 ## <span style="font-weight:bolder">元件使用說明</span>
 ### <span style="font-weight:bold">MsgBox元件</span>
 MsgBox元件，為[ 全局 ] 元件，在APP.tsx中全局引入 ，並使用Reduex存取資料，<br>
-<br>
 元件使用時只需要呼叫客製 hook-[ useMsgBox ] 即可使用，不必引入元件
 ```javascript
 import { Status } from '../types/gloable'
@@ -63,6 +62,35 @@ showMsg({
     message:'成功儲存，請查看您的簽名檔列表',
     duration:500,  //可選項目，預設2000毫秒
 })
+
+```
+### <span style="font-weight:bold">Prompt元件</span>
+Prompt元件，為[ 全局 ] 元件，在APP.tsx中全局引入 ，並使用Reduex存取資料，<br>
+元件使用時只需要呼叫客製 hook-[ usePrompt ] 即可使用，不必引入元件<br>
+共有兩種Prompt type : <br>
+NOINPUT : 一般確認框，無input
+INPUT : 帶有使用者輸入的input
+```javascript
+import { PromptType } from '../types/gloable'
+import usePrompt from './usePrompt'
+
+const { showPrompt, setPromptObj, closePrompt } = usePrompt()
+
+//1.NOINPUT : 一般確認框
+function deletedSign(num:number){
+    setPromptObj({
+        type:PromptType.NOINPUT,
+        title:'警告訊息',
+        message:'此操作將永久刪除檔案，確定執行?',
+        confirmCallback:()=>{
+            dispatch(deleteHandSign(num))
+            closePrompt()
+        }
+    })
+    showPrompt()
+}
+
+//2.INPUT : 使用者輸入確認框
 
 ```
 ### <span style="font-weight:bold">Loading元件</span>

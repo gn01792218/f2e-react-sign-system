@@ -45,7 +45,7 @@ function CreateHandSign() {
                         handleTouchStart
                     }} />
                     <div className='flex justify-around'>
-                        <Btn btnObj={{ type: BtnType.SECONDARY, title: '清除簽名', clickHandler: () => clearCanvas(signCanvas.current!) }} />
+                        <Btn btnObj={{ type: BtnType.SECONDARY, title: '清除簽名', clickHandler: () => clearCanvas(canvas!) }} />
                         <Btn btnObj={{ type: BtnType.PRIMARY, title: '使用簽名', clickHandler: useSign }} />
                         <Btn btnObj={{ type: BtnType.SECONDARY, title: '儲存簽名', clickHandler: keepInHandSignArray }} />
                     </div>

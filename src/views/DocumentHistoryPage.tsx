@@ -1,5 +1,5 @@
 import { BtnType } from '../types/gloable'
-import { useAppSelector, useAppDispatch } from '../store/hooks'
+import { useAppSelector } from '../store/hooks'
 import useDocumentHistory from '../hook/useDocumentHistory'
 import DocumentHistoryItem from '../components/DocumentHistoryItem'
 import Btn from '../components/btn/Btn'
@@ -14,7 +14,6 @@ function DocumentHistoryPage() {
     const { downloadImg } = useImageUtil()
 
     //Redux
-    const dispatch = useAppDispatch()
     const documentHistorArray = useAppSelector( state => state.documentHistory.documentHistoryArray)
     return (
         <main className='text-white flex justify-center'>

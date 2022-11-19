@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Status, MsgBoxObj } from '../../types/gloable'
+import { Status, MsgBoxObj } from '../types/gloable'
 
 interface Props {
     msgBoxObj:MsgBoxObj
@@ -11,11 +11,11 @@ function MsgPopup(props:Props) {
     })
     return (
         <section className={[
-            'message-box-wrap',
+            'overlay',
             show ? 'flex justify-center items-center' : 'hidden'
             ].join(" ")}>
             <div className={[
-                'message-box',
+                'overlay',
                 show ? 'fade-in':'fade-out',
                 type === Status.SUCCESS ? 'bg-primary-500' : '', 
                 type === Status.ALERT ? 'bg-primary-900' : '',

@@ -1,9 +1,10 @@
 import { useAppDispatch, useAppSelector } from '../store/hooks'
-import { BtnType } from '../types/gloable'
+import { BtnType, PromptType } from '../types/gloable'
 import { deleteHandSign, loadHandMadeSignImg } from '../store/createSignSlice'
 import Btn from './btn/Btn'
 import useSignSteps from '../hook/useSignStep'
 import useImageUtil from '../hook/useImageUtil'
+import usePrompt from "../hook/usePrompt"
 interface Props {
     handSignArray:string[],
     showUseBottom:boolean,
@@ -14,12 +15,22 @@ function MyHandSignList(props:Props) {
      //hook
      const { toStep } = useSignSteps()
      const { downloadImg } = useImageUtil()
+     const { showPrompt, setPromptObj, closePrompt } = usePrompt()
     //Redux
     const dispatch = useAppDispatch()
     const handSignArray = useAppSelector(state => state.createSign.handSignArray)
 
     function deletedSign(num:number){
-        dispatch(deleteHandSign(num))
+        setPromptObj({
+            type:PromptType.NOINPUT,
+            title:'警告訊息',
+            message:'此操作將永久刪除檔案，確定執行?',
+            confirmCallback:()=>{
+                dispatch(deleteHandSign(num))
+                closePrompt()
+            }
+        })
+        showPrompt()
     }
     return (
         <ul className=''>

@@ -7,7 +7,7 @@ function Loading(props:Props) {
     
     return (
         <div className='w-full'>
-            <h1>{name}</h1>
+            <h1>{name ? name : '我的文件'}</h1>
             <img className='w-full'  src={documentImg} alt={name} />
         </div>
     )

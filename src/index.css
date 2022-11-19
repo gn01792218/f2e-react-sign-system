@@ -39,7 +39,7 @@
 .loading {
     @apply dark:text-gray-600 inline mr-2 animate-spin
 }
-.message-box-wrap {
+.overlay {
     @apply absolute w-full h-full p-10 z-10;
 }
 .message-box {

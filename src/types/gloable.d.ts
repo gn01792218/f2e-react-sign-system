@@ -1,6 +1,7 @@
 declare enum Status {}
 declare enum BtnType {}
 declare enum InputType {}
+declare enum PromptType {}
 declare interface Indecator {}
 declare interface Button {}
 declare interface LoadingData {}

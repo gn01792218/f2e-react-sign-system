@@ -16,6 +16,10 @@ export enum InputType {
     COLOR,
     FILE,
 }
+export enum PromptType {
+    NOINPUT,
+    INPUT,
+}
 export interface Indecator {
     step:number,
     title:string,
@@ -42,6 +46,14 @@ export interface MsgBoxObj {
     message:string,
     show?:boolean,
     duration?:number,
+}
+export interface PromptObj {
+    type?:PromptType,
+    title:string,
+    message:string,
+    show?:boolean,
+    promptValue?:string | number,
+    confirmCallback:Function,
 }
 export interface DocumentHistoryObj {
     name:string,

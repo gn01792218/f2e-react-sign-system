@@ -11,7 +11,6 @@ import { setStepIndecatorDon } from '../store/signSlice'
 
 export default function useHandSignCanvas(signCanvas:HTMLCanvasElement) {
     // 基本資料
-    const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
     const ctx = signCanvas?.getContext("2d")!
 
     const [drawing, setDrawing] = useState(false)
@@ -43,9 +42,11 @@ export default function useHandSignCanvas(signCanvas:HTMLCanvasElement) {
     }, [])
 
     // hook
+    const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
     const { converCanvasToImage, checkImageSize } = useImageUtil()
     const { toStep } = useSignSteps()
     const { showMsg } = useMsgBox()
+    
     // Redux
     const dispatch = useAppDispatch()
     const MyHandSignArray = useAppSelector( state => state.createSign.handSignArray)
