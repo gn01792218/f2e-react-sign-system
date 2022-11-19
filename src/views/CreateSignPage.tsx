@@ -29,10 +29,9 @@ function CreateSign() {
     const handSignArray = useAppSelector(state => state.createSign.handSignArray)
     return (
         <main className='text-white flex justify-center'>
-            <h1 className="text-lg text-center">建立簽名</h1>
             <section className='flex flex-col items-center'>
-                <TheColorPalette setColor={setStrokeColor}/>
-                <section>
+                <section className='mb-20'>
+                    <TheColorPalette setColor={setStrokeColor}/>
                     <SignCanvas signCanvasObj={{
                         width:canvasSize.width,
                         height:canvasSize.height,
@@ -44,12 +43,13 @@ function CreateSign() {
                         handleTouchMove,
                         handleTouchStart
                     }}/>
-                    <div className='flex'>
+                    <div className='flex justify-around'>
                         <Btn btnObj={{type:BtnType.SECONDARY,title:'清除簽名',clickHandler:()=>clearCanvas(signCanvas.current!)}}/>
                         <Btn btnObj={{type:BtnType.PRIMARY,title:'儲存簽名',clickHandler:()=>dispatch(pushHandsignImg(toImage()))}}/>
                     </div>
                 </section>
-                <section>
+                <section className='p-5 border-2'>
+                    <h2 className='text-center mb-5'>我的簽名列表</h2>
                     <MyHandSignList handSignArray={handSignArray} showUseBottom={true}/>
                 </section>
             </section>

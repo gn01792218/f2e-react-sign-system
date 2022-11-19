@@ -9,7 +9,7 @@ interface Props {
 function Btn(props:Props) {
     const { type = BtnType.PRIMARY, title, clickHandler, color, active } = props.btnObj
     return (
-        <div className='mt-5'>
+        <div className=''>
             {(()=>{
                 switch (type) {
                     case BtnType.PRIMARY :

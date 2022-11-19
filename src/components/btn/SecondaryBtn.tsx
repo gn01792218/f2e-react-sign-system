@@ -5,7 +5,7 @@ interface Props {
 function SecondaryBtn(props:Props) {
     let { title, clickHandler } = props.btnData
     return (
-        <button className='secndary-btn mt-5' onClick={clickHandler}>{title}</button>
+        <button className='secndary-btn' onClick={clickHandler}>{title}</button>
     )
 }
 export default SecondaryBtn

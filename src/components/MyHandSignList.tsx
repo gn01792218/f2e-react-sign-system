@@ -22,16 +22,16 @@ function MyHandSignList(props:Props) {
         dispatch(deleteHandSign(num))
     }
     return (
-        <ul>
-        {
+        <ul className=''>
+        {   handSignArray.length ? 
             handSignArray.map((sign, index) => {
                 return (
-                    <li key={sign}>
-                        <div className="flex justify-around items-center mb-4">
-                            <div className='border-2 w-[30%] min-w-[200px]'>
+                    <li className='' key={sign}>
+                        <div className="flex justify-center items-center mb-4">
+                            <div className='border-2 w-[30%] min-w-[200px] mr-5'>
                                 <img src={sign} alt={`我的簽名${index}`} />
                             </div>
-                            <div className='flex w-[230px] justify-between'>
+                            <div className='flex w-[230px] justify-between items-center'>
                                 {
                                     showUseBottom ? 
                                         <Btn btnObj={{type:BtnType.SECONDARY,title: '使用',clickHandler:()=>{
@@ -48,6 +48,7 @@ function MyHandSignList(props:Props) {
                     </li>
                 )
             })
+            :<p>您尚未新增任何簽名</p>
         }
     </ul>
     )
