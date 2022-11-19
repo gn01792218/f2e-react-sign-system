@@ -59,9 +59,9 @@ export default function useHandSignCanvas() {
         if(!ctx) return
         ctx.beginPath()
         ctx.moveTo(x, y)
-        event.preventDefault()
+        // event.preventDefault()
     }
-    function handleTouchMove(event: React.TouchEvent<HTMLCanvasElement>){
+    function handleTouchMove(event: React.TouchEvent<HTMLCanvasElement>){ 
         if (!drawing) return
         let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
         if(!ctx) return

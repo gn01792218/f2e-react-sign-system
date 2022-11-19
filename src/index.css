@@ -3,7 +3,7 @@
 @tailwind utilities;
 /* layout */
 .App {
-    @apply bg-primary-dark min-h-screen touch-manipulation
+    @apply bg-primary-dark min-h-screen
 }
 .documentHistoryList {
     @apply max-w-[1000px] flex justify-around flex-wrap
@@ -47,7 +47,7 @@
 }
 /* canvas */
 .signCanvas{
-    @apply min-w-[300px] max-w-[500px] h-[200px] border-2 bg-primary-600
+    @apply min-w-[300px] max-w-[500px] w-full h-[200px] border-2 bg-primary-600 touch-none
 }
 /* 特效 */
 .flipCard {
