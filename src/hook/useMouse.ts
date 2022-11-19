@@ -5,7 +5,7 @@ export default function useMouse(){
         return [event.clientX, event.clientY]
     }
     function getTouchPos(event:React.TouchEvent<HTMLCanvasElement>){
-        return [event.touches[0].clientX, event.touches[0].clientX]
+        return [event.touches[0].clientX, event.touches[0].clientY]
     }
     function getCanvasMousePos(canvas:HTMLCanvasElement,event:React.MouseEvent<HTMLCanvasElement>) {
         let [x,y] = getMousePos(event)

@@ -1,10 +1,14 @@
 import { useRef, useState } from "react"
-import { useAppDispatch } from '../store/hooks'
+import { Status } from '../types/gloable'
+import { useAppDispatch, useAppSelector } from '../store/hooks'
 import useMouse from './useMouse'
 import useImageUtil from './useImageUtil'
 import useSignSteps from '../hook/useSignStep'
+import useMsgBox from "./useMsgBox"
 import { pushHandsignImg, loadHandMadeSignImg } from '../store/createSignSlice'
 import { setStepIndecatorDon } from '../store/signSlice'
+
+
 export default function useHandSignCanvas() {
     // 基本資料
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
@@ -17,9 +21,10 @@ export default function useHandSignCanvas() {
     // hook
     const { converCanvasToImage } = useImageUtil()
     const { toStep } = useSignSteps()
+    const { showMsg } = useMsgBox()
     // Redux
     const dispatch = useAppDispatch()
-    
+    const MyHandSignArray = useAppSelector( state => state.createSign.handSignArray)
     //methods
     function clearCanvas(canvas: HTMLCanvasElement) {
         const ctx = canvas.getContext('2d')
@@ -75,7 +80,22 @@ export default function useHandSignCanvas() {
         return converCanvasToImage(signCanvas.current!)
     }
     function keepInHandSignArray() {
+        if(MyHandSignArray.length > 4) {
+            showMsg({
+                type:Status.ERROR,
+                title:'簽名訊息',
+                message:'無法儲存，最多只能存取五張簽名',
+                show:true
+            })
+            return
+        }
         dispatch(pushHandsignImg(toImage()))
+        showMsg({
+            type:Status.SUCCESS,
+            title:'簽名訊息',
+            message:'成功儲存，請查看您的簽名檔列表',
+            show:true
+        })
     }
     //使用簽名
     function useSign(){

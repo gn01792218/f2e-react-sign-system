@@ -1,4 +1,9 @@
 import { MouseEventHandler } from "react"
+export enum Status {
+    SUCCESS,
+    ALERT,
+    ERROR,
+}
 export enum BtnType {
     PRIMARY,
     SECONDARY,
@@ -30,4 +35,10 @@ export interface LoadingData {
     loading:boolean,
     strokfillerColor?:string, //loading旋轉的顏色
     strokColor?:string //loading框框底色
+}
+export interface MsgBoxObj {
+    type:Status
+    title:string,
+    message:string,
+    show:boolean,
 }

@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from '../store/hooks'
 import { BtnType } from '../types/gloable'
 import { deleteHandSign, loadHandMadeSignImg } from '../store/createSignSlice'
 import Btn from './btn/Btn'
-
+import useSignSteps from '../hook/useSignStep'
 interface Props {
     handSignArray:string[],
     showUseBottom:boolean,
@@ -10,7 +10,8 @@ interface Props {
 }
 function MyHandSignList(props:Props) {
     const { showUseBottom, callback } = props
-
+     //hook
+     const { toStep } = useSignSteps()
     //Redux
     const dispatch = useAppDispatch()
     const handSignArray = useAppSelector(state => state.createSign.handSignArray)
@@ -33,6 +34,7 @@ function MyHandSignList(props:Props) {
                                     showUseBottom ? 
                                     <Btn btnObj={{type:BtnType.SECONDARY,title: '使用',clickHandler:()=>{
                                         dispatch(loadHandMadeSignImg(sign))
+                                        toStep('/SignPage/Step3',3)
                                         if(callback) callback()
                                     }}}/>
                                     : null
