@@ -21,8 +21,8 @@ function SignPageStep2() {
     return (
         <section className='flex flex-col items-center'>
             <div className='flex'>
-                <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:()=>toStep('/SignPage/Step1',1)}}/>
-                <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>toStep('/SignPage/Step3',3)}}/>
+                <Btn btnObj={{type:BtnType.SECONDARY,title:'上一步',clickHandler:()=>toStep('/SignPage/Step1',1)}}/>
+                <Btn btnObj={{type:BtnType.SECONDARY,title:'下一步',clickHandler:()=>toStep('/SignPage/Step3',3)}}/>
             </div>
            <CreateHandSign />
            <Btn btnObj={{type:BtnType.PRIMARY,title:"查看簽名檔",clickHandler:()=>dispatch(setShowHandSignModal(true))}}/>

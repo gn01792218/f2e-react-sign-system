@@ -18,13 +18,29 @@ function SignPageStep3() {
     return (
         <section className='flex flex-col items-center'>
             <div className='flex'>
-                <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
+                <Btn btnObj={{type:BtnType.SECONDARY,title:'上一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
             </div>
             <MergeImageCanvas mergeImageCanvasObj={{mergeImageCanvasRef}}/>
             {
-                (handSignImg || BgSrc)? <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> :
-                <div>
-                    <p>您尚未上傳文件及簽名檔</p>
+                (handSignImg && BgSrc) ? <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
+                :<div className='flex flex-col items-center mt-5'>
+                    <p className='text-acent'>您的簽署未完成 : </p>
+                    {
+                        !handSignImg ? (
+                            <div>
+                                <p className='text-alert'>*缺少簽名檔: </p>
+                                <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
+                            </div>
+                        ) : null
+                    }
+                    {
+                        !BgSrc ? (
+                            <div>
+                                <p className='text-alert'>*缺少文件檔案</p>
+                                <Btn btnObj={{type:BtnType.PRIMARY,title:'上傳文件',clickHandler:()=>toStep('/SignPage/Step1',1)}}/>
+                            </div>
+                        ) : null
+                    }
                 </div>
             }
         </section>
