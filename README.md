@@ -53,6 +53,7 @@ MsgBox元件，為[ 全局 ] 元件，在APP.tsx中全局引入 ，並使用Redu
 <br>
 元件使用時只需要呼叫客製 hook-[ useMsgBox ] 即可使用，不必引入元件
 ```javascript
+import { Status } from '../types/gloable'
 import useMsgBox from "./useMsgBox"
 
 const { showMsg } = useMsgBox()

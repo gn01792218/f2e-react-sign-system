@@ -1,15 +1,18 @@
 import { useEffect, useRef, useState } from "react"
+import { Status } from '../types/gloable'
 import { fabric } from 'fabric'
 import { Canvas } from "fabric/fabric-impl"
 import { useAppSelector, useAppDispatch } from '../store/hooks'
 import { setStepIndecatorDon } from '../store/signSlice'
 import useImageUtil from "./useImageUtil"
+import useMsgBox from "./useMsgBox"
 export default function useImageMergeCanvas(){
     //Redux
     const dispatch = useAppDispatch()
     const stepIndecatorDataArray = useAppSelector(state => state.sign.stepIndecatorDataArray)
     //hook
     const { downloadImg } = useImageUtil()
+    const { showMsg } = useMsgBox()
     //合併的canvas
     const mergeImageCanvasRef = useRef<HTMLCanvasElement>(null)
     const [ mergeCanvas, setMergeCanvas ] = useState<Canvas | null>(null)
@@ -47,6 +50,9 @@ export default function useImageMergeCanvas(){
     //methods
     //下載圖片
     function downloadMergeImage () {
+        if(!signImg) showMsg({type:Status.ERROR,title:'簽署未完成',message:'您還缺少簽名'})
+        if(!bgImg) showMsg({type:Status.ERROR,title:'簽署未完成',message:'您還缺少文件'})
+        if(!signImg || !bgImg) return
         const dataURL = mergeCanvas?.toDataURL({format:"png"})
         downloadImg(dataURL!)
         if(!stepIndecatorDataArray[2].done)dispatch(setStepIndecatorDon(2))

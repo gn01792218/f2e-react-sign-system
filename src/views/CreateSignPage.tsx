@@ -46,7 +46,7 @@ function CreateSign() {
                     </div>
                 </section>
                 <section>
-                    <MyHandSignList handSignArray={handSignArray} showUseBottom={false}/>
+                    <MyHandSignList handSignArray={handSignArray} showUseBottom={true}/>
                 </section>
             </section>
         </main>
