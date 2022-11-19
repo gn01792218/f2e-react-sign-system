@@ -17,7 +17,7 @@ function SignPageStep2() {
     
     //Redux
     const dispatch = useAppDispatch()
-    
+    const handSignImg = useAppSelector( state => state.createSign.handMadeSignImg)
     return (
         <section className='flex flex-col items-center'>
             <div className='flex'>

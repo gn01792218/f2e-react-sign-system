@@ -3,12 +3,13 @@ import { configureStore } from '@reduxjs/toolkit'
 import sign from './signSlice'  
 import createSign from './createSignSlice'
 import msgBox from './msgBoxSlice'
-
+import documentHistory from './documentHistorySlice'
 const store = configureStore({
   reducer: {
     sign,
     createSign,
-    msgBox
+    msgBox,
+    documentHistory
   },
 })
 

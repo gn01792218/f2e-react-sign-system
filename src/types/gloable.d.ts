@@ -5,3 +5,4 @@ declare interface Indecator {}
 declare interface Button {}
 declare interface LoadingData {}
 declare interface MsgBoxObj {}
+declare interface DocumentHistoryObj {}

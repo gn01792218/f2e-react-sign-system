@@ -1,4 +1,8 @@
+import { Status } from '../types/gloable'
+import useMsgBox from './useMsgBox'
 export default function useImageUtil(){
+    //hook
+    const { showMsg } = useMsgBox()
     //methods
     /**
      * 驗證圖片大小
@@ -10,7 +14,11 @@ export default function useImageUtil(){
         let unit = 1024
         let maxSize = 10
         let sizeOK = size/unit < maxSize*unit
-        if (!sizeOK) alert(`請勿上傳超過${maxSize}MB的圖檔`)
+        if (!sizeOK) showMsg({
+            type:Status.ERROR,
+            title:'格式錯誤',
+            message:`請勿上傳超過${maxSize}MB的圖檔`,
+        })
         return sizeOK
     }
     //動態獲取靜態圖檔
@@ -29,7 +37,7 @@ export default function useImageUtil(){
     }
 
     //canvas轉圖片
-     function converCanvasToImage(canvas:HTMLCanvasElement) {
+    function converCanvasToImage(canvas:HTMLCanvasElement) {
         return canvas.toDataURL()
     }
 
@@ -48,7 +56,6 @@ export default function useImageUtil(){
         }
         return new Blob([u8Arr],{type:fileType})
     }
-
     return {
         //methods
         checkImageSize,

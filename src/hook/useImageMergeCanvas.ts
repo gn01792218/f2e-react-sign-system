@@ -53,9 +53,12 @@ export default function useImageMergeCanvas(){
         if(!signImg) showMsg({type:Status.ERROR,title:'簽署未完成',message:'您還缺少簽名'})
         if(!bgImg) showMsg({type:Status.ERROR,title:'簽署未完成',message:'您還缺少文件'})
         if(!signImg || !bgImg) return
-        const dataURL = mergeCanvas?.toDataURL({format:"png"})
+        const dataURL = mergeCanvasToImage()
         downloadImg(dataURL!)
-        if(!stepIndecatorDataArray[2].done)dispatch(setStepIndecatorDon(2))
+        if(!stepIndecatorDataArray[2].done) dispatch(setStepIndecatorDon(2))
+    }
+    function mergeCanvasToImage () {
+        return mergeCanvas?.toDataURL({format:"png"})
     }
     
     return {
@@ -64,5 +67,6 @@ export default function useImageMergeCanvas(){
 
         //methods
         downloadMergeImage,
+        mergeCanvasToImage,
     }
 }

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState, ChangeEventHandler, ChangeEvent } from "react"
 import { Status } from '../types/gloable'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import useMouse from './useMouse'
@@ -19,7 +19,7 @@ export default function useHandSignCanvas() {
     const [strokeColor, setStrokeColor ] = useState('black')
 
     // hook
-    const { converCanvasToImage } = useImageUtil()
+    const { converCanvasToImage, checkImageSize } = useImageUtil()
     const { toStep } = useSignSteps()
     const { showMsg } = useMsgBox()
     // Redux
@@ -74,6 +74,31 @@ export default function useHandSignCanvas() {
         ctx.lineTo(x, y);
         ctx.stroke();
     }
+    //上傳圖片
+    const handleUploadImage:ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent<HTMLInputElement>) =>{
+            //獲取input檔案
+            const file = event.target.files? event.target.files[0] : null
+            if(!file?.type.includes('image')) {
+                showMsg({
+                    type:Status.ERROR,
+                    title:'上傳檔案訊息',
+                    message:'您上傳的並非圖檔'
+                })
+                return
+            }
+            if(!checkImageSize(file?.size!)) return
+            const img = new Image()
+            img.onload = () => {
+                if(!signCanvas.current) return
+                //將canvas的大小設置成圖片大小
+                signCanvas.current.height = img.height
+                signCanvas.current.width = img.width
+                //把圖片畫上canvas
+                ctx.drawImage(img,0,0)
+            }
+            img.src = URL.createObjectURL(file!)
+            dispatch(loadHandMadeSignImg(img.src))
+    }
 
     //轉化成圖
     function toImage() {
@@ -101,6 +126,7 @@ export default function useHandSignCanvas() {
         dispatch(loadHandMadeSignImg(toImage()))
         toStep('/SignPage/Step3',3)
     }
+
     return {
         //data
         signCanvas,
@@ -113,6 +139,7 @@ export default function useHandSignCanvas() {
         handleMouseDown,
         handleTouchStart,
         handleTouchMove,
+        handleUploadImage,
         useSign, //導出給MyHandSignModal使用
         keepInHandSignArray,
         toImage,  //導出給CreateSignPage使用

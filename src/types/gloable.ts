@@ -43,3 +43,7 @@ export interface MsgBoxObj {
     show?:boolean,
     duration?:number,
 }
+export interface DocumentHistoryObj {
+    name:string,
+    documentImg:string
+}

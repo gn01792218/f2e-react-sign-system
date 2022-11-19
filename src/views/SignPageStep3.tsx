@@ -4,11 +4,14 @@ import MergeImageCanvas from '../components/canvas/MergeImageCanvas'
 import useSignStep from '../hook/useSignStep'
 import useRefreshRedirect from '../hook/useRefreshRedirect'
 import useImageMergeCanvas from '../hook/useImageMergeCanvas'
+import useDocumentHistory from '../hook/useDocumentHistory'
 import { useAppSelector } from '../store/hooks'
 
 function SignPageStep3() {
+    //hook
     const { toStep } = useSignStep()
-    const { mergeImageCanvasRef, downloadMergeImage } = useImageMergeCanvas()
+    const { mergeImageCanvasRef, downloadMergeImage, mergeCanvasToImage } = useImageMergeCanvas()
+    const { saveDocumentHistory } = useDocumentHistory()
 
     //Redux
     const handSignImg = useAppSelector(state => state.createSign.handMadeSignImg)
@@ -22,7 +25,14 @@ function SignPageStep3() {
             </div>
             <MergeImageCanvas mergeImageCanvasObj={{mergeImageCanvasRef}}/>
             {
-                (handSignImg && BgSrc) ? <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
+                (handSignImg && BgSrc) ? 
+                <div>
+                    <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
+                    <Btn btnObj={{type:BtnType.PRIMARY,title:'保存文件',clickHandler:()=>saveDocumentHistory({
+                        name:'我的文件',
+                        documentImg:mergeCanvasToImage()!
+                    })}}/>
+                </div>
                 :<div className='flex flex-col items-center mt-5'>
                     <p className='text-acent'>您的簽署未完成 : </p>
                     {

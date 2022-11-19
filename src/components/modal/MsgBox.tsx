@@ -17,16 +17,15 @@ function MsgPopup(props:Props) {
             <div className={[
                 'message-box',
                 show ? 'fade-in':'fade-out',
-                type === Status.SUCCESS ? 'bg-success' : '', 
-                type === Status.ALERT ? 'bg-acent' : '',
-                type === Status.ERROR ? 'bg-alert' : ''
+                type === Status.SUCCESS ? 'bg-primary-500' : '', 
+                type === Status.ALERT ? 'bg-primary-900' : '',
+                type === Status.ERROR ? 'bg-primary-900' : ''
                 ].join(" ")}>
-        
                     <p>{title}</p>
                     <p className={[
-                    type === Status.SUCCESS ? 'bg-success' : '', 
-                    type === Status.ALERT ? 'bg-acent' : '',
-                    type === Status.ERROR ? 'bg-alert' : ''
+                    type === Status.SUCCESS ? 'text-success' : '', 
+                    type === Status.ALERT ? 'text-acent' : '',
+                    type === Status.ERROR ? 'text-alert' : ''
                     ].join(" ")}>{message}</p>
         
                 </div>

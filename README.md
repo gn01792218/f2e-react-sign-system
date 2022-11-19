@@ -61,7 +61,7 @@ showMsg({
     type:Status.SUCCESS,
     title:'簽名訊息',
     message:'成功儲存，請查看您的簽名檔列表',
-    duration:500,  //可選項目，預設2000秒
+    duration:500,  //可選項目，預設2000毫秒
 })
 
 ```
@@ -90,11 +90,12 @@ props參數:<br>
 ### <span style="font-weight:bold">Input元件</span>
 #### <span style="font-weight:500">上傳類元件</span>
 用FileUpload.tsx元件統一管理所有上傳相關的input元件，<br>
-使用時只需要傳入input type<br>
+使用時只需要傳入input type 和 handleOnchange<br>
+title為可選參數( 預設為' 選擇檔案 ' )
 使用範例 : 
 ```javascript
-<Input inputObj={{type:InputType.FILE}}/>
-<Input inputObj={{type:InputType.IMAGE}}/>
+<Input inputObj={{type:InputType.FILE,handleOnchange:uploadImage}}/>
+<Input inputObj={{type:InputType.FILE, title:'上傳簽名圖檔', handleOnchange:uploadImage}}/>
 ```
 ## <span style="font-weight:bolder">Design System</span>
 使用extend的方式，在原有tailwindCss上導入設計系統。如色碼表、字階等等。
