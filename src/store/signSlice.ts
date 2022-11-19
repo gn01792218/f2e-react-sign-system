@@ -14,7 +14,7 @@ const initialState: SignState = { // 定義 the initial state using that type
   stepIndecatorDataArray:[
     {
         step:1,
-        title:'上傳簽署檔案',
+        title:'上傳文件',
         active:false,
         done:false
     },

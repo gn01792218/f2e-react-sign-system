@@ -85,7 +85,6 @@ export default function useHandSignCanvas() {
                 type:Status.ERROR,
                 title:'簽名訊息',
                 message:'無法儲存，最多只能存取五張簽名',
-                show:true
             })
             return
         }
@@ -94,7 +93,6 @@ export default function useHandSignCanvas() {
             type:Status.SUCCESS,
             title:'簽名訊息',
             message:'成功儲存，請查看您的簽名檔列表',
-            show:true
         })
     }
     //使用簽名

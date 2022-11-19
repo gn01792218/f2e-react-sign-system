@@ -16,7 +16,7 @@ function TheSignStepGroup(props:Props) {
                     {
                         stepIndecatorDataArray.map(indecator => {
                             return (
-                                <li>
+                                <li key={indecator.step}>
                                     <StepIndecator 
                                     indecatorData={indecator}
                                     />

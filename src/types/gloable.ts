@@ -40,5 +40,6 @@ export interface MsgBoxObj {
     type:Status
     title:string,
     message:string,
-    show:boolean,
+    show?:boolean,
+    duration?:number,
 }

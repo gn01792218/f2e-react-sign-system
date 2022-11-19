@@ -47,7 +47,23 @@ git commit -m '部署'
 npm run deploy
 
 ```
-## <span style="font-weight:bolder">元件架構說明</span>
+## <span style="font-weight:bolder">元件使用說明</span>
+### <span style="font-weight:bold">MsgBox元件</span>
+MsgBox元件，為[ 全局 ] 元件，在APP.tsx中全局引入 ，並使用Reduex存取資料，<br>
+<br>
+元件使用時只需要呼叫客製 hook-[ useMsgBox ] 即可使用，不必引入元件
+```javascript
+import useMsgBox from "./useMsgBox"
+
+const { showMsg } = useMsgBox()
+showMsg({
+    type:Status.SUCCESS,
+    title:'簽名訊息',
+    message:'成功儲存，請查看您的簽名檔列表',
+    duration:500,  //可選項目，預設2000秒
+})
+
+```
 ### <span style="font-weight:bold">Loading元件</span>
 Loading元件可客製化樣式，需傳入TailwindCss class字串<br>
 props參數:<br>
@@ -66,7 +82,6 @@ props參數:<br>
 ```
 ### <span style="font-weight:bold">Btn元件</span>
 由Btn.tsx元件統一管理btn各類元件<br>
-btn元件主要以樣式作為分類，如PrimaryBtn、SecondaryBtn...等<br>
 使用時只需要傳入type、title、clickHandler<br>
 ```javascript
 <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:addStep}}/>

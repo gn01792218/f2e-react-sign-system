@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Status, MsgBoxObj } from '../../types/gloable'
 
 interface Props {
@@ -5,7 +6,9 @@ interface Props {
 }
 function MsgPopup(props:Props) {
     const { type, title, message, show } = props.msgBoxObj
-    
+    useEffect(()=>{
+        console.log(type,title,message,show)
+    })
     return (
         <section className={[
             'message-box-wrap',

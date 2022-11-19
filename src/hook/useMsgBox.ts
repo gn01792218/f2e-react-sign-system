@@ -5,10 +5,12 @@ export default function useMsgBox(){
     const dispatch = useAppDispatch()
     //methods
     function showMsg(msgBox:MsgBoxObj){
+        if(!msgBox.duration) msgBox.duration = 2000
+        if(!msgBox.show) msgBox.show = true
         dispatch(setMsgBox(msgBox))
         setTimeout(()=>{
             dispatch(setMsgBoxShow(false))
-        },2000)
+        },msgBox.duration)
     }
     return {
         //methods
