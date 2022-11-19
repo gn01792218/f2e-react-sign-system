@@ -1,4 +1,4 @@
-import { useRef, useState, ChangeEventHandler, ChangeEvent } from "react"
+import { useEffect, useState, ChangeEventHandler, ChangeEvent } from "react"
 import { Status } from '../types/gloable'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import useMouse from './useMouse'
@@ -9,14 +9,38 @@ import { pushHandsignImg, loadHandMadeSignImg } from '../store/createSignSlice'
 import { setStepIndecatorDon } from '../store/signSlice'
 
 
-export default function useHandSignCanvas() {
+export default function useHandSignCanvas(signCanvas:HTMLCanvasElement) {
     // 基本資料
     const { getCanvasMousePos, getCanvasTouchPos } = useMouse()
-    const signCanvas = useRef<HTMLCanvasElement>(null)
-    const ctx = signCanvas.current?.getContext("2d")!
+    const ctx = signCanvas?.getContext("2d")!
 
     const [drawing, setDrawing] = useState(false)
     const [strokeColor, setStrokeColor ] = useState('black')
+    const [canvasSize, setCanvasSize] = useState({
+        width: 500,
+        height: 200,
+    })
+    useEffect(() => {
+        //初始化
+        window.addEventListener('resize', (e) => {
+            if (window.innerWidth < 500) {
+                setCanvasSize({
+                    width: window.innerWidth,
+                    height: 200,
+                })
+            } else {
+                setCanvasSize({
+                    width: 500,
+                    height: 200,
+                })
+            }
+        })
+        //元件銷毀
+        return () => {
+            window.removeEventListener('resize', () => {
+            });
+        }
+    }, [])
 
     // hook
     const { converCanvasToImage, checkImageSize } = useImageUtil()
@@ -33,7 +57,7 @@ export default function useHandSignCanvas() {
     //用滑鼠寫字
     function handleMouseDown(event: React.MouseEvent<HTMLCanvasElement>) {
         setDrawing(true)
-        let [x, y] = getCanvasMousePos(signCanvas.current!, event)
+        let [x, y] = getCanvasMousePos(signCanvas!, event)
         if(!ctx) return
         ctx.beginPath()
         ctx.moveTo(x, y)
@@ -41,7 +65,7 @@ export default function useHandSignCanvas() {
     }
     function handleMouseMove(event: React.MouseEvent<HTMLCanvasElement>) {
         if (!drawing) return
-        let [x, y] = getCanvasMousePos(signCanvas.current!, event)
+        let [x, y] = getCanvasMousePos(signCanvas!, event)
         if(!ctx) return
         ctx.lineWidth = 2
         ctx.lineCap = 'round'
@@ -55,7 +79,7 @@ export default function useHandSignCanvas() {
     // 手機寫字
     function handleTouchStart(event: React.TouchEvent<HTMLCanvasElement>) {
         setDrawing(true)
-        let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
+        let [x, y] = getCanvasTouchPos(signCanvas!, event)
         if(!ctx) return
         ctx.beginPath()
         ctx.moveTo(x, y)
@@ -63,7 +87,7 @@ export default function useHandSignCanvas() {
     }
     function handleTouchMove(event: React.TouchEvent<HTMLCanvasElement>){ 
         if (!drawing) return
-        let [x, y] = getCanvasTouchPos(signCanvas.current!, event)
+        let [x, y] = getCanvasTouchPos(signCanvas!, event)
         if(!ctx) return
         ctx.lineWidth = 2;
         ctx.lineCap = "round"; // 繪制圓形的結束線帽
@@ -89,12 +113,15 @@ export default function useHandSignCanvas() {
             if(!checkImageSize(file?.size!)) return
             const img = new Image()
             img.onload = () => {
-                if(!signCanvas.current) return
+                if(!signCanvas) return
+                console.log('圖片',img.width,img.height)
+                console.log('canvas',signCanvas.width,signCanvas.height)
                 //將canvas的大小設置成圖片大小
-                signCanvas.current.height = img.height
-                signCanvas.current.width = img.width
+                // signCanvas.current.height = img.height
+                // signCanvas.current.width = img.width
+                console.log('canvas',signCanvas.width,signCanvas.height)
                 //把圖片畫上canvas
-                ctx.drawImage(img,0,0)
+                ctx.drawImage(img,0,0,img.width,img.height,0,0,signCanvas.width,signCanvas.height)
             }
             img.src = URL.createObjectURL(file!)
             dispatch(loadHandMadeSignImg(img.src))
@@ -102,7 +129,7 @@ export default function useHandSignCanvas() {
 
     //轉化成圖
     function toImage() {
-        return converCanvasToImage(signCanvas.current!)
+        return converCanvasToImage(signCanvas!)
     }
     function keepInHandSignArray() {
         if(MyHandSignArray.length > 4) {
@@ -131,6 +158,7 @@ export default function useHandSignCanvas() {
         //data
         signCanvas,
         ctx,
+        canvasSize,
         //methods
         setStrokeColor,
         setDrawing,

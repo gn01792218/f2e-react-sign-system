@@ -1,3 +1,4 @@
+import { useEffect, useState, useRef } from 'react'
 import { BtnType, InputType } from '../types/gloable'
 import { useAppSelector, useAppDispatch } from '../store/hooks'
 import { pushHandsignImg } from '../store/createSignSlice'
@@ -10,9 +11,16 @@ import TheColorPalette from '../components/TheColorPalette'
 import useImageUtil from '../hook/useImageUtil'
 
 function CreateSign() {
+    const canvasRef = useRef<HTMLCanvasElement>(null)
+    const [ canvas, setCanvas ] = useState<HTMLCanvasElement | null>(null)
+    useEffect(()=>{
+        setCanvas(canvasRef.current!)
+    },[canvasRef])
+    //canvas
     const { 
         signCanvas, 
         ctx, 
+        canvasSize,
         setDrawing, 
         setStrokeColor,
         clearCanvas, 
@@ -22,11 +30,7 @@ function CreateSign() {
         handleTouchStart, 
         handleUploadImage,
         toImage,
-    } = useSignCanvas()
-    const canvasSize = {
-        width:500,
-        height:200,
-    }
+    } = useSignCanvas(canvas!)
     //Redux
     const dispatch = useAppDispatch()
     const handSignArray = useAppSelector(state => state.createSign.handSignArray)
@@ -38,7 +42,7 @@ function CreateSign() {
                     <SignCanvas signCanvasObj={{
                         width:canvasSize.width,
                         height:canvasSize.height,
-                        signCanvas,
+                        signCanvas:canvasRef,
                         ctx,
                         setDrawing,
                         handleMouseDown,

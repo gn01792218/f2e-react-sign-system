@@ -1,13 +1,20 @@
 import { BtnType } from '../types/gloable'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Btn from './btn/Btn'
 import SignCanvas from './canvas/SignCanvas'
 import useSignCanvas from '../hook/useSignCanvas'
 import TheColorPalette from './TheColorPalette'
 
 function CreateHandSign() {
-    const { signCanvas,
+    const canvasRef = useRef<HTMLCanvasElement>(null)
+    const [ canvas, setCanvas ] = useState<HTMLCanvasElement | null>(null)
+    useEffect(()=>{
+        setCanvas(canvasRef.current!)
+    },[canvasRef])
+    const { 
+        signCanvas,
         ctx,
+        canvasSize,
         setDrawing,
         setStrokeColor,
         clearCanvas,
@@ -17,34 +24,8 @@ function CreateHandSign() {
         handleTouchStart,
         useSign,
         keepInHandSignArray,
-    } = useSignCanvas()
-    const [canvasSize, setCanvasSize] = useState({
-        width: 500,
-        height: 200,
-    })
-    useEffect(() => {
-        //初始化
-        window.addEventListener('resize', (e) => {
-            if (window.innerWidth < 500) {
-                setCanvasSize({
-                    width: window.innerWidth,
-                    height: 200,
-                })
-                console.log(window.innerWidth)
-            } else {
-                setCanvasSize({
-                    width: 500,
-                    height: 200,
-                })
-                console.log(window.innerWidth)
-            }
-        })
-        //元件銷毀
-        return () => {
-            window.removeEventListener('resize', () => {
-            });
-        }
-    }, [])
+    } = useSignCanvas(canvas!)
+    
     return (
         <main className='text-white'>
             <section>
@@ -55,7 +36,7 @@ function CreateHandSign() {
                     <SignCanvas signCanvasObj={{
                         width: canvasSize.width,
                         height: canvasSize.height,
-                        signCanvas,
+                        signCanvas:canvasRef,
                         ctx,
                         setDrawing,
                         handleMouseDown,
