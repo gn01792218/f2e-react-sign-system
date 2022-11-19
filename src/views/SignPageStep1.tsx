@@ -6,6 +6,7 @@ import useBgCanvas from '../hook/useBgCanvas'
 import { useAppSelector } from '../store/hooks'
 import BGCanvas from '../components/canvas/BGCanvas'
 import { useEffect, useRef, useState } from 'react';
+import { stat } from 'fs'
 function SignPageStep1() {
     //canvas
     const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -18,6 +19,7 @@ function SignPageStep1() {
     const { handleOnchange } = useBgCanvas(canvas!)
     //Redux
     const BgSrc = useAppSelector(state => state.createSign.BGImg)
+    const handSignImg = useAppSelector(state => state.createSign.handMadeSignImg)
     return (
         <main>
             <section className='mt-5'>
@@ -32,10 +34,21 @@ function SignPageStep1() {
                 <div className='mt-5'>
                     <Input inputObj={{type:InputType.FILE, handleOnchange}}/>
                 </div>
-                {
-                    BgSrc ? <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/> : null
-                }
-                
+                <div className='flex'>
+                    {
+                        BgSrc && !handSignImg ? 
+                        <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/> 
+                        : null
+                    }
+                    {
+                        BgSrc && handSignImg ? 
+                            <div className='flex'>
+                                <Btn btnObj={{type:BtnType.SECONDARY,title:'進行簽署',clickHandler:()=>toStep('/SignPage/Step2',2)}}/> 
+                                <Btn btnObj={{type:BtnType.PRIMARY,title:'合併簽名',clickHandler:()=>toStep('/SignPage/Step3',3)}}/> 
+                            </div>
+                        : null
+                    }
+                </div>
             </section>
         </main>
     )

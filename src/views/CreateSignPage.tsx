@@ -5,11 +5,14 @@ import Btn from '../components/btn/Btn'
 import SignCanvas from '../components/canvas/SignCanvas'
 import MyHandSignList from '../components/MyHandSignList'
 import useSignCanvas from '../hook/useSignCanvas'
+import TheColorPalette from '../components/TheColorPalette'
+
 function CreateSign() {
     const { 
         signCanvas, 
         ctx, 
         setDrawing, 
+        setStrokeColor,
         clearCanvas, 
         handleMouseDown, 
         handleMouseMove, 
@@ -28,6 +31,7 @@ function CreateSign() {
         <main className='text-white flex justify-center'>
             <h1 className="text-lg text-center">建立簽名</h1>
             <section className='flex flex-col items-center'>
+                <TheColorPalette setColor={setStrokeColor}/>
                 <section>
                     <SignCanvas signCanvasObj={{
                         width:canvasSize.width,

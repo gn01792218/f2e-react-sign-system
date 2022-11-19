@@ -18,7 +18,7 @@ function SignPageStep3() {
     return (
         <section className='flex flex-col items-center'>
             <div className='flex'>
-                <Btn btnObj={{type:BtnType.SECONDARY,title:'上一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
+                <Btn btnObj={{type:BtnType.SECONDARY,title:'重新簽名',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
             </div>
             <MergeImageCanvas mergeImageCanvasObj={{mergeImageCanvasRef}}/>
             {
@@ -29,7 +29,7 @@ function SignPageStep3() {
                         !handSignImg ? (
                             <div>
                                 <p className='text-alert'>*缺少簽名檔: </p>
-                                <Btn btnObj={{type:BtnType.PRIMARY,title:'上一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
+                                <Btn btnObj={{type:BtnType.PRIMARY,title:'進行簽名',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
                             </div>
                         ) : null
                     }
