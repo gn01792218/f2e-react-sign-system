@@ -33,6 +33,10 @@ export interface Button {
     active?:boolean,
     clickHandler:MouseEventHandler<HTMLButtonElement>,
 }
+export interface NavItem {
+    to:string,
+    name:string,
+}
 export interface LoadingData {
     width?:string,
     height?:string,

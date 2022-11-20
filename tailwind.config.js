@@ -22,7 +22,8 @@ module.exports = {
         },
         'success':'#27CAC4',
         'alert':'#F9056B',
-        'acent':'#F3AB1E'
+        'acent':'#F3AB1E',
+        'overlay':'#000000b3',
       },
     },
   },

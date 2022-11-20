@@ -1,10 +1,11 @@
 
-import { useRef } from 'react'
 import { ChangeEvent, ChangeEventHandler } from 'react'
 import { useAppDispatch } from '../store/hooks'
 import useImageUtil from './useImageUtil'
+import useMsgBox from './useMsgBox'
 import { loadBGImg } from '../store/createSignSlice'
 import { pdfjs } from 'react-pdf'
+import { Status } from '../types/gloable'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 
 /**
@@ -15,7 +16,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 export default function useBgCanvas(bgCanvas:HTMLCanvasElement){
     //hook
     const { converCanvasToImage, checkImageSize } = useImageUtil()
-
+    const { showMsg } = useMsgBox()
     //canvas
     //準備canvas相關
     const ctx = bgCanvas?.getContext("2d")! 
@@ -29,6 +30,11 @@ export default function useBgCanvas(bgCanvas:HTMLCanvasElement){
         const file = event.target.files? event.target.files[0] : null
         if(file?.type.includes('image')) return storeImage(file)
         if(file?.type.includes('pdf')) return storePDFImage(file)
+        showMsg({
+            type:Status.ERROR,
+            title:'檔案訊息',
+            message:'檔案格式錯誤，請上傳PDF或圖檔',
+        })
     }
     const storeImage = (file:File)=>{
         if(!checkImageSize(file.size)) return

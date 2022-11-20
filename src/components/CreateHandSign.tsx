@@ -29,22 +29,22 @@ function CreateHandSign() {
     return (
         <main className='text-white'>
             <section>
-                <h1 className="text-lg">建立簽名</h1>
-                <section className='w-full flex flex-col'>
-                    <h2>手寫板</h2>
+                <section className='w-full flex flex-col border-2 p-5'>
                     <TheColorPalette setColor={setStrokeColor} />
-                    <SignCanvas signCanvasObj={{
-                        width: canvasSize.width,
-                        height: canvasSize.height,
-                        signCanvas:canvasRef,
-                        ctx,
-                        setDrawing,
-                        handleMouseDown,
-                        handleMouseMove,
-                        handleTouchMove,
-                        handleTouchStart
-                    }} />
-                    <div className='flex justify-around'>
+                    <div className='mx-auto mb-5'>
+                        <SignCanvas signCanvasObj={{
+                            width: canvasSize.width,
+                            height: canvasSize.height,
+                            signCanvas:canvasRef,
+                            ctx,
+                            setDrawing,
+                            handleMouseDown,
+                            handleMouseMove,
+                            handleTouchMove,
+                            handleTouchStart
+                        }} />
+                    </div>
+                    <div className='flex flex-col justify-around items-center lg:flex-row'>
                         <Btn btnObj={{ type: BtnType.SECONDARY, title: '清除簽名', clickHandler: () => clearCanvas(canvas!) }} />
                         <Btn btnObj={{ type: BtnType.PRIMARY, title: '使用簽名', clickHandler: useSign }} />
                         <Btn btnObj={{ type: BtnType.SECONDARY, title: '儲存簽名', clickHandler: keepInHandSignArray }} />

@@ -26,7 +26,7 @@ function SignPageStep3() {
             <MergeImageCanvas mergeImageCanvasObj={{mergeImageCanvasRef}}/>
             {
                 (handSignImg && BgSrc) ? 
-                <div>
+                <div className='flex flex-col lg:flex-row'>
                     <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
                     <Btn btnObj={{type:BtnType.PRIMARY,title:'保存文件',clickHandler:()=>saveDocumentHistory({
                         name:'我的文件',

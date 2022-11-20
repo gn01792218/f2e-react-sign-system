@@ -16,16 +16,16 @@ function Prompt(props:Props) {
             'overlay',
             show ? 'flex justify-center items-center' : 'hidden'
             ].join(" ")}>
-            <div className='flex flex-col items-center'>
+            <div className='flex flex-col items-center bg-alert p-5 rounded-md'>
                 <h2>{title}</h2>
                 <p>{message}</p>
                 {
                     type === PromptType.INPUT ? <Input inputObj={{type:InputType.TEXT,handleOnchange:promptInputChangeCallback}}/> 
                     : null
                 }
-                <div className='w-full flex'>
+                <div className='w-full flex flex-col lg:flex-row'>
                 <Btn btnObj={{type:BtnType.SECONDARY,title:'取消',clickHandler:closePrompt}}/>
-                <Btn btnObj={{type:BtnType.SECONDARY,title:'確認',clickHandler:()=>confirmCallback()}}/>
+                <Btn btnObj={{type:BtnType.PRIMARY,title:'確認',clickHandler:()=>confirmCallback()}}/>
                 </div>
             </div>
         </section >

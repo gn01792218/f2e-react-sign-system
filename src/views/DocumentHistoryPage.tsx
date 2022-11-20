@@ -23,14 +23,14 @@ function DocumentHistoryPage() {
                         return (
                             <li className='documentHistory-li'>
                                 <DocumentHistoryItem documentHistoryObj={item}/>
-                                <div className='flex justify-center'>
+                                <div className='flex flex-col items-center'>
                                     <Btn btnObj={{type:BtnType.SECONDARY,title:'下載',clickHandler:()=>downloadImg(item.documentImg)}}/>
                                     <Btn btnObj={{type:BtnType.SECONDARY,title:'刪除',clickHandler:()=>deleteDocumentHistory(index)}}/>
                                 </div>
                             </li>
                         )
                     })
-                    :<li>
+                    :<li className='flex flex-col items-center'>
                         <p className='text-acent'>您尚未簽署任何文件</p>
                         <Btn btnObj={{type:BtnType.PRIMARY,title:'簽署文件',clickHandler:()=>toStep('/SignPage/Step1',1)}}/>
                     </li>

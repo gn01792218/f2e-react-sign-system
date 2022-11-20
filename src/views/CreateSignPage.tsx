@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import { BtnType, InputType } from '../types/gloable'
+import { BtnType, InputType, Status } from '../types/gloable'
 import { useAppSelector, useAppDispatch } from '../store/hooks'
 import { pushHandsignImg } from '../store/createSignSlice'
 import Btn from '../components/btn/Btn'
@@ -8,9 +8,13 @@ import SignCanvas from '../components/canvas/SignCanvas'
 import MyHandSignList from '../components/MyHandSignList'
 import useSignCanvas from '../hook/useSignCanvas'
 import TheColorPalette from '../components/TheColorPalette'
-import useImageUtil from '../hook/useImageUtil'
+import useMsgBox from '../hook/useMsgBox'
 
 function CreateSign() {
+    //hook
+    const { showMsg } = useMsgBox()
+
+    //基本資料
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [ canvas, setCanvas ] = useState<HTMLCanvasElement | null>(null)
     useEffect(()=>{
@@ -18,7 +22,6 @@ function CreateSign() {
     },[canvasRef])
     //canvas
     const { 
-        signCanvas, 
         ctx, 
         canvasSize,
         setDrawing, 
@@ -34,10 +37,20 @@ function CreateSign() {
     //Redux
     const dispatch = useAppDispatch()
     const handSignArray = useAppSelector(state => state.createSign.handSignArray)
+
+    //function
+    function save() {
+        dispatch(pushHandsignImg(toImage()))
+        showMsg({
+            type:Status.SUCCESS,
+            title:'簽名訊息',
+            message:'保存成功，請查看下方簽名檔列表',
+        })
+    }
     return (
         <main className='text-white flex justify-center'>
             <section className='flex flex-col items-center'>
-                <section className='mb-20'>
+                <section className='mb-20 flex flex-col items-center'>
                     <TheColorPalette setColor={setStrokeColor}/>
                     <SignCanvas signCanvasObj={{
                         width:canvasSize.width,
@@ -50,10 +63,10 @@ function CreateSign() {
                         handleTouchMove,
                         handleTouchStart
                     }}/>
-                    <div className='flex justify-around'>
+                    <div className='flex flex-col justify-around lg:flex-row'>
                         <Btn btnObj={{type:BtnType.SECONDARY,title:'清除簽名',clickHandler:()=>clearCanvas(canvas!)}}/>
                         <Input inputObj={{type:InputType.FILE, title:'上傳簽名圖檔', handleOnchange:handleUploadImage}}/>
-                        <Btn btnObj={{type:BtnType.PRIMARY,title:'儲存簽名',clickHandler:()=>dispatch(pushHandsignImg(toImage()))}}/>
+                        <Btn btnObj={{type:BtnType.PRIMARY,title:'儲存簽名',clickHandler:()=>save()}}/>
                     </div>
                 </section>
                 <section className='p-5 border-2'>

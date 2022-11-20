@@ -12,7 +12,7 @@ const initialState: State = { // 定義 the initial state using that type
     title: '提示訊息',
     message: '尚未提供訊息',
     show: false,
-    duration:2000,
+    duration:3000,
   },
 }
 
@@ -23,7 +23,6 @@ export const slice = createSlice({
   reducers: {
     setMsgBox: (state, action:PayloadAction<MsgBoxObj>) =>{
       state.msgBoxObj = action.payload
-      console.log('設置',state.msgBoxObj)
     },
     setMsgBoxShow: (state,action:PayloadAction<boolean>) => {
       state.msgBoxObj.show = action.payload

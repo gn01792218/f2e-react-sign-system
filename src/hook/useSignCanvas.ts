@@ -146,6 +146,7 @@ export default function useHandSignCanvas(signCanvas:HTMLCanvasElement) {
             type:Status.SUCCESS,
             title:'簽名訊息',
             message:'成功儲存，請查看您的簽名檔列表',
+            // duration:3000000,
         })
     }
     //使用簽名

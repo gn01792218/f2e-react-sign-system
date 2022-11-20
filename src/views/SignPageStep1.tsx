@@ -5,21 +5,28 @@ import useSignStep from '../hook/useSignStep'
 import useBgCanvas from '../hook/useBgCanvas'
 import { useAppSelector } from '../store/hooks'
 import BGCanvas from '../components/canvas/BGCanvas'
-import { useEffect, useRef, useState } from 'react';
-import { stat } from 'fs'
+import { useEffect, useMemo, useRef, useState } from 'react';
 function SignPageStep1() {
     //canvas
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [ canvas, setCanvas ] = useState<HTMLCanvasElement | null>(null)
-    useEffect(()=>{
-        setCanvas(canvasRef.current!)
-    },[canvasRef])
-    //hook
-    const { toStep } = useSignStep()
-    const { handleOnchange } = useBgCanvas(canvas!)
     //Redux
     const BgSrc = useAppSelector(state => state.createSign.BGImg)
     const handSignImg = useAppSelector(state => state.createSign.handMadeSignImg)
+    //基本
+    const [inputTitle, setInputTitle] = useState('選擇檔案')
+    //hook
+    const { toStep } = useSignStep()
+    const { handleOnchange } = useBgCanvas(canvas!)
+    useEffect(()=>{
+        setCanvas(canvasRef.current!)
+    },[canvasRef])
+    useMemo(()=>{
+        if(!BgSrc) return
+        setInputTitle('重新選擇檔案')
+    },[BgSrc])
+    
+    
     return (
         <main>
             <section className='mt-5'>
@@ -27,14 +34,12 @@ function SignPageStep1() {
                     <BGCanvas BGCanvasObj={{BGCanvas:canvasRef}}/>
                 </div>
                 {
-                    BgSrc? <img className='mx-auto' src={BgSrc} alt="文件圖檔"/> : null
+                    BgSrc? <img className='mx-auto max-w-[70%] lg:w-[500px]' src={BgSrc} alt="文件圖檔"/> : null
                 }
             </section>
             <section className='flex flex-col items-center'>
-                <div className='mt-5'>
-                    <Input inputObj={{type:InputType.FILE, handleOnchange}}/>
-                </div>
-                <div className='flex'>
+                <div className='flex flex-col lg:flex-row'>
+                    <Input inputObj={{type:InputType.FILE, title:inputTitle, handleOnchange}}/>
                     {
                         BgSrc && !handSignImg ? 
                         <Btn btnObj={{type:BtnType.PRIMARY,title:'下一步',clickHandler:()=>toStep('/SignPage/Step2',2)}}/> 

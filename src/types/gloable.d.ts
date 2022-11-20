@@ -3,6 +3,7 @@ declare enum BtnType {}
 declare enum InputType {}
 declare enum PromptType {}
 declare interface Indecator {}
+declare interface NavItem {}
 declare interface Button {}
 declare interface LoadingData {}
 declare interface MsgBoxObj {}

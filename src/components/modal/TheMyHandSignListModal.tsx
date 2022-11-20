@@ -21,11 +21,11 @@ function TheMyHandSignList() {
         <Fragment>
             {
                 show ? (
-                    <div className='absolute top-0 w-full h-full flex justify-center bg-black'>
-                        <main className='w-1/2 flex flex-col bg-primary-300 relative p-10'>
+                    <div className='absolute top-0 w-full min-h-screen flex justify-center bg-overlay'>
+                        <main className='w-full flex flex-col primary-bg-gradient relative p-10 lg:w-1/2'>
                             <header className='border-b-2 mb-5'>
                                 我的簽名列表
-                                <div className='absolute right-[-10px] top-[-30px] max-w-[500px]'>
+                                <div className='absolute right-0 top-0 max-w-[500px]'>
                                     <Btn btnObj={{type:BtnType.CLOSE,clickHandler:close}}/>
                                 </div>
                             </header>
