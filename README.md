@@ -48,6 +48,15 @@ npm run deploy
 
 ```
 ## <span style="font-weight:bolder">元件使用說明</span>
+### <span style="font-weight:bold">元件命名說明</span>
+<span style="font-weight:bold">view容器元件</span>
+主要為顯示的route的容器元件，以大駝峰路由名稱開頭加 [ Page ]後綴<br>
+例如 : http://localhost:3000/f2e-react-sign-system/DocumentHistory<br>
+即為-[ DocumentHistoryPage ]
+<span style="font-weight:bold">component元件</span>
+客製化，且不需props的元件，以[ The ] 為前綴 (例如 : TheHomeIcon、TheHeader、TheSignStepGroup)
+其他接受props，且復用性的原件，按造一般命名原則。
+
 ### <span style="font-weight:bold">MsgBox元件</span>
 MsgBox元件，為[ 全局 ] 元件，在APP.tsx中全局引入 ，並使用Reduex存取資料，<br>
 元件使用時只需要呼叫客製 hook-[ useMsgBox ] 即可使用，不必引入元件

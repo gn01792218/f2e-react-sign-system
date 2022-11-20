@@ -7,7 +7,7 @@ import Input from '../components/inputComponents/Input'
 import SignCanvas from '../components/canvas/SignCanvas'
 import MyHandSignList from '../components/MyHandSignList'
 import useSignCanvas from '../hook/useSignCanvas'
-import TheColorPalette from '../components/TheColorPalette'
+import TheColorPalette from '../components/ColorPalette'
 import useMsgBox from '../hook/useMsgBox'
 
 function CreateSign() {

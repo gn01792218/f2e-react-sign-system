@@ -8,7 +8,7 @@ function HomeIcon() {
     return (
         <div className="flex flex-col items-center justify-center cursor-pointer" onClick={()=>navigate('/')}>
           <img src={getAssetsFileURL('images/icon.png')} width='150' height='150' alt="急急如律令，任意速速簽" />
-          <p className='mt-[-20px]'>急急如律令，任意速速簽</p>
+          <p className='mt-[-20px] text-gray-500 font-extrabold'>急急如律令，任意速速簽</p>
         </div>
     )
 }

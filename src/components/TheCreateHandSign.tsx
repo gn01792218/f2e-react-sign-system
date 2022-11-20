@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react'
 import Btn from './btn/Btn'
 import SignCanvas from './canvas/SignCanvas'
 import useSignCanvas from '../hook/useSignCanvas'
-import TheColorPalette from './TheColorPalette'
+import TheColorPalette from './ColorPalette'
 
 function CreateHandSign() {
     const canvasRef = useRef<HTMLCanvasElement>(null)

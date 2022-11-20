@@ -45,10 +45,13 @@ function HeaderMobileMenum(props:Props) {
                         navList.map(nav=>{
                             return (
                                 <li className={[
-                                    "relative m-5 w-[150px] flex justify-center",
+                                    "relative m-5 w-[180px] flex justify-center",
                                     currentNavName === nav.name ? 'active' : ''
                                     ].join(" ")}
-                                    onClick={()=>setCurrentNav(nav.name)}
+                                    onClick={()=>{
+                                        setCurrentNav(nav.name)
+                                        closeCallback()
+                                    }}
                                     key={nav.name}
                                     >
                                     <Link className="p-5" to={nav.to}>

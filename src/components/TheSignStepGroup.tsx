@@ -1,12 +1,10 @@
 
 import { Fragment } from 'react'
+import { useAppSelector } from '../store/hooks'
 import StepIndecator from '../components/StepIndecator'
-import { Indecator } from '../types/gloable'
-interface Props {
-    stepIndecatorDataArray:Indecator[]
-}
-function TheSignStepGroup(props:Props) {
-    const { stepIndecatorDataArray } = props
+
+function TheSignStepGroup() {
+    const stepIndecatorDataArray = useAppSelector( state=>state.sign.stepIndecatorDataArray)
 
     return (
         <Fragment>
