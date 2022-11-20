@@ -36,8 +36,8 @@ function HeaderMobileMenum(props:Props) {
         {
             show ? 
             <section className={[
-                "fixed w-full h-full top-0 p-10 bg-overlay-600 z-[10] transition-opacity duration-500",
-                show ? 'opacity-100' : 'opacity-0'
+                "fixed w-full h-full top-0 p-10 bg-overlay-600 z-[10]",
+                show ? 'fade-in' : 'fade-out'
             ].join(" ")}>
                 <img className='ml-auto' onClick={()=>closeCallback()} src={getAssetsFileURL('images/close.png')} alt="close" width={40} height={40}/>
                 <ul className="h-full flex flex-col items-center justify-start nav md:hidden">
