@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 //引入reducer
+import main from './mainSlice'
 import sign from './signSlice'  
 import createSign from './createSignSlice'
 import msgBox from './msgBoxSlice'
@@ -7,11 +8,12 @@ import prompt from './promptSlice '
 import documentHistory from './documentHistorySlice'
 const store = configureStore({
   reducer: {
+    main,
     sign,
     createSign,
     msgBox,
     prompt,
-    documentHistory
+    documentHistory,
   },
 })
 

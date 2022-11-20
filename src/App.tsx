@@ -6,14 +6,13 @@ import HomeIcon from './components/HomeIcon'
 import { Status } from './types/gloable'
 import { useAppSelector } from './store/hooks'
 
+
 function App() {
-  window.onerror = function (msg,url,line,error) {
-    console.log(msg,url,line,error)
-  }
-  
   //Redux
   const showMsgBox = useAppSelector( state => state.msgBox.msgBoxObj )
   const promptObj = useAppSelector( state => state.prompt.promptObj)
+ 
+
   return (
     <div className="App text-white">
       <Prompt promptObj={promptObj}/>

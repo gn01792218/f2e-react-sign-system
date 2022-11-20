@@ -1,10 +1,16 @@
-import { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+
+import { Fragment } from 'react'
+import { useState } from "react";
 import useImageUtil from "../hook/useImageUtil";
 import { useAppSelector } from '../store/hooks'
 import { NavItem } from '../types/gloable'
-import HeaderMobileMenum from "./HeaderMobileMenum";
-function TheHeader() {
+import { Link } from "react-router-dom";
+interface Props {
+    show:boolean,
+    closeCallback:Function
+}
+function HeaderMobileMenum(props:Props) {
+    const { show, closeCallback } = props
     //hook
     const { getAssetsFileURL } = useImageUtil()
     //Redux
@@ -25,17 +31,21 @@ function TheHeader() {
         }
     ]
     const [currentNavName,setCurrentNav] = useState<string>('')
-    const [ showMobileMenum, setShowMobileMenum ] = useState<boolean>(false)
     return (
-        <Fragment>
-            <nav className="flex justify-center text-white p-5">
-                {/* md以上的nav */}
-                <ul className="hidden nav flex md:flex">
-                    {
+    <Fragment>
+        {
+            show ? 
+            <section className={[
+                "fixed w-full h-full top-0 p-10 bg-overlay-600 z-[10] transition-opacity duration-500",
+                show ? 'opacity-100' : 'opacity-0'
+            ].join(" ")}>
+                <img className='ml-auto' onClick={()=>closeCallback()} src={getAssetsFileURL('images/close.png')} alt="close" width={40} height={40}/>
+                <ul className="h-full flex flex-col items-center justify-start nav md:hidden">
+                    {   
                         navList.map(nav=>{
                             return (
                                 <li className={[
-                                    "relative m-5",
+                                    "relative m-5 w-[150px] flex justify-center",
                                     currentNavName === nav.name ? 'active' : ''
                                     ].join(" ")}
                                     onClick={()=>setCurrentNav(nav.name)}
@@ -53,15 +63,10 @@ function TheHeader() {
                         })
                     }
                 </ul>
-                {/* 手機nav漢堡 */}
-                <ul className="absolute top-[40px] right-[40px] block md:hidden">
-                    <li onClick={()=>setShowMobileMenum(true)}>
-                        <img src={getAssetsFileURL('images/hambger.png')} alt="手機漢堡" width={40} height={40}/>
-                    </li>
-                </ul>
-            </nav>
-            <HeaderMobileMenum show={showMobileMenum} closeCallback={()=>setShowMobileMenum(false)}/>
-        </Fragment>
+            </section>
+            : null
+        }
+    </Fragment>
     )
 }
-export default TheHeader
+export default HeaderMobileMenum

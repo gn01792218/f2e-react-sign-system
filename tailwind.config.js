@@ -23,7 +23,11 @@ module.exports = {
         'success':'#27CAC4',
         'alert':'#F9056B',
         'acent':'#F3AB1E',
-        'overlay':'#000000b3',
+        'overlay':{
+          DEFAULT:'#000000b3',
+          500:'#000000b3',
+          600:"#000000e0"
+        },
       },
     },
   },

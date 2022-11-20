@@ -19,7 +19,7 @@ function SignPageStep3() {
     //重刷自動導向到Step1
     useRefreshRedirect('/SignPage/Step1')
     return (
-        <section className='flex flex-col items-center'>
+        <section className='flex flex-col items-center justify-center'>
             <div className='flex'>
                 <Btn btnObj={{type:BtnType.SECONDARY,title:'重新簽名',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
             </div>

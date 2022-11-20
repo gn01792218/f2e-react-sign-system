@@ -47,7 +47,7 @@ function SignPageStep1() {
                     }
                     {
                         BgSrc && handSignImg ? 
-                            <div className='flex'>
+                            <div className='flex flex-col lg:flex-row'>
                                 <Btn btnObj={{type:BtnType.SECONDARY,title:'進行簽署',clickHandler:()=>toStep('/SignPage/Step2',2)}}/> 
                                 <Btn btnObj={{type:BtnType.PRIMARY,title:'合併簽名',clickHandler:()=>toStep('/SignPage/Step3',3)}}/> 
                             </div>
