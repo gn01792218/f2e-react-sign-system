@@ -14,7 +14,12 @@
 .documentHistory-li {
     @apply w-[280px] m-5 border-2 p-2
 }
-
+.landingPage-card {
+    @apply w-[280px] h-[280px] border-2 border-acent flex flex-col items-center justify-center m-5 cursor-pointer rounded-sm
+}
+.landingPage-card:hover h2 {
+    @apply text-acent mt-5
+}
 /* tailwind沒有的 */
 .perspective-1500 {
     perspective: 1500px;
