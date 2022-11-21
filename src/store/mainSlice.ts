@@ -6,7 +6,7 @@ interface State { // 定義 a type for the slice state
   isMobel:boolean,
 }
 const initialState: State = { // 定義 the initial state using that type
-  isMobel:true
+  isMobel:false
 }
 
 //2.撰寫reducer函式
@@ -15,9 +15,8 @@ export const slice = createSlice({
   initialState,
   reducers: {
     setIsMobel: (state, action:PayloadAction<boolean>) =>{
-        
-      state.isMobel = action.payload
       console.log('是不是手機',state.isMobel)
+      state.isMobel = action.payload
     },
   },
 })

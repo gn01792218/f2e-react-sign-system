@@ -27,19 +27,19 @@ export default function useImageMergeCanvas() {
   //canvas基本設置
   const [canvasZoomValue, setCanvasZoomValue] = useState<number>(1);
   //監聽RWD變化canvas的zoom
-//   useEffect(() => {
-//     setIsMobel(detectmob());
-//     console.log(detectmob());
-//   })
-//   useEffect(() => {
-//     if (isMobel) {
-//       setCanvasZoomValue(0.5);
-//       console.log("是手機");
-//     } else {
-//       console.log("不是手機");
-//       setCanvasZoomValue(1);
-//     }
-//   },[isMobel]);
+  useEffect(() => {
+    setIsMobel(detectmob());
+    console.log(detectmob());
+  })
+  useEffect(() => {
+    if (isMobel) {
+      setCanvasZoomValue(0.5);
+      console.log("是手機");
+    } else {
+      setCanvasZoomValue(1);
+      console.log("不是手機");
+    }
+  },[isMobel]);
 
   // 建立主要canvas
   useEffect(() => {
@@ -105,7 +105,6 @@ export default function useImageMergeCanvas() {
 
   // //圖片縮放到canvas上
   function scaleImg(bgImg: fabric.Image, canvas: fabric.Canvas) {
-    if (!bgImg || !canvas) return;
     const { canvasWidth, canvasHeight } = canvasZoom(
       canvas,
       bgImg,
