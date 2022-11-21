@@ -30,7 +30,7 @@ function SignPage() {
 
     return (
         <main className='text-white'>
-            <TheSignStepGroup stepIndecatorDataArray={stepIndecatorDataArray}/>
+            <TheSignStepGroup />
             {/* 子路由渲染 */}
             <Outlet />
         </main>
