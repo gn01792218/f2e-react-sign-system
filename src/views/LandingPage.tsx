@@ -6,7 +6,7 @@ function LandingPage() {
     const { toStep } = useSignStep()
     const navigate = useNavigate()
     return (
-        <main className='text-white flex flex-col justify-center items-center lg:flex-row lg:h-[600px]'>
+        <main className='text-white flex flex-col justify-center items-center lg:flex-row lg:h-[600px] dark:bg-white'>
             <section className='landingPage-card' onClick={()=>toStep('/SignPage/Step1',1)}>
                 <img src={getAssetsFileURL('images/sign.png')} alt="開始簽名" />
                 <h2>開始簽名</h2>

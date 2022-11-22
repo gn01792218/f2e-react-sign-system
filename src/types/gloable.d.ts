@@ -1,3 +1,4 @@
+declare enum ColorMode {}
 declare enum Status {}
 declare enum BtnType {}
 declare enum InputType {}

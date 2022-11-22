@@ -1,12 +1,11 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useImageUtil from "../hook/useImageUtil";
 import { useAppSelector } from '../store/hooks'
-import { NavItem } from '../types/gloable'
+import { NavItem, ColorMode } from '../types/gloable'
 import HeaderMobileMenum from "./HeaderMobileMenum";
+import useDarkMode from '../hook/useDarkMode'
 function TheHeader() {
-    //hook
-    const { getAssetsFileURL } = useImageUtil()
     //Redux
     const currentSignStep = useAppSelector((state) => state.sign.currentStep)
     //基本資料
@@ -26,6 +25,15 @@ function TheHeader() {
     ]
     const [currentNavName,setCurrentNav] = useState<string>('')
     const [ showMobileMenum, setShowMobileMenum ] = useState<boolean>(false)
+    const [ darkMode, setDarkMode ] = useState<boolean>(false)
+    //hook
+    const { getAssetsFileURL } = useImageUtil()
+    const { setColorMode, getColorMode } = useDarkMode()
+    useEffect(()=>{
+        getColorMode()
+        if(darkMode) setColorMode(ColorMode.DARK)
+        else setColorMode(ColorMode.NORMAL)
+    },[darkMode])
     return (
         <Fragment>
             <nav className="flex justify-center text-white p-5">
@@ -52,6 +60,7 @@ function TheHeader() {
                             )
                         })
                     }
+                    <li><button className="dark:bg-primary-100 bg-primary-900" onClick={()=>setDarkMode(!darkMode)}>深色模式切換</button></li>
                 </ul>
                 {/* 手機nav漢堡 */}
                 <ul className="absolute top-[40px] right-[40px] block md:hidden">
