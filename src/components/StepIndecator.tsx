@@ -16,12 +16,12 @@ function StepIndecator(props:Props) {
         //初始化
         window.addEventListener('resize',()=>{
             if(window.innerWidth < 540) setIndecatorSize(24)
-            else setIndecatorSize(100)
+            else setIndecatorSize(50)
         })
         //元件銷毀
         return ()=>{
             window.removeEventListener('resize',()=>{
-            });
+        });
         }
     },[])
     return (
