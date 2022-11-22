@@ -27,9 +27,6 @@ export const slice = createSlice({
     setPromptShow: (state,action:PayloadAction<boolean>) => {
       state.promptObj.show = action.payload
     },
-    setPromptConfirmCallback: (state,action:PayloadAction<Function>) => {
-      state.promptObj.confirmCallback = action.payload
-    },
     setPromptValue: (state,action:PayloadAction<string | number>) => {
       state.promptObj.promptValue = action.payload
       console.log('Redux設置數值',state.promptObj.promptValue)
@@ -41,7 +38,6 @@ export const slice = createSlice({
 export const {
   setPrompt,
   setPromptShow,
-  setPromptConfirmCallback,
   setPromptValue,
 } = slice.actions
 

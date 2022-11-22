@@ -5,12 +5,10 @@ import MsgBox from './components/MsgBox'
 import { Status } from './types/gloable'
 import { useAppSelector } from './store/hooks'
 
-
 function App() {
   //Redux
   const showMsgBox = useAppSelector( state => state.msgBox.msgBoxObj )
   const promptObj = useAppSelector( state => state.prompt.promptObj)
- 
 
   return (
     <div className="App">

@@ -9,7 +9,7 @@ interface Props {
 }
 function Prompt(props:Props) {
     const { type = PromptType.NOINPUT, title, message, show, confirmCallback } = props.promptObj
-    const { closePrompt, promptInputChangeCallback  } = usePrompt()
+    const { closePrompt, promptInputChangeCallback } = usePrompt()
     
     return (
         <section className={[

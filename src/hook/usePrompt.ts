@@ -1,15 +1,12 @@
 import { ChangeEventHandler,ChangeEvent } from 'react'
 import { PromptObj } from '../types/gloable'
-import { setPrompt, setPromptShow, setPromptConfirmCallback, setPromptValue } from '../store/promptSlice '
+import { setPrompt, setPromptShow, setPromptValue } from '../store/promptSlice '
 import { useAppDispatch } from '../store/hooks'
 export default function usePrompt(){
     const dispatch = useAppDispatch()
     //methods
     const promptInputChangeCallback :ChangeEventHandler<HTMLInputElement> =(event:ChangeEvent<HTMLInputElement>) =>{
         dispatch(setPromptValue(event.target.value))
-    }
-    function setPromptConfirmFunction(callback:Function) {
-        dispatch(setPromptConfirmCallback(callback))
     }
     function setPromptObj (prompt:PromptObj) {
         if(!prompt.title) prompt.title = '提示訊息'
@@ -25,7 +22,6 @@ export default function usePrompt(){
     return {
         //methods
         promptInputChangeCallback,
-        setPromptConfirmFunction,
         setPromptObj,
         showPrompt,
         closePrompt,

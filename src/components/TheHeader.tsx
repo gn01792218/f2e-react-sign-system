@@ -34,9 +34,11 @@ function TheHeader() {
     
     return (
         <main className="flex flex-col items-center">
-            <section className="hidden flex-col items-center lg:flex">
+            <section className="flex-col items-center lg:flex">
                 <HomeIcon />
-                <DarkModeButton darkMode={darkMode} setDarkMode={setDarkMode}/>
+                <div className="hidden lg:block">
+                    <DarkModeButton darkMode={darkMode} setDarkMode={setDarkMode}/>
+                </div>
             </section>
             <nav className="flex justify-center text-white p-5">
                 {/* md以上的nav */}
