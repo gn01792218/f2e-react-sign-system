@@ -32,7 +32,7 @@ function StepIndecator(props:Props) {
             {/* 翻轉體 */}
             <div className='relative perspective-1500' style={{width:indecatorSize,height:indecatorSize}}>
                 {/* 正面 : 圓圈 */}
-                <div className={[active? 'bg-primary-500 animate-bounce': 'border-primary-500 border-2',done && !active ? 'done':'',
+                <div className={[active? 'animate-bounce bg-primary-900 dark:bg-primary-500': 'border-primary-900 border-2 dark:border-primary-500',done && !active ? 'done':'',
                         ,active && done ? 'hidden':'',"indecatorStep flipCard rounded-full flex justify-center items-center"].join(' ')}>
                     <p className={[active? 'text-acent': 'text-primary-100',`text-[${indecatorSize/2}px]`].join(' ')}>{step}</p>
                 </div>

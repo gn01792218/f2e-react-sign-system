@@ -14,7 +14,7 @@ function App() {
  
 
   return (
-    <div className="App text-white">
+    <div className="App">
       <Prompt promptObj={promptObj}/>
       <MsgBox msgBoxObj={{type:Status.SUCCESS,title:showMsgBox.title,message:showMsgBox.message,show:showMsgBox.show}}/>
       <div>
