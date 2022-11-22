@@ -5,12 +5,15 @@ import useImageUtil from "../hook/useImageUtil";
 import { useAppSelector } from '../store/hooks'
 import { NavItem } from '../types/gloable'
 import { Link } from "react-router-dom";
+import DarkModeButton from "./DarkModeButton";
 interface Props {
     show:boolean,
-    closeCallback:Function
+    closeCallback:Function,
+    darkMode:boolean,
+    setDarkMode:Function
 }
 function HeaderMobileMenum(props:Props) {
-    const { show, closeCallback } = props
+    const { show, closeCallback, darkMode, setDarkMode } = props
     //hook
     const { getAssetsFileURL } = useImageUtil()
     //Redux
@@ -36,16 +39,19 @@ function HeaderMobileMenum(props:Props) {
         {
             show ? 
             <section className={[
-                "fixed w-full h-full top-0 p-10 bg-overlay-600 z-[10]",
+                "fixed w-full h-full top-0 p-10 bg-overlay-500 dark:bg-overlay-600 z-[10]",
                 show ? 'fade-in' : 'fade-out'
             ].join(" ")}>
                 <img className='ml-auto' onClick={()=>closeCallback()} src={getAssetsFileURL('images/close.png')} alt="close" width={40} height={40}/>
                 <ul className="h-full flex flex-col items-center justify-start nav md:hidden">
+                    <li>
+                        <DarkModeButton darkMode={darkMode} setDarkMode={setDarkMode}/>
+                    </li>
                     {   
                         navList.map(nav=>{
                             return (
                                 <li className={[
-                                    "relative m-5 w-[180px] flex justify-center",
+                                    "relative m-5 w-[180px] flex justify-center text-white",
                                     currentNavName === nav.name ? 'active' : ''
                                     ].join(" ")}
                                     onClick={()=>{

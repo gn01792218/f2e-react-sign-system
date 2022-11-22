@@ -26,7 +26,7 @@ module.exports = {
         'acent':'#F3AB1E',
         'overlay':{
           DEFAULT:'#000000b3',
-          500:'#000000b3',
+          500:'#000000b8',
           600:"#000000e0"
         },
       },
