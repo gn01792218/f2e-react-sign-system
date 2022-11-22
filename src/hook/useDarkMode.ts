@@ -1,13 +1,21 @@
 
-import { useState } from 'react'
 import { ColorMode } from '../types/gloable'
+import { useMemo, useState } from "react";
 export default function usePrompt(){
+    //基本變數
     const localstorage = window.localStorage
-    // const [ themeMode, setThemeMode  ] = useState<ColorMode>(JSON.parse(localstorage.getItem('them') as string))
+    const [ darkMode, setDarkMode ] = useState<boolean>(false)
+    useMemo(()=>{
+        if(darkMode) {
+            setColorMode(ColorMode.DARK)
+        } else {
+            setColorMode(ColorMode.NORMAL)
+        }
+        getColorMode()
+    },[darkMode])
     //methods
     function setColorMode(mode:ColorMode){
         localstorage.setItem('theme',JSON.stringify(mode))
-        // setThemeMode(mode)
     }
     function getColorMode(){
         //深色模式
@@ -21,8 +29,9 @@ export default function usePrompt(){
 
     return {
         //data
-        // themeMode,
+        darkMode,
         //methods
+        setDarkMode,
         setColorMode,
         getColorMode,
     }

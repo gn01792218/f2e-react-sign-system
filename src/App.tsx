@@ -2,7 +2,6 @@ import Routers from './router/Routers'
 import TheHeader from './components/TheHeader'
 import Prompt from './components/Prompt'
 import MsgBox from './components/MsgBox'
-import HomeIcon from './components/TheHomeIcon'
 import { Status } from './types/gloable'
 import { useAppSelector } from './store/hooks'
 
@@ -18,7 +17,6 @@ function App() {
       <Prompt promptObj={promptObj}/>
       <MsgBox msgBoxObj={{type:Status.SUCCESS,title:showMsgBox.title,message:showMsgBox.message,show:showMsgBox.show}}/>
       <div>
-        <HomeIcon />
         <TheHeader />
       </div>
       <Routers />

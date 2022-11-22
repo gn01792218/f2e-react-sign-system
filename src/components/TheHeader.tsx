@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import useImageUtil from "../hook/useImageUtil";
 import { useAppSelector } from '../store/hooks'
@@ -6,6 +6,7 @@ import { NavItem, ColorMode } from '../types/gloable'
 import HeaderMobileMenum from "./HeaderMobileMenum";
 import useDarkMode from '../hook/useDarkMode'
 import DarkModeButton from "./DarkModeButton";
+import HomeIcon from '../components/TheHomeIcon'
 function TheHeader() {
     //Redux
     const currentSignStep = useAppSelector((state) => state.sign.currentStep)
@@ -26,17 +27,17 @@ function TheHeader() {
     ]
     const [currentNavName,setCurrentNav] = useState<string>('')
     const [ showMobileMenum, setShowMobileMenum ] = useState<boolean>(false)
-    const [ darkMode, setDarkMode ] = useState<boolean>(false)
+    
     //hook
     const { getAssetsFileURL } = useImageUtil()
-    const { setColorMode, getColorMode } = useDarkMode()
-    useEffect(()=>{
-        getColorMode()
-        if(darkMode) setColorMode(ColorMode.DARK)
-        else setColorMode(ColorMode.NORMAL)
-    },[darkMode])
+    const { darkMode ,setDarkMode } = useDarkMode()
+    
     return (
-        <Fragment>
+        <main className="flex flex-col items-center">
+            <section className="hidden flex-col items-center lg:flex">
+                <HomeIcon />
+                <DarkModeButton darkMode={darkMode} setDarkMode={setDarkMode}/>
+            </section>
             <nav className="flex justify-center text-white p-5">
                 {/* md以上的nav */}
                 <ul className="hidden nav flex md:flex">
@@ -61,9 +62,6 @@ function TheHeader() {
                             )
                         })
                     }
-                    <li>
-                        <DarkModeButton darkMode={darkMode} setDarkMode={setDarkMode}/>
-                    </li>
                 </ul>
                 {/* 手機nav漢堡 */}
                 <ul className="absolute top-[40px] right-[40px] block md:hidden">
@@ -73,7 +71,7 @@ function TheHeader() {
                 </ul>
             </nav>
             <HeaderMobileMenum show={showMobileMenum} closeCallback={()=>setShowMobileMenum(false)} darkMode={darkMode} setDarkMode={setDarkMode}/>
-        </Fragment>
+        </main>
     )
 }
 export default TheHeader

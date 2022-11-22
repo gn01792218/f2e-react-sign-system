@@ -1,7 +1,7 @@
 import { MouseEventHandler } from "react"
 export enum ColorMode {
-    NORMAL,
     DARK,
+    NORMAL,
 }
 export enum Status {
     SUCCESS,
