@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Status, MsgBoxObj } from '../types/gloable'
 import useImageUtil from '../hook/useImageUtil'
 
@@ -8,9 +7,7 @@ interface Props {
 function MsgPopup(props:Props) {
     const { type, title, message, show } = props.msgBoxObj
     const { getAssetsFileURL } = useImageUtil()
-    useEffect(()=>{
-        console.log(type,title,message,show)
-    })
+
     return (
 
             <section className={[
