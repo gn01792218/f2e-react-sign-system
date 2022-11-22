@@ -115,12 +115,6 @@ export default function useHandSignCanvas(signCanvas:HTMLCanvasElement) {
             const img = new Image()
             img.onload = () => {
                 if(!signCanvas) return
-                console.log('圖片',img.width,img.height)
-                console.log('canvas',signCanvas.width,signCanvas.height)
-                //將canvas的大小設置成圖片大小
-                // signCanvas.current.height = img.height
-                // signCanvas.current.width = img.width
-                console.log('canvas',signCanvas.width,signCanvas.height)
                 //把圖片畫上canvas
                 ctx.drawImage(img,0,0,img.width,img.height,0,0,signCanvas.width,signCanvas.height)
             }

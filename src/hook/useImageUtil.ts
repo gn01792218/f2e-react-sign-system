@@ -12,7 +12,7 @@ export default function useImageUtil(){
      */
     function checkImageSize(size:number){
         let unit = 1024
-        let maxSize = 10
+        let maxSize = 5
         let sizeOK = size/unit < maxSize*unit
         if (!sizeOK) showMsg({
             type:Status.ERROR,
