@@ -5,7 +5,7 @@ function TextInput(props:Props) {
     const { handleOnchange } = props
     
     return (
-            <input className='w-full' type="text" onChange={handleOnchange}/>
+            <input className='w-full text-black' type="text" onChange={handleOnchange}/>
     )
 }
 export default TextInput
