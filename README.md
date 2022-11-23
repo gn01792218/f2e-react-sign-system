@@ -160,6 +160,7 @@ function getCanvasMousePos(canvas:HTMLCanvasElement,event:React.MouseEvent<HTMLC
 ## <span style="font-weight:bolder">專案未來規劃與維護</span>
 <ul>
     <li>擴展手簽功能  - 例如 : 增加橡皮擦、調整筆畫粗細...等</li>
+    <li>加強畫畫版驗證  - 例如 : 判斷使用者沒有劃任何東西時，無法保存和使用。</li>
     <li>會員加值功能 - 例如 : 加入會員可獲得更多的文件、簽名檔儲存數...等</li>
     <li>擴展檔案上傳功能 - 例如 : 可拖曳上傳</li>
     <li>擴展fabric功能 - 例如 : 手機端可縮放canvas</li>
