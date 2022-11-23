@@ -3,7 +3,7 @@ interface Props {
     documentHistoryObj:DocumentHistoryObj
 }
 function Loading(props:Props) {
-    let { name, documentImg} = props.documentHistoryObj
+    let { name, documentImg } = props.documentHistoryObj
     
     return (
         <div className='w-full'>

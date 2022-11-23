@@ -21,7 +21,7 @@ function DocumentHistoryPage() {
                 {   documentHistorArray.length ? 
                     documentHistorArray.map( (item,index) => {
                         return (
-                            <li className='documentHistory-li'>
+                            <li className='documentHistory-li' key={index}>
                                 <DocumentHistoryItem documentHistoryObj={item}/>
                                 <div className='flex flex-col items-center'>
                                     <Btn btnObj={{type:BtnType.SECONDARY,title:'下載',clickHandler:()=>downloadImg(item.documentImg)}}/>

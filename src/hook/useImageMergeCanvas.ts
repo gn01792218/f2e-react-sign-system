@@ -29,7 +29,6 @@ export default function useImageMergeCanvas() {
   //監聽RWD變化canvas的zoom
   useEffect(() => {
     setIsMobel(detectmob());
-    console.log(detectmob());
   })
   useEffect(() => {
     if (isMobel) {

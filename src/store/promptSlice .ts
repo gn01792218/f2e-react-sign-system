@@ -23,6 +23,7 @@ export const slice = createSlice({
   reducers: {
     setPrompt: (state, action:PayloadAction<PromptObj>) =>{
       state.promptObj = action.payload
+      console.log('設置Prompt物件的確認callback為 : ',state.promptObj.confirmCallback)
     },
     setPromptShow: (state,action:PayloadAction<boolean>) => {
       state.promptObj.show = action.payload
