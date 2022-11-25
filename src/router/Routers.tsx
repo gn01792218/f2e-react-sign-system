@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from "react-router-dom";
 import LandingPage from "../views/LandingPage"
+import Loading from '../components/Loading';
 function Routers() {
     //路遊懶加載
     const CreateSignPage = lazy(()=>import('../views/CreateSignPage'))
@@ -10,7 +11,10 @@ function Routers() {
     const SignPageStep2 = lazy(()=>import(/* @vite-ignore */'../views/SignPageStep2'))
     const SignPageStep3 = lazy(()=>import(/* @vite-ignore */'../views/SignPageStep3'))
     return (
-        <Suspense fallback={<div>Loading</div>}>
+        <Suspense fallback={
+          <div className='w-full flex justify-center items-center'>
+            <Loading loadingObj={{loading:true}}/>
+          </div>}>
             <Routes>
                 <Route path="/" element={<LandingPage/>} />
                 {/* 巢嵌式子路由 */}

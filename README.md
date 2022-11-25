@@ -103,7 +103,7 @@ function deletedSign(num:number){
 
 ```
 ### <span style="font-weight:bold">Loading元件</span>
-Loading元件可客製化樣式，需傳入TailwindCss class字串<br>
+Loading元件可客製化樣式，<span style="color: yellow"> 需傳入TailwindCss class字串 </span><br>
 props參數:<br>
 <span style="font-weight:bold">loading (必填) :</span> 控制loading出現與否<br>
 <span style="font-weight:bold">width、height (選填) :</span> 控制大小<br>
