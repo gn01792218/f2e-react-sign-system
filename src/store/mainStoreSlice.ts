@@ -11,7 +11,7 @@ const initialState: State = { // 定義 the initial state using that type
 
 //2.撰寫reducer函式
 export const slice = createSlice({
-  name: 'main',
+  name: 'mainStore',
   initialState,
   reducers: {
     setIsMobel: (state, action:PayloadAction<boolean>) =>{

@@ -11,7 +11,6 @@ function StepIndecator(props:Props) {
     //
     const [ indecatorSize, setIndecatorSize ] = useState(50)
     //監聽螢幕變化
-    
     useEffect(()=>{
         //初始化
         window.addEventListener('resize',()=>{
@@ -42,7 +41,6 @@ function StepIndecator(props:Props) {
                         <circle className='circle' fill="none" stroke="#F3AB1E" strokeWidth={indecatorSize*0.08} cx={indecatorSize/2} cy={indecatorSize/2} r={indecatorSize/2-4}/>
                         <polyline className='tick' fill="none" stroke="#27CAC4" strokeWidth={indecatorSize*0.1} points=
                         {`${indecatorSize*0.244},${indecatorSize*0.4768} ${indecatorSize*0.39715},${indecatorSize*0.70165} ${indecatorSize*0.7582},${indecatorSize*0.306}`}
-                        // "24.4,47.68 39.715,70.165 75.82,30.6"
                         strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                 </div>

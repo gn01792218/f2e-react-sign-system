@@ -5,14 +5,14 @@ import { useAppSelector, useAppDispatch } from "../store/hooks";
 import { setStepIndecatorDon } from "../store/signSlice";
 import useImageUtil from "./useImageUtil";
 import useMsgBox from "./useMsgBox";
-import { setIsMobel } from "../store/mainSlice";
+import { setIsMobel } from "../store/mainStoreSlice";
 export default function useImageMergeCanvas() {
   //Redux
   const dispatch = useAppDispatch();
   const stepIndecatorDataArray = useAppSelector(
     (state) => state.sign.stepIndecatorDataArray
   );
-  const isMobel = useAppSelector((state) => state.main.isMobel);
+  // const isMobel = useAppSelector((state) => state.mainStore.isMobel);
   //hook
   const { downloadImg } = useImageUtil();
   const { showMsg } = useMsgBox();
@@ -28,17 +28,15 @@ export default function useImageMergeCanvas() {
   const [canvasZoomValue, setCanvasZoomValue] = useState<number>(1);
   //監聽RWD變化canvas的zoom
   useEffect(() => {
-    setIsMobel(detectmob());
-  })
-  useEffect(() => {
-    if (isMobel) {
-      setCanvasZoomValue(0.5);
+    console.log('Redux狀態',isMobile())
+    if (isMobile()) {
+      setCanvasZoomValue(0.1);
       console.log("是手機");
     } else {
       setCanvasZoomValue(1);
       console.log("不是手機");
     }
-  },[isMobel]);
+  });
 
   // 建立主要canvas
   useEffect(() => {
@@ -62,14 +60,13 @@ export default function useImageMergeCanvas() {
         mergeCanvas.renderAll();
         mergeCanvas.setHeight(img.height!);
         mergeCanvas.setWidth(img.width!);
-        scaleImg(img, mergeCanvas);
       });
     });
   }, [mergeCanvas, bgImg]);
 
   //methods
   //偵測是否為手機
-  function detectmob() {
+  function isMobile() {
     if (
       navigator.userAgent.match(/Android/i) ||
       navigator.userAgent.match(/webOS/i) ||
@@ -95,43 +92,13 @@ export default function useImageMergeCanvas() {
     bgImg: fabric.Image,
     zoom: number
   ) {
-    let canvasWidth = bgImg.width! * zoom;
-    let canvasHeight = bgImg.height! * zoom;
-    canvas?.setWidth(canvasWidth);
+    let canvasWidth = bgImg.width! * zoom
+    let canvasHeight = bgImg.height! * zoom
+    canvas.setWidth(canvasWidth);
     canvas.setHeight(canvasHeight);
     return { canvasWidth, canvasHeight };
   }
 
-  // //圖片縮放到canvas上
-  function scaleImg(bgImg: fabric.Image, canvas: fabric.Canvas) {
-    const { canvasWidth, canvasHeight } = canvasZoom(
-      canvas,
-      bgImg,
-      canvasZoomValue
-    );
-    const canvasAspect = canvasWidth / canvasHeight;
-    const imgAspect = bgImg.width! / bgImg.height!;
-    let left, top, scaleFactor;
-
-    if (canvasAspect >= imgAspect) {
-      scaleFactor = canvasWidth / bgImg.width!;
-      left = 0;
-      top = -(bgImg.height! * scaleFactor - canvasHeight) / 2;
-    } else {
-      scaleFactor = canvasHeight / bgImg.height!;
-      top = 0;
-      left = -(bgImg.width! * scaleFactor - canvasWidth) / 2;
-    }
-
-    canvas.setBackgroundImage(bgImg, canvas.renderAll.bind(canvas), {
-      top,
-      left,
-      originX: "left",
-      originY: "top",
-      scaleX: scaleFactor,
-      scaleY: scaleFactor,
-    });
-  }
   //下載圖片
   function downloadMergeImage() {
     if (!signImg)
@@ -152,6 +119,8 @@ export default function useImageMergeCanvas() {
     if (!stepIndecatorDataArray[2].done) dispatch(setStepIndecatorDon(2));
   }
   function mergeCanvasToImage() {
+    // maby 在這裡把canvas設成img原始寬高?
+    //就可以讓手機版本的canvas直接縮小!?
     return mergeCanvas?.toDataURL({ format: "png" });
   }
 
