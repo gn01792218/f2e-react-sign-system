@@ -4,7 +4,7 @@ import { pushDocument, deleteDocument } from '../store/documentHistorySlice'
 import { setStepIndecatorDon } from '../store/signSlice'
 import useMsgBox from './useMsgBox'
 import usePrompt from './usePrompt'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 export default function useDocumentHistory(){
     //基本資料
     const [ saveDocument, setSaveDocument ] = useState<DocumentHistoryObj>()
@@ -30,7 +30,7 @@ export default function useDocumentHistory(){
             type:PromptType.INPUT,
             title:'保存文件訊息',
             message:'請輸入欲儲存之文件名稱',
-            confirmCallback:useCallback(()=>{
+            confirmCallback:()=>{
                 //2.保存文件
                 if(documentHistorArray.length > 9) {
                     showMsg({
@@ -51,7 +51,7 @@ export default function useDocumentHistory(){
                     title:'文件歷史訊息',
                     message:'保存成功!'
                 })
-            },[])
+            }
         })
         showPrompt()
     }
