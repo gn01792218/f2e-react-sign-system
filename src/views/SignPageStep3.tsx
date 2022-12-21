@@ -1,6 +1,5 @@
 import { BtnType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
-import MergeImageCanvas from '../components/canvas/MergeImageCanvas'
 import useSignStep from '../hook/useSignStep'
 import useRefreshRedirect from '../hook/useRefreshRedirect'
 import useImageMergeCanvas from '../hook/useImageMergeCanvas'
@@ -10,7 +9,7 @@ import { useAppSelector } from '../store/hooks'
 function SignPageStep3() {
     //hook
     const { toStep } = useSignStep()
-    const { mergeImageCanvasRef, downloadMergeImage, mergeCanvasToImage } = useImageMergeCanvas()
+    const { downloadMergeImage, mergeCanvasToImage } = useImageMergeCanvas()
     const { saveDocumentHistory } = useDocumentHistory()
 
     //Redux
@@ -21,9 +20,8 @@ function SignPageStep3() {
     return (
         <section className='flex flex-col items-center justify-center'>
             <div className='flex'>
-                <Btn btnObj={{type:BtnType.SECONDARY,title:'重新簽名',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
+                <Btn btnObj={{type:BtnType.SECONDARY,title:'添加簽名',clickHandler:()=>toStep('/SignPage/Step2',2)}}/>
             </div>
-            <MergeImageCanvas mergeImageCanvasObj={{mergeImageCanvasRef}}/>
             {
                 (handSignImg && BgSrc) ? 
                 <div className='flex flex-col lg:flex-row'>
