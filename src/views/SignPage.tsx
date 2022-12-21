@@ -1,3 +1,5 @@
+import { BtnType } from '../types/gloable'
+import Btn from '../components/btn/Btn'
 import TheSignStepGroup from '../components/TheSignStepGroup'
 import MergeImageCanvas from '../components/canvas/MergeImageCanvas'
 import { Outlet } from 'react-router-dom'
@@ -5,9 +7,11 @@ import { setStepIndecatorDon, updateStepIndecatorActive } from '../store/signSli
 import { useAppSelector, useAppDispatch } from '../store/hooks'
 import { useMemo, useEffect } from 'react'
 import useImageMergeCanvas from '../hook/useImageMergeCanvas'
+import useDocumentHistory from '../hook/useDocumentHistory'
 
 function SignPage() {
-    const { mergeImageCanvasRef } = useImageMergeCanvas()
+    const { mergeImageCanvasRef, downloadMergeImage, mergeCanvasToImage } = useImageMergeCanvas()
+    const { saveDocumentHistory } = useDocumentHistory()
     const dispatch = useAppDispatch()
     const currentStep = useAppSelector( state=>state.sign.currentStep)
     const handSignImg = useAppSelector( state => state.createSign.handMadeSignImg)
@@ -41,6 +45,17 @@ function SignPage() {
             </section>
             {/* 子路由渲染 */}
             <Outlet />
+            {
+                (handSignImg && BgSrc) ? 
+                <div className='w-full flex flex-col items-center lg:flex-row lg:justify-center'>
+                    <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
+                    <Btn btnObj={{type:BtnType.PRIMARY,title:'保存文件',clickHandler:()=>saveDocumentHistory({
+                        name:'我的文件',
+                        documentImg:mergeCanvasToImage()!
+                    })}}/>
+                </div>
+                :null
+            }
         </main>
     )
 }

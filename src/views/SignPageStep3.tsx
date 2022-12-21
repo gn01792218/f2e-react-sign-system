@@ -2,15 +2,11 @@ import { BtnType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
 import useSignStep from '../hook/useSignStep'
 import useRefreshRedirect from '../hook/useRefreshRedirect'
-import useImageMergeCanvas from '../hook/useImageMergeCanvas'
-import useDocumentHistory from '../hook/useDocumentHistory'
 import { useAppSelector } from '../store/hooks'
 
 function SignPageStep3() {
     //hook
     const { toStep } = useSignStep()
-    const { downloadMergeImage, mergeCanvasToImage } = useImageMergeCanvas()
-    const { saveDocumentHistory } = useDocumentHistory()
 
     //Redux
     const handSignImg = useAppSelector(state => state.createSign.handMadeSignImg)
@@ -24,13 +20,7 @@ function SignPageStep3() {
             </div>
             {
                 (handSignImg && BgSrc) ? 
-                <div className='flex flex-col lg:flex-row'>
-                    <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
-                    <Btn btnObj={{type:BtnType.PRIMARY,title:'保存文件',clickHandler:()=>saveDocumentHistory({
-                        name:'我的文件',
-                        documentImg:mergeCanvasToImage()!
-                    })}}/>
-                </div>
+                null
                 :<div className='flex flex-col items-center mt-5'>
                     <p className='text-acent'>您的簽署未完成 : </p>
                     {
