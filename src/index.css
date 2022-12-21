@@ -76,7 +76,7 @@
 
 /* canvas */
 .signCanvas {
-    @apply min-w-[300px] max-w-[400px] w-full h-[200px] bg-slate-400 touch-none
+    @apply bg-slate-400 touch-none
 }
 
 /* 特效 */
