@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, ChangeEventHandler, useEffect, useRef, useState } from "react";
 import { Status } from "../types/gloable";
 import { fabric } from "fabric";
 import { useAppSelector, useAppDispatch } from "../store/hooks";
@@ -14,7 +14,7 @@ export default function useImageMergeCanvas() {
   );
   // const isMobel = useAppSelector((state) => state.mainStore.isMobel);
   //hook
-  const { downloadImg } = useImageUtil();
+  const { downloadImg, checkImageSize } = useImageUtil();
   const { showMsg } = useMsgBox();
   //合併的canvas
   const mergeImageCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -124,12 +124,34 @@ export default function useImageMergeCanvas() {
     return mergeCanvas?.toDataURL({ format: "png" });
   }
 
+  //疊加圖片圖層
+  //上傳圖片
+  const addImageLayer:ChangeEventHandler<HTMLInputElement> = (event:ChangeEvent<HTMLInputElement>) =>{
+    //獲取input檔案
+    const file = event.target.files? event.target.files[0] : null
+    if(!file?.type.includes('image')) {
+        showMsg({
+            type:Status.ERROR,
+            title:'上傳檔案訊息',
+            message:'您上傳的並非圖檔'
+        })
+        return
+    }
+    const imgElement = new Image()
+    imgElement.src = URL.createObjectURL(file!)
+    //把圖片疊加上canvas
+    fabric.Image.fromURL(imgElement.src, (img) => {
+      //使用add方法會把圖檔變成可以縮放的狀態
+      mergeCanvas?.add(img).renderAll();
+    });
+}
+
   return {
     //data
     mergeImageCanvasRef,
-
     //methods
     downloadMergeImage,
     mergeCanvasToImage,
+    addImageLayer,
   };
 }

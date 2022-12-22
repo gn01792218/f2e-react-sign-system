@@ -1,5 +1,6 @@
-import { BtnType } from '../types/gloable'
+import { BtnType, InputType } from '../types/gloable'
 import Btn from '../components/btn/Btn'
+import Input from '../components/inputComponents/Input'
 import TheSignStepGroup from '../components/TheSignStepGroup'
 import MergeImageCanvas from '../components/canvas/MergeImageCanvas'
 import { Outlet } from 'react-router-dom'
@@ -10,7 +11,7 @@ import useImageMergeCanvas from '../hook/useImageMergeCanvas'
 import useDocumentHistory from '../hook/useDocumentHistory'
 
 function SignPage() {
-    const { mergeImageCanvasRef, downloadMergeImage, mergeCanvasToImage } = useImageMergeCanvas()
+    const { mergeImageCanvasRef, downloadMergeImage, mergeCanvasToImage, addImageLayer } = useImageMergeCanvas()
     const { saveDocumentHistory } = useDocumentHistory()
     const dispatch = useAppDispatch()
     const currentStep = useAppSelector( state=>state.sign.currentStep)
@@ -48,6 +49,7 @@ function SignPage() {
             {
                 (handSignImg && BgSrc) ? 
                 <div className='w-full flex flex-col items-center lg:flex-row lg:justify-center'>
+                    <Input inputObj={{type:InputType.FILE, title:'添加圖檔', handleOnchange:addImageLayer}}/>
                     <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
                     <Btn btnObj={{type:BtnType.PRIMARY,title:'保存文件',clickHandler:()=>saveDocumentHistory({
                         name:'我的文件',
