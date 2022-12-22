@@ -14,7 +14,7 @@ export default function useImageMergeCanvas() {
   );
   // const isMobel = useAppSelector((state) => state.mainStore.isMobel);
   //hook
-  const { downloadImg, checkImageSize } = useImageUtil();
+  const { downloadImg } = useImageUtil();
   const { showMsg } = useMsgBox();
   //合併的canvas
   const mergeImageCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -24,24 +24,32 @@ export default function useImageMergeCanvas() {
   const signImg = useAppSelector((state) => state.createSign.handMadeSignImg);
   const bgImg = useAppSelector((state) => state.createSign.BGImg);
 
-  //canvas基本設置
-  const [canvasZoomValue, setCanvasZoomValue] = useState<number>(1);
+  //canvas其他資料
+  const [ activeLayer, setActiveLayer ] = useState<fabric.Object>()
+  const [ canvasZoomValue, setCanvasZoomValue ] = useState<number>(1);
   //監聽RWD變化canvas的zoom
-  useEffect(() => {
-    console.log('Redux狀態',isMobile())
-    if (isMobile()) {
-      setCanvasZoomValue(0.1);
-      console.log("是手機");
-    } else {
-      setCanvasZoomValue(1);
-      console.log("不是手機");
-    }
-  });
+  // useEffect(() => {
+  //   console.log('Redux狀態',isMobile())
+  //   if (isMobile()) {
+  //     setCanvasZoomValue(0.1);
+  //     console.log("是手機");
+  //   } else {
+  //     setCanvasZoomValue(1);
+  //     console.log("不是手機");
+  //   }
+  // });
 
   // 建立主要canvas
   useEffect(() => {
     setMergeCanvas(new fabric.Canvas(mergeImageCanvasRef.current));
   }, [mergeImageCanvasRef]);
+  // 獲取active目標
+  useEffect(()=>{
+    mergeCanvas?.on('selection:created',(e)=>{
+      console.log(e.selected)  //當前選擇的
+     setActiveLayer(mergeCanvas.getActiveObject())
+    })
+   },[mergeCanvas])
 
   // 合併簽名檔案
   useEffect(() => {
@@ -50,6 +58,8 @@ export default function useImageMergeCanvas() {
       //使用add方法會把圖檔變成可以縮放的狀態
       mergeCanvas.add(img).renderAll();
     });
+    
+    
   }, [mergeCanvas, signImg]);
 
   // 合併背景圖檔案
@@ -144,14 +154,30 @@ export default function useImageMergeCanvas() {
       //使用add方法會把圖檔變成可以縮放的狀態
       mergeCanvas?.add(img).renderAll();
     });
-}
+  }
 
+  //移除當前選擇的圖層
+  function removeActiveLayer(layer:fabric.Object){
+    mergeCanvas?.remove(layer)
+  }
+
+  //清除所有圖層
+  function removeAllLayer(){
+    const layers = mergeCanvas?._objects
+    if(!layers?.length) return
+    layers.forEach(layer=>{
+      removeActiveLayer(layer)
+    })
+  }
   return {
     //data
     mergeImageCanvasRef,
+    activeLayer,
     //methods
     downloadMergeImage,
     mergeCanvasToImage,
     addImageLayer,
+    removeActiveLayer,
+    removeAllLayer,
   };
 }

@@ -11,7 +11,7 @@ import useImageMergeCanvas from '../hook/useImageMergeCanvas'
 import useDocumentHistory from '../hook/useDocumentHistory'
 
 function SignPage() {
-    const { mergeImageCanvasRef, downloadMergeImage, mergeCanvasToImage, addImageLayer } = useImageMergeCanvas()
+    const { mergeImageCanvasRef, activeLayer, downloadMergeImage, mergeCanvasToImage, addImageLayer, removeActiveLayer, removeAllLayer } = useImageMergeCanvas()
     const { saveDocumentHistory } = useDocumentHistory()
     const dispatch = useAppDispatch()
     const currentStep = useAppSelector( state=>state.sign.currentStep)
@@ -50,6 +50,8 @@ function SignPage() {
                 (handSignImg && BgSrc) ? 
                 <div className='w-full flex flex-col items-center lg:flex-row lg:justify-center'>
                     <Input inputObj={{type:InputType.FILE, title:'添加圖檔', handleOnchange:addImageLayer}}/>
+                    <Btn btnObj={{type:BtnType.SECONDARY,title:'移除選擇圖層',clickHandler:() => removeActiveLayer(activeLayer!)}}/> 
+                    <Btn btnObj={{type:BtnType.SECONDARY,title:'清除所有圖層',clickHandler:removeAllLayer}}/> 
                     <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
                     <Btn btnObj={{type:BtnType.PRIMARY,title:'保存文件',clickHandler:()=>saveDocumentHistory({
                         name:'我的文件',
