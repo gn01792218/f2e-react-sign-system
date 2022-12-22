@@ -37,7 +37,6 @@ function SignPage() {
     return (
         <main className='text-white'>
             <TheSignStepGroup />
-            <p>{currentSignStep}</p>
             <section className={[
                 'w-full flex justify-center',
                 currentSignStep === 1 ? 'hidden' : ''
@@ -48,16 +47,20 @@ function SignPage() {
             <Outlet />
             {
                 (handSignImg && BgSrc) ? 
-                <div className='w-full flex flex-col items-center lg:flex-row lg:justify-center'>
-                    <Input inputObj={{type:InputType.FILE, title:'添加圖檔', handleOnchange:addImageLayer}}/>
-                    <Btn btnObj={{type:BtnType.SECONDARY,title:'移除選擇圖層',clickHandler:() => removeActiveLayer(activeLayer!)}}/> 
-                    <Btn btnObj={{type:BtnType.SECONDARY,title:'清除所有圖層',clickHandler:removeAllLayer}}/> 
-                    <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
-                    <Btn btnObj={{type:BtnType.PRIMARY,title:'保存文件',clickHandler:()=>saveDocumentHistory({
-                        name:'我的文件',
-                        documentImg:mergeCanvasToImage()!
+                <section className='w-full flex flex-col'>
+                    <div className='w-full flex flex-col items-center lg:flex-row lg:justify-center'>
+                        <Input inputObj={{type:InputType.FILE, title:'添加圖檔', handleOnchange:addImageLayer}}/>
+                        <Btn btnObj={{type:BtnType.SECONDARY,title:'移除選擇圖層',clickHandler:() => removeActiveLayer(activeLayer!)}}/> 
+                        <Btn btnObj={{type:BtnType.SECONDARY,title:'清除所有圖層',clickHandler:removeAllLayer}}/> 
+                    </div>
+                    <div className='w-full flex flex-col items-center lg:flex-row lg:justify-center'>
+                        <Btn btnObj={{type:BtnType.PRIMARY,title:'下載文件',clickHandler:downloadMergeImage}}/> 
+                        <Btn btnObj={{type:BtnType.PRIMARY,title:'保存文件',clickHandler:()=>saveDocumentHistory({
+                            name:'我的文件',
+                            documentImg:mergeCanvasToImage()!
                     })}}/>
                 </div>
+                </section>
                 :null
             }
         </main>

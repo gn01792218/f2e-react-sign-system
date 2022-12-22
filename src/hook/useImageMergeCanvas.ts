@@ -43,11 +43,19 @@ export default function useImageMergeCanvas() {
   useEffect(() => {
     setMergeCanvas(new fabric.Canvas(mergeImageCanvasRef.current));
   }, [mergeImageCanvasRef]);
+  
   // 獲取active目標
   useEffect(()=>{
-    mergeCanvas?.on('selection:created',(e)=>{
-      console.log(e.selected)  //當前選擇的
-     setActiveLayer(mergeCanvas.getActiveObject())
+    mergeCanvas?.on('selection:created',()=>{
+      setActiveLayer(mergeCanvas.getActiveObject())
+    })
+    mergeCanvas?.on('before:selection:cleared',()=>{
+      //取消選取時觸發
+      setActiveLayer(undefined)
+    })
+    mergeCanvas?.on('selection:updated',()=>{
+      //切換選擇時觸發
+      setActiveLayer(mergeCanvas.getActiveObject())
     })
    },[mergeCanvas])
 
@@ -158,6 +166,7 @@ export default function useImageMergeCanvas() {
 
   //移除當前選擇的圖層
   function removeActiveLayer(layer:fabric.Object){
+    if(!layer) return
     mergeCanvas?.remove(layer)
   }
 
