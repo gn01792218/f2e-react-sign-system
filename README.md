@@ -169,7 +169,6 @@ function getCanvasMousePos(canvas:HTMLCanvasElement,event:React.MouseEvent<HTMLC
     <ul>
          <li>使用 lazy 動態載入路由，build專案時，會出現報錯</li>
          <li>msgBox元件無法依據Status.type改變顏色</li>
-         <li>prompt元件無法正常接收使用者input問題 : A non-serializable value was detected in the state, in the path: `prompt.promptObj.confirmCallback</li>
          <li>警告報錯 : Warning: Cannot update a component (`TheSignStepGroup`) while rendering a different component (`SignPage`). To locate the bad setState() call inside `SignPage`</li>
          <li>取色器手機版本無法顯示問題</li>
     </ul>
