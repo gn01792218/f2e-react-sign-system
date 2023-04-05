@@ -1,13 +1,11 @@
 import { Status, PromptType, DocumentHistoryObj } from '../types/gloable'
 import { useAppSelector, useAppDispatch } from '../store/hooks'
-import { pushDocument, deleteDocument } from '../store/documentHistorySlice'
+import { pushDocument, deleteDocument, setSaveDocument } from '../store/documentHistorySlice'
 import { setStepIndecatorDon } from '../store/signSlice'
 import useMsgBox from './useMsgBox'
 import usePrompt from './usePrompt'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 export default function useDocumentHistory(){
-    //基本資料
-    const [ saveDocument, setSaveDocument ] = useState<DocumentHistoryObj>()
     //hook
     const { showMsg } = useMsgBox()
     const { showPrompt, setPromptObj, closePrompt } = usePrompt()
@@ -15,16 +13,19 @@ export default function useDocumentHistory(){
     const dispatch = useAppDispatch()
     const stepIndecatorDataArray = useAppSelector(state => state.sign.stepIndecatorDataArray)
     const documentHistorArray = useAppSelector( state => state.documentHistory.documentHistoryArray)
-    const promptValue = useAppSelector( state => state.prompt.promptObj.promptValue)
+    const promptValue = useAppSelector( state => state.prompt.promptObj.promptValue)  //偵測prompt的數值
+    const saveDocument = useAppSelector(state => state.documentHistory.saveDocument)  //取得當前儲存的文件資料
     useEffect(()=>{
-        setSaveDocument({
-            name:promptValue as string,
-            documentImg:saveDocument?.documentImg as string
-        })
+        //偵測promptValue有改變時，都要再呼叫一次saveDocumentHistory
+        if(saveDocument && promptValue) saveDocumentHistory(saveDocument)
     },[promptValue])
     //methods
     function saveDocumentHistory(document:DocumentHistoryObj) {
-        setSaveDocument(document)
+        const d:DocumentHistoryObj = {
+            name:promptValue as string,
+            documentImg:document.documentImg
+        }
+        dispatch(setSaveDocument(d))
         //1.先跳出提示框，輸入檔案名稱
         setPromptObj({
             type:PromptType.INPUT,
@@ -40,10 +41,7 @@ export default function useDocumentHistory(){
                     })
                     return
                 }
-                //取得prompt的input值
-                console.log('按下確定時拿到的數值',promptValue)
-                document.name = promptValue as string
-                dispatch(pushDocument(document))
+                dispatch(pushDocument(d))
                 if(!stepIndecatorDataArray[2].done) dispatch(setStepIndecatorDon(2))
                 closePrompt()
                 showMsg({
@@ -69,7 +67,10 @@ export default function useDocumentHistory(){
     }
 
     return {
-        //methods
+        // //data
+        // saveDocument,
+        // //methods
+        // setSaveDocument,
         saveDocumentHistory,
         deleteDocumentHistory,
     }

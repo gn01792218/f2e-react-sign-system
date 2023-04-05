@@ -1,7 +1,6 @@
 //先引入相關依賴
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { PromptObj } from '../types/gloable'
-
 //1.定義state
 interface State { // 定義 a type for the slice state
   promptObj:PromptObj,
@@ -32,6 +31,15 @@ export const slice = createSlice({
       state.promptObj.promptValue = action.payload
       console.log('Redux設置數值',state.promptObj.promptValue)
     },
+    resetPromptObj: (state)=>{
+      state.promptObj = {
+        title: '提示訊息',
+        message: '執行此操作，將造成無法恢復的結果，確定執行嗎?',
+        show: false,
+        promptValue:0,
+        confirmCallback:()=>{}
+      }
+    }
   },
 })
 
@@ -40,6 +48,7 @@ export const {
   setPrompt,
   setPromptShow,
   setPromptValue,
+  resetPromptObj
 } = slice.actions
 
 export default slice.reducer

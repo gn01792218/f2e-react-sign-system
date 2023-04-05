@@ -1,6 +1,6 @@
 import { ChangeEventHandler,ChangeEvent } from 'react'
 import { PromptObj } from '../types/gloable'
-import { setPrompt, setPromptShow, setPromptValue } from '../store/promptSlice '
+import { setPrompt, setPromptShow, setPromptValue, resetPromptObj } from '../store/promptSlice '
 import { useAppDispatch } from '../store/hooks'
 export default function usePrompt(){
     const dispatch = useAppDispatch()
@@ -16,8 +16,12 @@ export default function usePrompt(){
     function showPrompt(){
         dispatch(setPromptShow(true))
     }
+    function resetPrompt(){
+        dispatch(resetPromptObj())
+    }
     function closePrompt(){
         dispatch(setPromptShow(false))
+        resetPrompt()
     }
     return {
         //methods

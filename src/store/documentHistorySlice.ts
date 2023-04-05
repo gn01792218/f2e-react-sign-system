@@ -4,11 +4,12 @@ import { DocumentHistoryObj } from "../types/gloable";
 //1.定義state
 interface State {
   // 定義 a type for the slice state
-  documentHistoryArray: DocumentHistoryObj[];
+  documentHistoryArray: DocumentHistoryObj[],
+  saveDocument:DocumentHistoryObj | null,
 }
 const initialState: State = {
-  // 定義 the initial state using that type
   documentHistoryArray: [],
+  saveDocument:null,
 };
 
 //2.撰寫reducer函式
@@ -21,6 +22,9 @@ export const slice = createSlice({
     },
     deleteDocument: (state, action:PayloadAction<number>) =>{
         state.documentHistoryArray.splice(action.payload,1) 
+    },
+    setSaveDocument:(state,action:PayloadAction<DocumentHistoryObj>) =>{
+      state.saveDocument = action.payload
     }
   },
 });
@@ -28,7 +32,8 @@ export const slice = createSlice({
 //3.導出reducer
 export const { 
     pushDocument,
-    deleteDocument 
+    deleteDocument,
+    setSaveDocument
 } = slice.actions;
 
 export default slice.reducer;
